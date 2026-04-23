@@ -3,51 +3,143 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Maheswara // Home</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Maheswara // Home_Interface</title>
+    <style>
+        /* CORE VARIABLES */
+        :root {
+            --neon-cyan: #00ffff;
+            --neon-pink: #ff4da6;
+            --panel-bg: rgba(0, 255, 255, 0.05);
+            --font-mono: 'Consolas', 'Courier New', Courier, monospace;
+        }
+
+        /* GLOBAL STYLES */
+        body, html { margin: 0; padding: 0; background-color: #000; color: var(--neon-cyan); font-family: var(--font-mono); min-height: 100vh; overflow-x: hidden; }
+
+        /* CRT SCANLINE OVERLAY */
+        .scanlines { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: repeating-linear-gradient(0deg, rgba(0,0,0,0.15), rgba(0,0,0,0.15) 1px, transparent 1px, transparent 2px); pointer-events: none; z-index: 999; }
+
+        /* MAIN CONTAINER */
+        .site-wrapper { max-width: 1100px; margin: 0 auto; padding: 20px; position: relative; z-index: 1; }
+
+        /* HEADER */
+        header { border-bottom: 2px solid var(--neon-cyan); margin-bottom: 30px; padding-bottom: 10px; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; }
+        .sys-info { font-size: 0.75em; color: rgba(0, 255, 255, 0.5); letter-spacing: 2px; }
+        
+        nav ul { list-style: none; padding: 0; margin: 10px 0 0 0; display: flex; gap: 15px; }
+        nav a { color: var(--neon-cyan); text-decoration: none; font-weight: bold; font-size: 1em; padding: 5px 10px; border: 1px solid transparent; transition: 0.2s; }
+        nav a:hover, nav a.active { background: var(--neon-cyan); color: #000; box-shadow: 0 0 10px var(--neon-cyan); }
+        nav a::before { content: "> "; }
+
+        /* GRID LAYOUT - MAGAZINE STYLE */
+        .content-grid { display: grid; grid-template-columns: 1fr 2fr 1fr; gap: 20px; }
+        @media (max-width: 900px) { .content-grid { grid-template-columns: 1fr 1fr; } }
+        @media (max-width: 600px) { .content-grid { grid-template-columns: 1fr; } }
+
+        /* MODULES */
+        .module { background: var(--panel-bg); border: 1px solid rgba(0,255,255,0.2); padding: 15px; margin-bottom: 20px; position: relative; }
+        .module-title { font-size: 0.9em; background: rgba(0,255,255,0.1); padding: 3px 8px; margin: -15px -15px 15px -15px; border-bottom: 1px solid rgba(0,255,255,0.2); color: #fff; letter-spacing: 1px; }
+
+        /* IMAGE STYLING */
+        .profile-img { width: 100%; filter: grayscale(100%) brightness(1.2) sepia(100%) hue-rotate(140deg); border: 1px solid var(--neon-cyan); transition: 0.3s; }
+        .profile-img:hover { filter: grayscale(0%) sepia(0%); }
+
+        /* STATS LIST */
+        .stat-row { display: flex; justify-content: space-between; font-size: 0.85em; margin-bottom: 5px; border-bottom: 1px solid rgba(0,255,255,0.05); }
+        .stat-label { color: rgba(0,255,255,0.6); }
+
+        /* FOOTER */
+        footer { margin-top: 40px; border-top: 1px solid #333; padding: 20px 0; }
+        .glitch-text { color: var(--neon-pink); text-shadow: 0 0 8px var(--neon-pink); }
+    </style>
 </head>
 <body>
 
-    <div class="scanlines"></div>
+<div class="scanlines"></div>
 
-    <div class="site-wrapper">
-        <header>
-            <div>
-                <div class="sys-info">ROOT_ACCESS_GRANTED // LOC: JAKARTA/DEPOK</div>
-                <h1 style="margin: 0; color: #fff; text-shadow: 0 0 10px var(--neon-cyan); text-transform: uppercase; font-size: 2.5em; letter-spacing: 2px;">Maheswara</h1>
+<div class="site-wrapper">
+    <header>
+        <div>
+            <div class="sys-info">MAHESWARA_OS // BUILD: 2026.04.24 // JAKARTA_DEPOK</div>
+            <h1 style="margin: 0; color: #fff; text-shadow: 0 0 10px var(--neon-cyan); text-transform: uppercase;">Maheswara</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html" class="active">/home</a></li>
+                <li><a href="blog.html">/blog</a></li>
+                <li><a href="archive.html">/archive</a></li>
+                <li><a href="social.html">/social</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="content-grid">
+        
+        <div class="side-column">
+            <div class="module">
+                <div class="module-title">USER_AVATAR.jpg</div>
+                <img src="assets/profile.jpg" alt="[IMAGE_NOT_FOUND]" class="profile-img">
+                <p style="font-size: 0.75em; text-align: center; margin-top: 10px; color: #888;">ID: 992-001-MHSWRA</p>
             </div>
-            <nav>
-                <ul>
-                    <li><a href="index.html" class="active">./home_interface</a></li>
-                    <li><a href="blog.html">cd /blog</a></li>
-                    <li><a href="archive.html">cd /archive</a></li>
-                    <li><a href="social.html">cd /social_media</a></li>
+
+            <div class="module">
+                <div class="module-title">SYSTEM_STATS</div>
+                <div class="stat-row"><span class="stat-label">STATUS:</span> <span>ACTIVE</span></div>
+                <div class="stat-row"><span class="stat-label">LEVEL:</span> <span>ARCHIVIST</span></div>
+                <div class="stat-row"><span class="stat-label">LOC:</span> <span>DEPOK, IDN</span></div>
+                <div class="stat-row"><span class="stat-label">UPTIME:</span> <span>18,295h</span></div>
+            </div>
+        </div>
+
+        <div class="main-column">
+            <div class="module">
+                <div class="module-title">BIO_INIT_SEQUENCE.txt</div>
+                <h2 style="color: #fff; margin-top: 0;">&gt; Greetings, Traveler.</h2>
+                <p>I am <strong>Maheswara</strong>. A digital entity specializing in the construction of knowledge structures and the preservation of media history.</p>
+                <p>Currently rooted in the Indonesian Wikipedia ecosystem while exploring the vast realms of Fandom and digital archiving. I believe every circuit connected is a story told.</p>
+            </div>
+
+            <div class="module" style="border-color: var(--neon-pink);">
+                <div class="module-title" style="background: rgba(255, 77, 166, 0.1); color: var(--neon-pink);">ACTIVE_PROJECTS.db</div>
+                <ul style="font-size: 0.9em; padding-left: 20px;">
+                    <li>Refining Roshidere wiki narrative structures.</li>
+                    <li>Analyzing Umamusume racing logic gates.</li>
+                    <li>Wikipedia maintenance & global archiving.</li>
+                    <li>Violin practice: current_track: "Unfinished Melody"</li>
                 </ul>
-            </nav>
-        </header>
-
-        <main class="content-grid">
-            <div class="main-column">
-                <div class="module">
-                    <div class="module-title">SYSTEM_USER_BIO.txt</div>
-                    <h2>Hello, I'm Maheswara.</h2>
-                    <p>Born in Jakarta and currently residing in Depok...</p>
-                    </div>
             </div>
-            </main>
+        </div>
 
-        <footer>
-        <div style="color: #888;">[SYSTEM]: OPERATING IN SAFE MODE</div>
-        <div style="color: #888;">[SYSTEM]: Detecting rogue process: MAHESWARA.EXE</div>
-        <div style="color: #d33;">[SYSTEM]: Attempting to delete user profile... [FAILED]</div>
-        <div style="color: #00ff00;">[SYSTEM]: ADMINISTRATOR ACCESS GRANTED</div>
+        <div class="side-column">
+            <div class="module">
+                <div class="module-title">KNOWLEDGE_SKILLS</div>
+                <div style="font-size: 0.8em;">
+                    WIKIPEDIA_EDITING [■■■■■■■■□□] 80%<br>
+                    DIGITAL_ARCHIVING [■■■■■■■□□□] 70%<br>
+                    VIOLIN_PRACTICE  [■■■■■□□□□□] 50%<br>
+                    SIM_CITY_LOGIC   [■■■■■■■■■□] 90%
+                </div>
+            </div>
+
+            <div class="module">
+                <div class="module-title">QUICK_LINKS</div>
+                <a href="blog.html" style="display: block; color: var(--neon-cyan); font-size: 0.9em; margin-bottom: 5px;">&gt; Read_Latest_Logs</a>
+                <a href="archive.html" style="display: block; color: var(--neon-cyan); font-size: 0.9em; margin-bottom: 5px;">&gt; Access_Archives</a>
+                <a href="social.html" style="display: block; color: var(--neon-pink); font-size: 0.9em;">&gt; Open_Uplink_Ports</a>
+            </div>
+        </div>
+
+    </main>
+
+    <footer>
+        <div style="color: #888; font-size: 0.8em;">[SYSTEM]: Detecting rogue process: MAHESWARA.EXE... [FAILED]</div>
+        <div style="color: #00ff00; font-size: 0.8em;">[SYSTEM]: ADMINISTRATOR ACCESS GRANTED</div>
         <div class="glitch-text" style="margin-top: 15px; font-size: 1.1em; text-align: center;">
             "You didn't think I'd let you leave without a proper goodbye, did you?"<br>
-            <span style="color: #fff; font-style: italic; font-size: 0.9em;">-- Just Maheswara. --</span>
+            <span style="color: #fff; font-style: italic; font-size: 0.8em;">-- Just Maheswara. --</span>
         </div>
-            </footer>
-
-    </div>
+    </footer>
+</div>
 
 </body>
 </html>
