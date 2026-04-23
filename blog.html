@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Maheswara // Terminal Interface</title>
+    <title>Maheswara // Blog</title>
     <style>
         /* CORE VARIABLES */
         :root {
@@ -91,7 +91,7 @@
             opacity: 0;
         }
         
-        nav a:hover::before {
+        nav a:hover::before, nav a.active::before {
             opacity: 1;
         }
 
@@ -202,10 +202,10 @@
         </div>
         <nav>
             <ul>
-                <li><a href="#" class="active">cd /home</a></li>
-                <li><a href="#">cd /blog</a></li>
-                <li><a href="#">cd /archive</a></li>
-                <li><a href="#">cd /social_media</a></li>
+                <li><a href="index.html">cd /home</a></li>
+                <li><a href="blog.html" class="active">cd /blog</a></li>
+                <li><a href="archive.html">cd /archive</a></li>
+                <li><a href="social.html">cd /social_media</a></li>
             </ul>
         </nav>
     </header>
@@ -272,7 +272,10 @@
                 </div>
             </div>
         </div>
-        <footer>
+        
+    </main>
+
+    <footer>
         <div style="color: #888;">[SYSTEM]: OPERATING IN SAFE MODE</div>
         <div style="color: #888;">[SYSTEM]: Detecting rogue process: MAHESWARA.EXE</div>
         <div style="color: #d33;">[SYSTEM]: Attempting to delete user profile... [FAILED]</div>
@@ -285,4 +288,7 @@
             MaheSwara Website-Interface // Build v3.0.1 // SHUTDOWN_SEQUENCE_PENDING
         </div>
     </footer>
-    </main>
+
+</div>
+</body>
+</html>
