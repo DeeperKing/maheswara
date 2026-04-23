@@ -47,7 +47,6 @@
             flex-wrap: wrap;
             justify-content: space-between;
             align-items: flex-end;
-            box-shadow: 0 5px 15px rgba(0, 255, 255, 0.1);
         }
 
         .sys-info {
@@ -73,10 +72,23 @@
             box-shadow: 0 0 10px var(--neon-cyan);
         }
 
-        /* MAGAZINE GRID */
-        .content-grid { display: grid; grid-template-columns: 1fr 2fr 1fr; gap: 20px; }
-        @media (max-width: 1000px) { .content-grid { grid-template-columns: 1fr 1fr; } .right-sidebar { grid-column: span 2; display: grid; grid-template-columns: 1fr 1fr; gap: 20px; } }
-        @media (max-width: 700px) { .content-grid { grid-template-columns: 1fr; } .right-sidebar { grid-template-columns: 1fr; } }
+        /* MAGAZINE GRID - Fixed Layout */
+        .content-grid { 
+            display: grid; 
+            grid-template-columns: 1fr 2fr 1fr; 
+            gap: 25px; 
+            align-items: start;
+        }
+
+        @media (max-width: 1000px) { 
+            .content-grid { grid-template-columns: 1fr 1fr; } 
+            .right-column { grid-column: span 2; display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        }
+
+        @media (max-width: 700px) { 
+            .content-grid { grid-template-columns: 1fr; } 
+            .right-column { grid-template-columns: 1fr; }
+        }
 
         /* MODULES */
         .module {
@@ -84,10 +96,9 @@
             border: 1px solid rgba(0,255,255,0.3);
             border-radius: 3px;
             padding: 20px;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
         }
 
-        /* CORRECTED TITLE GLOW */
         .module-title {
             font-size: 1em;
             border-bottom: 1px dashed var(--neon-cyan);
@@ -98,12 +109,15 @@
             color: var(--neon-cyan);
             text-shadow: 0 0 5px var(--neon-cyan);
         }
-        
-        .pink-title { color: var(--neon-pink); text-shadow: 0 0 5px var(--neon-pink); border-color: var(--neon-pink); }
 
-        /* TEXT STYLES */
-        .content-text { color: #fff; line-height: 1.6; font-family: var(--font-mono); font-size: 0.95em; }
-        .content-text h2 { margin-top: 0; color: var(--neon-cyan); text-shadow: 0 0 5px var(--neon-cyan); }
+        /* GLITCH & PINK STYLES */
+        .pink-border { border-color: var(--neon-pink) !important; }
+        .pink-title { color: var(--neon-pink) !important; text-shadow: 0 0 5px var(--neon-pink) !important; border-color: var(--neon-pink) !important; }
+        .glitch-text { color: var(--neon-pink); text-shadow: 0 0 8px var(--neon-pink); }
+
+        /* CONTENT TEXT */
+        .content-text { color: #fff; line-height: 1.6; font-size: 0.95em; }
+        .content-text h2 { margin-top: 0; color: #fff; text-shadow: 0 0 10px var(--neon-cyan); }
 
         /* BUTTONS */
         .uplink-btn {
@@ -119,6 +133,13 @@
             transition: 0.3s;
         }
         .uplink-btn:hover { background: var(--neon-cyan); color: #000; box-shadow: 0 0 10px var(--neon-cyan); }
+
+        footer {
+            margin-top: 50px;
+            padding-top: 20px;
+            border-top: 1px solid #333;
+            text-align: center;
+        }
     </style>
 </head>
 <body>
@@ -143,7 +164,7 @@
 
     <main class="content-grid">
         
-        <aside class="left-sidebar">
+        <aside class="left-column">
             <div class="module">
                 <div class="module-title">IDENTIFICATION</div>
                 <img src="assets/profile.jpg" alt="[USER_PHOTO]" style="width: 100%; border: 1px solid var(--neon-cyan); margin-bottom: 15px;">
@@ -153,34 +174,60 @@
                     LOC: Depok, IDN
                 </div>
             </div>
+
+            <div class="module">
+                <div class="module-title">KNOWLEDGE_SKILLS</div>
+                <div style="font-size: 0.8em; line-height: 2;">
+                    WIKIPEDIA_EDITING [■■■■■■■■□□] 80%<br>
+                    DIGITAL_ARCHIVING [■■■■■■■□□□] 70%<br>
+                    VIOLIN_PRACTICE   [■■■■■□□□□□] 50%<br>
+                    SIM_CITY_LOGIC    [■■■■■■■■■□] 90%
+                </div>
+            </div>
         </aside>
 
-        <section class="main-column">
+        <section class="center-column">
             <div class="module">
                 <div class="module-title">HELLO_WORLD.txt</div>
                 <div class="content-text">
-                    <h2>Hey there, I'm Maheswara!</h2>
-                    <p>Welcome to my little corner of the internet. I'm a Jakarta-born enthusiast currently living in Depok. By day, I spend a lot of my time diving into the world of knowledge.</p>
-                    <p>I'm passionate about digital archiving and structure. To me, organizing information is like building a perfect city in a simulator; it’s all about how the pieces fit together.</p>
+                    <h2>Greetings, Traveler</h2>
+                    <p>Welcome to this little corner of the internet. I'm a Jakarta-born enthusiast currently living in Depok. By day, I spend a lot of my time diving into the world of knowledge.</p>
+                    <p>I'm an entity passionate about digital archiving and structure. I believe that organizing information is like building a perfect city in a simulator; it’s all about how the pieces fit together.</p>
                 </div>
             </div>
 
-            <div class="module" style="border-color: var(--neon-pink);">
+            <div class="module pink-border">
                 <div class="module-title pink-title">RECENT_ACTIVITY</div>
                 <div class="content-text">
-                    <p style="color: #ddd;">Currently obsessed with the narrative structure of Roshidere and finding the balance between Wikipedia maintenance and gaming.</p>
+                    <p>Currently obsessed with the narrative structure of <i>Roshidere</i> and finding the balance between Wikipedia maintenance and gaming.</p>
+                </div>
+            </div>
+
+            <div class="module pink-border">
+                <div class="module-title glitch-text">CORRUPTION_DETECTED</div>
+                <div style="color: #ccc; font-style: italic; font-size: 0.9em;">
+                    &gt; "I was wondering... do you ever feel like the blog is more than just pages?"<br><br>
+                    For me, every post is a circuit connected, and every article is a story told. Even in this digital void, we found a way to cross paths. So, don't be a stranger.
                 </div>
             </div>
         </section>
 
-        <aside class="right-sidebar">
+        <aside class="right-column">
             <div class="module">
-                <div class="module-title">CORE_INTERESTS</div>
-                <div class="content-text" style="font-size: 0.85em;">
-                    - Animanga (RomCom/SoL)<br>
-                    - Umamusume & Racing<br>
-                    - Digital Archiving<br>
-                    - Violin & Piano
+                <div class="module-title">USER_PROFILE</div>
+                <div class="content-text" style="font-size: 0.9em;">
+                    <span style="color: var(--neon-cyan);">></span> A digital entity specialized in creating knowledge structures. Rooted in Indonesian Wikipedia, exploring Fandom realms.
+                    
+                    <div style="margin-top: 15px; color: #aaa;">
+                        <strong>// CORE_INTERESTS:</strong>
+                        <ul style="padding-left: 15px; margin-top: 5px;">
+                            <li>Animanga (RomCom/SoL)</li>
+                            <li>Umamusume & Racing</li>
+                            <li>Misaki Mei & Alya</li>
+                            <li>Digital Archiving</li>
+                            <li>Violin & Piano</li>
+                        </ul>
+                    </div>
                 </div>
             </div>
 
@@ -188,11 +235,21 @@
                 <div class="module-title">COMMS_UPLINK</div>
                 <a href="#" class="uplink-btn">WIKIPEDIA_USERPAGE</a>
                 <a href="#" class="uplink-btn">DISCORD: @mhswra</a>
-                <a href="#" class="uplink-btn pink-title" style="border-color: var(--neon-pink);">[LEAVE_A_MESSAGE]</a>
+                <a href="#" class="uplink-btn pink-title">[LEAVE_A_MESSAGE]</a>
             </div>
         </aside>
 
     </main>
+
+    <footer>
+        <div style="color: #888; font-size: 0.8em;">[SYSTEM]: Detecting rogue process: MAHESWARA.EXE... [FAILED]</div>
+        <div style="color: #00ff00; font-size: 0.8em;">[SYSTEM]: ADMINISTRATOR ACCESS GRANTED</div>
+        <div class="glitch-text" style="margin-top: 15px; font-size: 1.1em;">
+            "You didn't think I'd let you leave without a proper goodbye, did you?"<br>
+            <span style="color: #fff; font-style: italic; font-size: 0.8em;">-- Just Maheswara. --</span>
+        </div>
+    </footer>
 </div>
+
 </body>
 </html>
