@@ -1,12 +1,3 @@
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Maheswara // Terminal</title>
-    
-    <link rel="stylesheet" href="style.css">
-    
-</head>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,556 +5,44 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Maheswara // Archive</title>
     <style>
-<!DOCTYPE html>
-
-<html lang="en">
-
-<head>
-
-<meta charset="UTF-8">
-
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Maheswara // Terminal Interface</title>
-
-<style>
-
-/* CORE VARIABLES */
-
-:root {
-
---neon-cyan: #00ffff;
-
---neon-pink: #ff4da6;
-
---terminal-bg: #05080f; /* Slightly deep blue-black */
-
---panel-bg: rgba(0, 255, 255, 0.05);
-
---font-mono: 'Consolas', 'Courier New', Courier, monospace;
-
-}
-
-
-
-/* GLOBAL STYLES */
-
-body, html {
-
-margin: 0;
-
-padding: 0;
-
-background-color: #000;
-
-color: var(--neon-cyan);
-
-font-family: var(--font-mono);
-
-min-height: 100vh;
-
-}
-
-
-
-/* CRT SCANLINE OVERLAY */
-
-.scanlines {
-
-position: fixed;
-
-top: 0; left: 0; width: 100%; height: 100%;
-
-background: repeating-linear-gradient(0deg, rgba(0,0,0,0.15), rgba(0,0,0,0.15) 1px, transparent 1px, transparent 2px);
-
-pointer-events: none;
-
-z-index: 999;
-
-}
-
-
-
-/* MAIN WEBSITE CONTAINER */
-
-.site-wrapper {
-
-max-width: 1000px;
-
-margin: 0 auto;
-
-padding: 20px;
-
-position: relative;
-
-z-index: 1;
-
-}
-
-
-
-/* TOP NAVIGATION */
-
-header {
-
-border-bottom: 2px solid var(--neon-cyan);
-
-margin-bottom: 30px;
-
-padding-bottom: 10px;
-
-display: flex;
-
-flex-wrap: wrap;
-
-justify-content: space-between;
-
-align-items: flex-end;
-
-box-shadow: 0 5px 15px rgba(0, 255, 255, 0.1);
-
-}
-
-
-
-.sys-info {
-
-font-size: 0.75em;
-
-color: rgba(0, 255, 255, 0.5);
-
-letter-spacing: 2px;
-
-margin-bottom: 10px;
-
-}
-
-
-
-nav ul {
-
-list-style: none;
-
-padding: 0;
-
-margin: 0;
-
-display: flex;
-
-gap: 15px;
-
-flex-wrap: wrap;
-
-}
-
-
-
-nav a {
-
-color: var(--neon-cyan);
-
-text-decoration: none;
-
-font-weight: bold;
-
-font-size: 1.1em;
-
-padding: 5px 10px;
-
-transition: all 0.2s ease;
-
-text-transform: uppercase;
-
-}
-
-
-
-nav a:hover, nav a.active {
-
-background-color: var(--neon-cyan);
-
-color: #000;
-
-box-shadow: 0 0 10px var(--neon-cyan);
-
-}
-
-
-
-nav a::before {
-
-content: "> ";
-
-opacity: 0;
-
-}
-
-
-nav a:hover::before {
-
-opacity: 1;
-
-}
-
-
-
-/* LAYOUT GRIDS */
-
-.content-grid {
-
-display: grid;
-
-grid-template-columns: 2fr 1fr;
-
-gap: 25px;
-
-}
-
-
-
-@media (max-width: 768px) {
-
-.content-grid {
-
-grid-template-columns: 1fr;
-
-}
-
-}
-
-
-
-/* UI MODULES/PANELS */
-
-.module {
-
-background: var(--panel-bg);
-
-border: 1px solid rgba(0,255,255,0.3);
-
-border-radius: 3px;
-
-padding: 20px;
-
-position: relative;
-
-overflow: hidden;
-
-box-shadow: inset 0 0 10px rgba(0,255,255,0.05);
-
-}
-
-
-
-.module-title {
-
-font-size: 1.2em;
-
-border-bottom: 1px dashed var(--neon-cyan);
-
-padding-bottom: 5px;
-
-margin-bottom: 15px;
-
-text-transform: uppercase;
-
-letter-spacing: 2px;
-
-text-shadow: 0 0 5px var(--neon-cyan);
-
-}
-
-
-
-/* BLOG FEED SPECIFICS */
-
-.blog-post {
-
-border-left: 2px solid var(--neon-cyan);
-
-padding-left: 15px;
-
-margin-bottom: 25px;
-
-}
-
-
-
-.post-date {
-
-font-size: 0.8em;
-
-color: #888;
-
-margin-bottom: 5px;
-
-}
-
-
-
-.post-title {
-
-font-size: 1.4em;
-
-color: #fff;
-
-margin: 0 0 10px 0;
-
-}
-
-
-
-.post-excerpt {
-
-color: #ddd;
-
-line-height: 1.6;
-
-font-size: 0.95em;
-
-}
-
-
-
-.read-more {
-
-display: inline-block;
-
-margin-top: 10px;
-
-color: var(--neon-pink);
-
-text-decoration: none;
-
-font-weight: bold;
-
-font-size: 0.9em;
-
-}
-
-
-
-.read-more:hover {
-
-text-decoration: underline;
-
-}
-
-
-
-/* ANOMALY / GLITCH STYLES */
-
-.glitch-text {
-
-color: var(--neon-pink);
-
-text-shadow: 0 0 8px var(--neon-pink);
-
-}
-
-
-
-.glitch-border {
-
-border-color: var(--neon-pink) !important;
-
-box-shadow: inset 0 0 10px rgba(255, 77, 166, 0.1);
-
-}
-
-
-
-/* FOOTER */
-
-footer {
-
-margin-top: 40px;
-
-padding-top: 20px;
-
-border-top: 1px solid #333;
-
-font-size: 0.85em;
-
-color: #666;
-
-line-height: 1.8;
-
-}
-
-</style>
-
-</head>
-
-<body>
-
-
-
-<div class="scanlines"></div>
-
-
-
-<div class="site-wrapper">
-
-
-<header>
-
-<div>
-
-<div class="sys-info">ROOT_ACCESS_GRANTED // LOC: JAKARTA/DEPOK</div>
-
-<h1 style="margin: 0; color: #fff; text-shadow: 0 0 10px var(--neon-cyan); text-transform: uppercase; font-size: 2.5em; letter-spacing: 2px;">Maheswara</h1>
-
-</div>
-
-<nav>
-
-<ul>
-
-<li><a href="#" class="active">cd /home</a></li>
-
-<li><a href="#">cd /blog</a></li>
-
-<li><a href="#">cd /archive</a></li>
-
-<li><a href="#">cd /social_media</a></li>
-
-</ul>
-
-</nav>
-
-</header>
-
-
-
-<main class="content-grid">
-
-
-<div class="main-column">
-
-<div class="module">
-
-<div class="module-title">LATEST_LOGS.txt</div>
-
-
-<article class="blog-post">
-
-<div class="post-date">LOG_ENTRY: 2026-04-21 // CAT: ANIME_REVIEW</div>
-
-<h2 class="post-title">Why Roshidere's Structure Works So Well</h2>
-
-<div class="post-excerpt">
-
-Diving deep into the narrative structure today. Whether it's the subtle slice-of-life pacing or the way Alya's character is written, there's a reason RomComs hit differently when the story is grounded. Also, spent some time editing the wiki page to reflect recent chapter updates...
-
-</div>
-
-<a href="#" class="read-more">[ READ_FULL_LOG ]</a>
-
-</article>
-
-
-
-<article class="blog-post">
-
-<div class="post-date">LOG_ENTRY: 2026-04-14 // CAT: TECH_&_HOBBIES</div>
-
-<h2 class="post-title">SimCity, System Builds, and Violin Practice</h2>
-
-<div class="post-excerpt">
-
-Taking a break from Wikipedia contributions today to focus on some physical hardware logic. Also managed to get some practice in on the violin. Melody instruments always feel like they share the same logic gates as a good city-building simulator...
-
-</div>
-
-<a href="#" class="read-more">[ READ_FULL_LOG ]</a>
-
-</article>
-
-</div>
-
-
-<div class="module glitch-border" style="margin-top: 25px;">
-
-<div class="module-title glitch-text">CORRUPTION_DETECTED</div>
-
-<div style="color: #ccc; font-style: italic;">
-
-&gt; "I was wondering... do you ever feel like the blog is more than just pages?"<br><br>
-
-For me, every post is a circuit connected, and every article is a story told. Even in this digital void, we found a way to cross paths. So, don't be a stranger.
-
-</div>
-
-</div>
-
-</div>
-
-
-
-<div class="sidebar">
-
-<div class="module">
-
-<div class="module-title">USER_PROFILE</div>
-
-<p style="color: #fff; font-size: 0.9em; line-height: 1.5;">
-
-<span style="color: var(--neon-cyan);">></span> A digital entity specialized in creating knowledge structures. Rooted in Indonesian Wikipedia, exploring Fandom realms.
-
-</p>
-
-
-<div style="font-size: 0.85em; color: #aaa; margin-top: 15px;">
-
-<strong>// CORE_INTERESTS:</strong><br>
-
-<ul style="padding-left: 15px; margin-top: 5px;">
-
-<li>Animanga (<i>RomCom/SoL</i>)</li>
-
-<li>Umamusume & Horse Racing</li>
-
-<li>Misaki Mei & Alya</li>
-
-<li>Digital Archiving</li>
-
-<li>Instrumentals (Violin, Piano)</li>
-
-</ul>
-
-</div>
-
-</div>
-
-
-
-<div class="module" style="margin-top: 25px;">
-
-<div class="module-title">COMMS_UPLINK</div>
-
-<div style="display: flex; flex-direction: column; gap: 10px;">
-
-<a href="#" style="display: block; border: 1px solid var(--neon-cyan); padding: 8px; text-align: center; text-decoration: none; color: var(--neon-cyan); font-weight: bold; background: rgba(0,255,255,0.1);">WIKIPEDIA_USERPAGE</a>
-
-<a href="#" style="display: block; border: 1px solid var(--neon-cyan); padding: 8px; text-align: center; text-decoration: none; color: var(--neon-cyan); font-weight: bold; background: rgba(0,255,255,0.1);">DISCORD: @mhswra</a>
-
-<a href="#" style="display: block; border: 1px solid var(--neon-pink); padding: 8px; text-align: center; text-decoration: none; color: var(--neon-pink); font-weight: bold; background: rgba(255,77,166,0.1);">[LEAVE_A_MESSAGE]</a>
-
-</div>
-
-</div>
-
-</div>
-
-</main>
+        /* CORE VARIABLES */
+        :root {
+            --neon-cyan: #00ffff;
+            --neon-pink: #ff4da6;
+            --terminal-bg: #05080f;
+            --panel-bg: rgba(0, 255, 255, 0.05);
+            --font-mono: 'Consolas', 'Courier New', Courier, monospace;
+        }
+
+        /* GLOBAL STYLES */
+        body, html { margin: 0; padding: 0; background-color: #000; color: var(--neon-cyan); font-family: var(--font-mono); min-height: 100vh; }
+
+        /* CRT SCANLINE OVERLAY */
+        .scanlines { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: repeating-linear-gradient(0deg, rgba(0,0,0,0.15), rgba(0,0,0,0.15) 1px, transparent 1px, transparent 2px); pointer-events: none; z-index: 999; }
+
+        .site-wrapper { max-width: 1000px; margin: 0 auto; padding: 20px; position: relative; z-index: 1; }
+
+        /* NAVIGATION */
+        header { border-bottom: 2px solid var(--neon-cyan); margin-bottom: 30px; padding-bottom: 10px; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; }
+        nav ul { list-style: none; padding: 0; margin: 0; display: flex; gap: 15px; flex-wrap: wrap; }
+        nav a { color: var(--neon-cyan); text-decoration: none; font-weight: bold; font-size: 1.1em; padding: 5px 10px; text-transform: uppercase; }
+        nav a:hover, nav a.active { background-color: var(--neon-cyan); color: #000; box-shadow: 0 0 10px var(--neon-cyan); }
+        
+        /* CONTENT */
+        .content-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 25px; }
+        .module { background: var(--panel-bg); border: 1px solid rgba(0,255,255,0.3); border-radius: 3px; padding: 20px; }
+        .module-title { font-size: 1.2em; border-bottom: 1px dashed var(--neon-cyan); padding-bottom: 5px; margin-bottom: 15px; text-transform: uppercase; letter-spacing: 2px; }
     </style>
 </head>
 <body>
+
 <div class="scanlines"></div>
+
 <div class="site-wrapper">
     <header>
-        <div><h1 style="color: #fff;">Maheswara // Archive</h1></div>
+        <div>
+            <h1 style="margin: 0; color: #fff; text-shadow: 0 0 10px var(--neon-cyan); text-transform: uppercase; font-size: 2.5em;">Maheswara // Archive</h1>
+        </div>
         <nav>
             <ul>
                 <li><a href="index.html">cd /home</a></li>
@@ -580,18 +59,16 @@ For me, every post is a circuit connected, and every article is a story told. Ev
                 <div class="module-title">ARCHIVE_LOGS_2026</div>
                 <ul style="list-style: none; padding: 0;">
                     <li style="margin-bottom: 15px;">
-                        <span style="color: #666;">[2026-01-12]</span> — <a href="#" style="color: var(--neon-cyan);">Legacy System Integration</a>
+                        <span style="color: #666;">[2026-01-12]</span> — <a href="#" style="color: var(--neon-cyan); text-decoration: none;">Legacy System Integration</a>
                     </li>
                     <li style="margin-bottom: 15px;">
-                        <span style="color: #666;">[2025-11-04]</span> — <a href="#" style="color: var(--neon-cyan);">The Great Wiki Migration</a>
-                    </li>
-                    <li style="margin-bottom: 15px;">
-                        <span style="color: #666;">[2025-08-20]</span> — <a href="#" style="color: var(--neon-cyan);">First Violin Performance Notes</a>
+                        <span style="color: #666;">[2025-11-04]</span> — <a href="#" style="color: var(--neon-cyan); text-decoration: none;">The Great Wiki Migration</a>
                     </li>
                 </ul>
             </div>
         </div>
     </main>
 </div>
+
 </body>
 </html>
