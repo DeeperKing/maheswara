@@ -41,3 +41,23 @@ nav a:hover, nav a.active { background-color: var(--neon-cyan); color: #000; box
 
 footer { margin-top: 40px; padding-top: 20px; border-top: 1px solid #333; font-size: 0.85em; color: #666; line-height: 1.8; }
 .glitch-text { color: var(--neon-pink); text-shadow: 0 0 8px var(--neon-pink); }
+
+/* Add these to your existing style.css */
+.log-entry {
+    background: rgba(0, 255, 255, 0.05);
+    border: 1px solid rgba(0, 255, 255, 0.2);
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 3px;
+}
+
+.log-date {
+    color: var(--neon-pink);
+    font-size: 0.8em;
+    margin-bottom: 5px;
+}
+
+.log-content {
+    color: #fff;
+    line-height: 1.6;
+}
