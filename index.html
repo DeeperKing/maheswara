@@ -38,7 +38,7 @@
             z-index: 1;
         }
 
-        /* HEADER (Fixed to your template) */
+        /* HEADER */
         header {
             border-bottom: 2px solid var(--neon-cyan);
             margin-bottom: 30px;
@@ -57,11 +57,7 @@
             margin-bottom: 10px;
         }
 
-        nav ul {
-            list-style: none; padding: 0; margin: 0;
-            display: flex; gap: 15px; flex-wrap: wrap;
-        }
-
+        nav ul { list-style: none; padding: 0; margin: 0; display: flex; gap: 15px; flex-wrap: wrap; }
         nav a {
             color: var(--neon-cyan);
             text-decoration: none;
@@ -71,34 +67,18 @@
             transition: all 0.2s ease;
             text-transform: uppercase;
         }
-
         nav a:hover, nav a.active {
             background-color: var(--neon-cyan);
             color: #000;
             box-shadow: 0 0 10px var(--neon-cyan);
         }
 
-        nav a::before { content: "> "; opacity: 0; }
-        nav a:hover::before, nav a.active::before { opacity: 1; }
+        /* MAGAZINE GRID */
+        .content-grid { display: grid; grid-template-columns: 1fr 2fr 1fr; gap: 20px; }
+        @media (max-width: 1000px) { .content-grid { grid-template-columns: 1fr 1fr; } .right-sidebar { grid-column: span 2; display: grid; grid-template-columns: 1fr 1fr; gap: 20px; } }
+        @media (max-width: 700px) { .content-grid { grid-template-columns: 1fr; } .right-sidebar { grid-template-columns: 1fr; } }
 
-        /* MAGAZINE GRID LAYOUT */
-        .content-grid {
-            display: grid;
-            grid-template-columns: 1fr 2fr 1fr;
-            gap: 20px;
-        }
-
-        @media (max-width: 1000px) {
-            .content-grid { grid-template-columns: 1fr 1fr; }
-            .right-sidebar { grid-column: span 2; display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
-        }
-
-        @media (max-width: 700px) {
-            .content-grid { grid-template-columns: 1fr; }
-            .right-sidebar { grid-template-columns: 1fr; }
-        }
-
-        /* UI MODULES */
+        /* MODULES */
         .module {
             background: var(--panel-bg);
             border: 1px solid rgba(0,255,255,0.3);
@@ -107,6 +87,7 @@
             margin-bottom: 20px;
         }
 
+        /* CORRECTED TITLE GLOW */
         .module-title {
             font-size: 1em;
             border-bottom: 1px dashed var(--neon-cyan);
@@ -114,29 +95,15 @@
             margin-bottom: 15px;
             text-transform: uppercase;
             letter-spacing: 2px;
-            color: #fff;
+            color: var(--neon-cyan);
+            text-shadow: 0 0 5px var(--neon-cyan);
         }
+        
+        .pink-title { color: var(--neon-pink); text-shadow: 0 0 5px var(--neon-pink); border-color: var(--neon-pink); }
 
-        /* PROFILE SPECIFICS */
-        .profile-img {
-            width: 100%;
-            border: 1px solid var(--neon-cyan);
-            filter: grayscale(100%) contrast(1.2);
-            margin-bottom: 15px;
-        }
-
-        /* HUMAN TEXT STYLES */
-        .human-text {
-            color: #ddd;
-            line-height: 1.7;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Friendly fallback */
-        }
-
-        .human-text h2 {
-            color: #fff;
-            margin-top: 0;
-            font-family: var(--font-mono);
-        }
+        /* TEXT STYLES */
+        .content-text { color: #fff; line-height: 1.6; font-family: var(--font-mono); font-size: 0.95em; }
+        .content-text h2 { margin-top: 0; color: var(--neon-cyan); text-shadow: 0 0 5px var(--neon-cyan); }
 
         /* BUTTONS */
         .uplink-btn {
@@ -151,21 +118,7 @@
             margin-bottom: 10px;
             transition: 0.3s;
         }
-
-        .uplink-btn:hover {
-            background: var(--neon-cyan);
-            color: #000;
-        }
-
-        footer {
-            margin-top: 40px;
-            padding: 20px;
-            border-top: 1px solid #333;
-            text-align: center;
-            font-size: 0.8em;
-            letter-spacing: 2px;
-            color: #666;
-        }
+        .uplink-btn:hover { background: var(--neon-cyan); color: #000; box-shadow: 0 0 10px var(--neon-cyan); }
     </style>
 </head>
 <body>
@@ -173,7 +126,6 @@
 <div class="scanlines"></div>
 
 <div class="site-wrapper">
-    
     <header>
         <div>
             <div class="sys-info">ROOT_ACCESS_GRANTED // LOC: JAKARTA/DEPOK</div>
@@ -194,21 +146,11 @@
         <aside class="left-sidebar">
             <div class="module">
                 <div class="module-title">IDENTIFICATION</div>
-                <img src="assets/profile.jpg" alt="[USER_PHOTO]" class="profile-img">
+                <img src="assets/profile.jpg" alt="[USER_PHOTO]" style="width: 100%; border: 1px solid var(--neon-cyan); margin-bottom: 15px;">
                 <div style="font-size: 0.85em; color: #aaa;">
-                    <strong>NAME:</strong> Maheswara<br>
-                    <strong>ROLE:</strong> Archivist / Editor<br>
-                    <strong>LOC:</strong> Depok, Indonesia
-                </div>
-            </div>
-
-            <div class="module">
-                <div class="module-title">SYSTEM_STATS</div>
-                <div style="font-size: 0.8em; line-height: 1.8;">
-                    WIKIPEDIA_EDITS: [■■■■■■■■□□]<br>
-                    ANIME_LOGIC:    [■■■■■■■■■■]<br>
-                    VIOLIN_SKILL:   [■■■■■□□□□□]<br>
-                    CITY_BUILDING:  [■■■■■■■■□□]
+                    NAME: Maheswara<br>
+                    ROLE: Archivist<br>
+                    LOC: Depok, IDN
                 </div>
             </div>
         </aside>
@@ -216,42 +158,29 @@
         <section class="main-column">
             <div class="module">
                 <div class="module-title">HELLO_WORLD.txt</div>
-                <div class="human-text">
+                <div class="content-text">
                     <h2>Hey there, I'm Maheswara!</h2>
-                    <p>
-                        Welcome to my little corner of the internet. I'm a Jakarta-born enthusiast currently living in Depok. By day, I spend a lot of my time diving into the world of knowledge—whether that's contributing to the Indonesian Wikipedia or exploring various Fandom communities.
-                    </p>
-                    <p>
-                        I'm passionate about digital archiving and structure. To me, organizing information is like building a perfect city in a simulator or hitting the right note on a violin; it’s all about how the different pieces fit together to create something meaningful.
-                    </p>
-                    <p>
-                        When I'm not editing or archiving, you'll probably find me watching RomComs, practicing my violin, or geeking out over horse racing and Umamusume. I created this space to keep track of my thoughts and projects. Feel free to look around!
-                    </p>
+                    <p>Welcome to my little corner of the internet. I'm a Jakarta-born enthusiast currently living in Depok. By day, I spend a lot of my time diving into the world of knowledge.</p>
+                    <p>I'm passionate about digital archiving and structure. To me, organizing information is like building a perfect city in a simulator; it’s all about how the pieces fit together.</p>
                 </div>
             </div>
 
             <div class="module" style="border-color: var(--neon-pink);">
-                <div class="module-title" style="color: var(--neon-pink);">RECENT_ACTIVITY</div>
-                <p style="font-size: 0.9em; color: #bbb;">
-                    Currently obsessed with the narrative structure of <i>Roshidere</i> and trying to find the perfect balance between Wikipedia maintenance and gaming.
-                </p>
+                <div class="module-title pink-title">RECENT_ACTIVITY</div>
+                <div class="content-text">
+                    <p style="color: #ddd;">Currently obsessed with the narrative structure of Roshidere and finding the balance between Wikipedia maintenance and gaming.</p>
+                </div>
             </div>
         </section>
 
         <aside class="right-sidebar">
             <div class="module">
-                <div class="module-title">USER_PROFILE</div>
-                <p style="font-size: 0.9em; color: #ddd; line-height: 1.5;">
-                    A digital entity specialized in creating knowledge structures. Rooted in Indonesian Wikipedia, exploring Fandom realms.
-                </p>
-                <div style="font-size: 0.85em; color: #888; margin-top: 10px;">
-                    <strong>CORE_INTERESTS:</strong>
-                    <ul style="padding-left: 15px; margin-top: 5px;">
-                        <li>Animanga (RomCom/SoL)</li>
-                        <li>Umamusume & Racing</li>
-                        <li>Digital Archiving</li>
-                        <li>Violin & Piano</li>
-                    </ul>
+                <div class="module-title">CORE_INTERESTS</div>
+                <div class="content-text" style="font-size: 0.85em;">
+                    - Animanga (RomCom/SoL)<br>
+                    - Umamusume & Racing<br>
+                    - Digital Archiving<br>
+                    - Violin & Piano
                 </div>
             </div>
 
@@ -259,16 +188,11 @@
                 <div class="module-title">COMMS_UPLINK</div>
                 <a href="#" class="uplink-btn">WIKIPEDIA_USERPAGE</a>
                 <a href="#" class="uplink-btn">DISCORD: @mhswra</a>
-                <a href="#" class="uplink-btn" style="border-color: var(--neon-pink); color: var(--neon-pink);">[LEAVE_A_MESSAGE]</a>
+                <a href="#" class="uplink-btn pink-title" style="border-color: var(--neon-pink);">[LEAVE_A_MESSAGE]</a>
             </div>
         </aside>
 
     </main>
-
-    <footer>
-        MaheSwara Website-Interface // Build v3.0.1 // SHUTDOWN_SEQUENCE_PENDING
-    </footer>
-
 </div>
 </body>
 </html>
