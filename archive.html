@@ -1,43 +1,113 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link rel="icon" type="image/png" href="images/favicon.png">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Maheswara // Archive_DB</title>
+    <title>Maheswara // Archive</title>
     <style>
         /* CORE VARIABLES */
         :root {
             --neon-cyan: #00ffff;
             --neon-pink: #ff4da6;
-            --terminal-bg: #000;
+            --terminal-bg: #05080f; /* Slightly deep blue-black */
             --panel-bg: rgba(0, 255, 255, 0.05);
             --font-mono: 'Consolas', 'Courier New', Courier, monospace;
         }
 
-        body, html { margin: 0; padding: 0; background-color: var(--terminal-bg); color: var(--neon-cyan); font-family: var(--font-mono); min-height: 100vh; }
-        .scanlines { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: repeating-linear-gradient(0deg, rgba(0,0,0,0.15), rgba(0,0,0,0.15) 1px, transparent 1px, transparent 2px); pointer-events: none; z-index: 999; }
-        .site-wrapper { max-width: 1200px; margin: 0 auto; padding: 20px; position: relative; z-index: 1; }
+        /* GLOBAL STYLES */
+        body, html {
+            margin: 0; padding: 0;
+            background-color: var(--terminal-bg);
+            color: var(--neon-cyan);
+            font-family: var(--font-mono);
+            min-height: 100vh;
+        }
 
-        header { border-bottom: 2px solid var(--neon-cyan); margin-bottom: 30px; padding-bottom: 10px; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; }
-        .sys-info { font-size: 0.75em; color: rgba(0, 255, 255, 0.5); letter-spacing: 2px; margin-bottom: 10px; }
-        
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: repeating-linear-gradient(0deg, rgba(0,0,0,0.15), rgba(0,0,0,0.15) 1px, transparent 1px, transparent 2px);
+            pointer-events: none; z-index: 999;
+        }
+
+        .site-wrapper {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* HEADER */
+        header {
+            border-bottom: 2px solid var(--neon-cyan);
+            margin-bottom: 30px;
+            padding-bottom: 10px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: flex-end;
+        }
+
+        .sys-info {
+            font-size: 0.75em;
+            color: rgba(0, 255, 255, 0.5);
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+        }
+
         nav ul { list-style: none; padding: 0; margin: 0; display: flex; gap: 15px; flex-wrap: wrap; }
-        nav a { color: var(--neon-cyan); text-decoration: none; font-weight: bold; font-size: 1.1em; padding: 5px 10px; transition: all 0.2s ease; text-transform: uppercase; display: inline-block; }
-        nav a::before { content: ""; margin-right: 0px; opacity: 0; transition: all 0.2s ease; }
-        nav a:hover::before, nav a.active::before { content: "> "; opacity: 1; margin-right: 5px; }
-        nav a:hover, nav a.active { background-color: var(--neon-cyan); color: #000; box-shadow: 0 0 10px var(--neon-cyan); }
 
-        /* DATABASE TABLE */
-        .db-container { border: 1px solid var(--neon-cyan); padding: 20px; background: rgba(0, 255, 255, 0.02); }
-        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
-        th { text-align: left; color: #fff; border-bottom: 1px solid var(--neon-cyan); padding: 10px; font-size: 0.9em; }
-        td { padding: 10px; border-bottom: 1px solid rgba(0, 255, 255, 0.1); font-size: 0.9em; }
-        tr:hover { background: rgba(0, 255, 255, 0.1); cursor: pointer; }
+        /* HOVER ANIMATION LOGIC */
+        nav a {
+            color: var(--neon-cyan);
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1em;
+            padding: 5px 10px;
+            transition: all 0.2s ease;
+            text-transform: uppercase;
+            display: inline-block;
+        }
 
-        /* SIDEBAR MODULES */
-        .grid { display: grid; grid-template-columns: 2fr 1fr; gap: 25px; }
-        .module { border: 1px solid var(--neon-cyan); padding: 20px; margin-bottom: 20px; }
-        .status-light { display: inline-block; width: 10px; height: 10px; background: #00ff00; border-radius: 50%; box-shadow: 0 0 5px #00ff00; margin-right: 10px; }
+        nav a::before {
+            content: "";
+            margin-right: 0px;
+            opacity: 0;
+            transition: all 0.2s ease;
+        }
+
+        nav a:hover::before, nav a.active::before {
+            content: "> ";
+            opacity: 1;
+            margin-right: 5px;
+        }
+
+        nav a:hover, nav a.active {
+            background-color: var(--neon-cyan);
+            color: #000;
+            box-shadow: 0 0 10px var(--neon-cyan);
+        }
+
+        /* LAYOUT GRIDS (The "Magazine" look) */
+        .content-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 25px; }
+        @media (max-width: 768px) { .content-grid { grid-template-columns: 1fr; } }
+
+        /* UI MODULES/PANELS */
+        .module { background: var(--panel-bg); border: 1px solid rgba(0,255,255,0.3); border-radius: 3px; padding: 20px; position: relative; overflow: hidden; box-shadow: inset 0 0 10px rgba(0,255,255,0.05); }
+        .module-title { font-size: 1.2em; border-bottom: 1px dashed var(--neon-cyan); padding-bottom: 5px; margin-bottom: 15px; text-transform: uppercase; letter-spacing: 2px; text-shadow: 0 0 5px var(--neon-cyan); }
+
+        /* ARCHIVE SPECIFICS */
+        .archive-list { list-style: none; padding: 0; margin: 0; }
+        .archive-list li { border-bottom: 1px solid rgba(0,255,255,0.1); padding: 10px 0; display: flex; justify-content: space-between; }
+        .archive-list li:last-child { border-bottom: none; }
+        .archive-link { color: #fff; text-decoration: none; transition: color 0.2s; }
+        .archive-link:hover { color: var(--neon-pink); }
+        .archive-date { color: #888; font-size: 0.9em; }
+
+        /* ANOMALY / GLITCH STYLES */
+        .glitch-text { color: var(--neon-pink); text-shadow: 0 0 8px var(--neon-pink); }
+        .glitch-border { border-color: var(--neon-pink) !important; box-shadow: inset 0 0 10px rgba(255, 77, 166, 0.1); }
     </style>
 </head>
 <body>
@@ -45,10 +115,11 @@
 <div class="scanlines"></div>
 
 <div class="site-wrapper">
+
     <header>
         <div>
-            <div class="sys-info">ROOT_ACCESS_GRANTED // LOC: DATABASE_ARCHIVE</div>
-            <h1 style="margin: 0; color: #fff; text-transform: uppercase;">Archives</h1>
+            <div class="sys-info">ROOT_ACCESS_GRANTED // LOC: JAKARTA/DEPOK</div>
+            <h1 style="margin: 0; color: #fff; text-shadow: 0 0 10px var(--neon-cyan); text-transform: uppercase; font-size: 2.5em; letter-spacing: 2px;">Maheswara</h1>
         </div>
         <nav>
             <ul>
@@ -60,44 +131,46 @@
         </nav>
     </header>
 
-    <main class="grid">
-        <section>
-            <div class="db-container">
-                <h2 style="margin-top: 0;">DIR: /ROOT/ARCHIVES</h2>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>FILE_NAME</th>
-                            <th>TYPE</th>
-                            <th>SIZE</th>
-                            <th>LAST_MODIFIED</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr><td>horse_racing_history_v1.wiki</td><td>.wiki</td><td>42kb</td><td>2026-04-20</td></tr>
-                        <tr><td>translations_roshidere.txt</td><td>.txt</td><td>12kb</td><td>2026-04-18</td></tr>
-                        <tr><td>server_logs_deployment.log</td><td>.log</td><td>89kb</td><td>2026-04-25</td></tr>
-                        <tr><td>wiki_project_horse.zip</td><td>.zip</td><td>1.2mb</td><td>2026-04-12</td></tr>
-                        <tr><td>depok_local_data.db</td><td>.db</td><td>540kb</td><td>2026-04-01</td></tr>
-                    </tbody>
-                </table>
-            </div>
-        </section>
+    <main class="content-grid">
 
-        <aside>
+        <div class="main-column">
             <div class="module">
-                <h3>SYSTEM_STATUS</h3>
-                <p><span class="status-light"></span>DATABASE: ONLINE</p>
-                <p><span class="status-light"></span>ENCRYPTION: ACTIVE</p>
-                <p><span class="status-light" style="background: var(--neon-pink);"></span>CPU_LOAD: 12%</p>
+                <div class="module-title">SYSTEM_ARCHIVES_2026.db</div>
+
+                <ul class="archive-list">
+                    <li>
+                        <a href="#" class="archive-link">Why Roshidere's Structure Works So Well</a>
+                        <span class="archive-date">2026-04-21</span>
+                    </li>
+                    <li>
+                        <a href="#" class="archive-link">SimCity, System Builds, and Violin Practice</a>
+                        <span class="archive-date">2026-04-14</span>
+                    </li>
+                    <li>
+                        <a href="#" class="archive-link">Legacy System Integration Notes</a>
+                        <span class="archive-date">2026-01-12</span>
+                    </li>
+                    <li>
+                        <a href="#" class="archive-link">The Great Wiki Migration Project</a>
+                        <span class="archive-date">2025-11-04</span>
+                    </li>
+                    <li>
+                        <a href="#" class="archive-link">First Violin Performance Breakdown</a>
+                        <span class="archive-date">2025-08-20</span>
+                    </li>
+                </ul>
             </div>
-            <div class="module">
-                <h3>QUICK_SEARCH</h3>
-                <input type="text" style="width: 100%; background: #000; border: 1px solid var(--neon-cyan); color: var(--neon-cyan); padding: 5px;" placeholder="SEARCH_QUERY...">
+
+            <div class="module glitch-border" style="margin-top: 25px;">
+                <div class="module-title glitch-text">MEMORY_FRAGMENT_FOUND</div>
+                <div style="color: #ccc; font-style: italic;">
+                    &gt; "Some files are better left untouched, but we keep them anyway. A digital footprint of who we were before the last system reboot..."
+                </div>
             </div>
-        </aside>
+        </div>
+            </div>
+        </div>
     </main>
-</div>
 
+</div>
 </body>
-</html>
