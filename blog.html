@@ -5,7 +5,113 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Maheswara // Blog Archive</title>
-    <link rel="stylesheet" href="style.css">
+    <style>
+        /* CORE VARIABLES */
+        :root {
+            --neon-cyan: #00ffff;
+            --neon-pink: #ff4da6;
+            --terminal-bg: #000;
+            --panel-bg: rgba(0, 255, 255, 0.05);
+            --font-mono: 'Consolas', 'Courier New', Courier, monospace;
+        }
+
+        /* GLOBAL STYLES */
+        body, html {
+            margin: 0; padding: 0;
+            background-color: var(--terminal-bg);
+            color: var(--neon-cyan);
+            font-family: var(--font-mono);
+            min-height: 100vh;
+        }
+
+        .scanlines {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: repeating-linear-gradient(0deg, rgba(0,0,0,0.15), rgba(0,0,0,0.15) 1px, transparent 1px, transparent 2px);
+            pointer-events: none; z-index: 999;
+        }
+
+        .site-wrapper {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* HEADER */
+        header {
+            border-bottom: 2px solid var(--neon-cyan);
+            margin-bottom: 30px;
+            padding-bottom: 10px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: flex-end;
+        }
+
+        .sys-info {
+            font-size: 0.75em;
+            color: rgba(0, 255, 255, 0.5);
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+        }
+
+        nav ul { list-style: none; padding: 0; margin: 0; display: flex; gap: 15px; flex-wrap: wrap; }
+        
+        /* HOVER ANIMATION LOGIC */
+        nav a {
+            color: var(--neon-cyan);
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1em;
+            padding: 5px 10px;
+            transition: all 0.2s ease;
+            text-transform: uppercase;
+            display: inline-block;
+        }
+        
+        nav a::before {
+            content: "";
+            margin-right: 0px;
+            opacity: 0;
+            transition: all 0.2s ease;
+        }
+        
+        nav a:hover::before, nav a.active::before {
+            content: "> ";
+            opacity: 1;
+            margin-right: 5px;
+        }
+
+        nav a:hover, nav a.active {
+            background-color: var(--neon-cyan);
+            color: #000;
+            box-shadow: 0 0 10px var(--neon-cyan);
+        }
+
+        /* GRID LAYOUT - 2:1 RATIO */
+        .content-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 30px; }
+        @media (max-width: 768px) { .content-grid { grid-template-columns: 1fr; } }
+
+        /* MODULES */
+        .module { background: var(--panel-bg); border: 1px solid rgba(0,255,255,0.3); padding: 20px; margin-bottom: 20px; border-radius: 3px; }
+        .module-title { font-size: 1em; border-bottom: 1px dashed var(--neon-cyan); padding-bottom: 5px; margin-bottom: 15px; text-transform: uppercase; letter-spacing: 2px; color: var(--neon-cyan); }
+        
+        /* FEED */
+        .blog-post { margin-bottom: 40px; }
+        .post-date { font-size: 0.75em; color: #666; margin-bottom: 5px; }
+        .post-title { color: #fff; margin: 0 0 10px 0; font-size: 1.5em; text-shadow: 0 0 5px var(--neon-cyan); }
+        .post-meta { font-size: 0.8em; color: var(--neon-pink); margin-bottom: 10px; }
+        .post-excerpt { color: #ccc; line-height: 1.6; }
+        .read-more { display: inline-block; margin-top: 10px; color: var(--neon-cyan); text-decoration: none; border: 1px solid var(--neon-cyan); padding: 5px 10px; font-size: 0.8em; }
+        .read-more:hover { background: var(--neon-cyan); color: #000; }
+
+        /* SIDEBAR FUNCTIONALITIES */
+        .sidebar-link { display: block; color: #fff; text-decoration: none; padding: 5px 0; border-bottom: 1px solid #111; font-size: 0.9em; }
+        .sidebar-link:hover { color: var(--neon-cyan); padding-left: 5px; }
+        .search-box { width: 100%; background: #000; border: 1px solid var(--neon-cyan); color: var(--neon-cyan); padding: 8px; box-sizing: border-box; }
+    </style>
 </head>
 <body>
 
@@ -27,59 +133,58 @@
         </nav>
     </header>
 
-<main class="content-grid">
-    <aside class="left-column">
-        <div class="module">
-            <div class="module-title">CATEGORIES</div>
-            <a href="#" class="sidebar-link">> ANIME_REVIEW</a>
-            <a href="#" class="sidebar-link">> TECH_&_HOBBIES</a>
-            <a href="#" class="sidebar-link">> DIGITAL_ARCHIVE</a>
-            <a href="#" class="sidebar-link">> WIKI_LOGS</a>
-        </div>
+    <main class="content-grid">
+        <section class="main-column">
+            <div class="module">
+                <div class="module-title">LATEST_LOGS.txt</div>
 
-        <div class="module">
-            <div class="module-title">ARCHIVE</div>
-            <a href="#" class="sidebar-link">> APRIL 2026</a>
-            <a href="#" class="sidebar-link">> MARCH 2026</a>
-            <a href="#" class="sidebar-link">> FEBRUARY 2026</a>
-        </div>
-    </aside>
+                <article class="blog-post">
+                    <div class="post-date">2026-04-21</div>
+                    <h2 class="post-title">Why Roshidere's Structure Works So Well</h2>
+                    <div class="post-meta">[CATEGORY: ANIME_REVIEW] [READ_TIME: 5 MIN]</div>
+                    <div class="post-excerpt">
+                        Diving deep into the narrative structure today. Whether it's the subtle slice-of-life pacing or the way Alya's character is written, there's a reason RomComs hit differently when the story is grounded.
+                    </div>
+                    <a href="#" class="read-more">[ READ_FULL_LOG ]</a>
+                </article>
 
-    <section class="center-column">
-        <div class="module">
-            <div class="module-title">LATEST_LOGS.txt</div>
-
-            <article class="blog-post">
-                <div class="post-date">2026-04-21</div>
-                <h2 class="post-title">Why Roshidere's Structure Works So Well</h2>
-                <div class="post-meta">[CATEGORY: ANIME_REVIEW] [READ_TIME: 5 MIN]</div>
-                <div class="post-excerpt">
-                    Diving deep into the narrative structure today. Whether it's the subtle slice-of-life pacing or the way Alya's character is written, there's a reason RomComs hit differently when the story is grounded.
-                </div>
-                <a href="#" class="read-more">[ READ_FULL_LOG ]</a>
-            </article>
+                <article class="blog-post">
+                    <div class="post-date">2026-04-14</div>
+                    <h2 class="post-title">SimCity, System Builds, and Violin Practice</h2>
+                    <div class="post-meta">[CATEGORY: TECH] [READ_TIME: 3 MIN]</div>
+                    <div class="post-excerpt">
+                        Taking a break from Wikipedia contributions today to focus on some physical hardware logic. Melody instruments always feel like they share the same logic gates as a good city-building simulator.
+                    </div>
+                    <a href="#" class="read-more">[ READ_FULL_LOG ]</a>
+                </article>
             </div>
-    </section>
+        </section>
 
-    <aside class="right-column">
-        <div class="module">
-            <div class="module-title">QUERY_LOGS</div>
-            <input type="text" class="search-box" placeholder="SEARCH_DATABASE...">
-        </div>
-        
-        <div class="module">
-            <div class="module-title">SYSTEM_STATUS</div>
-            <p style="font-size: 0.8em; color: var(--neon-cyan);">UPLINK_STABLE // NO_THREATS_DETECTED</p>
-        </div>
-    </aside>
-</main>
+        <aside class="sidebar-column">
+            <div class="module">
+                <div class="module-title">QUERY_LOGS</div>
+                <input type="text" class="search-box" placeholder="SEARCH_DATABASE...">
+            </div>
+
+            <div class="module">
+                <div class="module-title">CATEGORIES</div>
+                <a href="#" class="sidebar-link">> ANIME_REVIEW</a>
+                <a href="#" class="sidebar-link">> TECH_&_HOBBIES</a>
+                <a href="#" class="sidebar-link">> DIGITAL_ARCHIVE</a>
+                <a href="#" class="sidebar-link">> WIKI_LOGS</a>
+            </div>
+
+            <div class="module">
+                <div class="module-title">ARCHIVE</div>
+                <a href="#" class="sidebar-link">> APRIL 2026</a>
+                <a href="#" class="sidebar-link">> MARCH 2026</a>
+                <a href="#" class="sidebar-link">> FEBRUARY 2026</a>
+            </div>
+        </aside>
+    </main>
 
     <footer>
-        <div style="color: #888; font-size: 0.8em; margin-top: 40px; border-top: 1px solid #333; padding-top: 20px;">
-            [SYSTEM]: Detecting rogue process: MAHESWARA.EXE... [FAILED]<br>
-            [SYSTEM]: ADMINISTRATOR ACCESS GRANTED
-        </div>
-        <div class="glitch-text" style="margin-top: 15px; font-size: 1.1em; color: #444;">
+        <div style="text-align: center; margin-top: 40px; padding: 20px; border-top: 1px solid #333; font-size: 0.8em; color: #444;">
             MaheSwara Website-Interface // Build v3.0.1 // SYSTEM_STATUS: OPERATIONAL
         </div>
     </footer>
