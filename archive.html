@@ -24,17 +24,56 @@
         /* MAIN WEBSITE CONTAINER */
         .site-wrapper { max-width: 1000px; margin: 0 auto; padding: 20px; position: relative; z-index: 1; }
 
-        /* TOP NAVIGATION */
-        header { border-bottom: 2px solid var(--neon-cyan); margin-bottom: 30px; padding-bottom: 10px; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; box-shadow: 0 5px 15px rgba(0, 255, 255, 0.1); }
-        .sys-info { font-size: 0.75em; color: rgba(0, 255, 255, 0.5); letter-spacing: 2px; margin-bottom: 10px; }
-        
+        /* HEADER */
+        header {
+            border-bottom: 2px solid var(--neon-cyan);
+            margin-bottom: 30px;
+            padding-bottom: 10px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: flex-end;
+        }
+
+        .sys-info {
+            font-size: 0.75em;
+            color: rgba(0, 255, 255, 0.5);
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+        }
+
         nav ul { list-style: none; padding: 0; margin: 0; display: flex; gap: 15px; flex-wrap: wrap; }
-        nav a { color: var(--neon-cyan); text-decoration: none; font-weight: bold; font-size: 1.1em; padding: 5px 10px; transition: all 0.2s ease; text-transform: uppercase; }
-        nav a:hover, nav a.active { background-color: var(--neon-cyan); color: #000; box-shadow: 0 0 10px var(--neon-cyan); }
         
-        /* THE HOVER EFFECT */
-        nav a::before { content: "> "; opacity: 0; }
-        nav a:hover::before, nav a.active::before { opacity: 1; }
+        /* HOVER ANIMATION LOGIC */
+        nav a {
+            color: var(--neon-cyan);
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1em;
+            padding: 5px 10px;
+            transition: all 0.2s ease;
+            text-transform: uppercase;
+            display: inline-block;
+        }
+        
+        nav a::before {
+            content: "";
+            margin-right: 0px;
+            opacity: 0;
+            transition: all 0.2s ease;
+        }
+        
+        nav a:hover::before, nav a.active::before {
+            content: "> ";
+            opacity: 1;
+            margin-right: 5px;
+        }
+
+        nav a:hover, nav a.active {
+            background-color: var(--neon-cyan);
+            color: #000;
+            box-shadow: 0 0 10px var(--neon-cyan);
+        }
 
         /* LAYOUT GRIDS (The "Magazine" look) */
         .content-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 25px; }
