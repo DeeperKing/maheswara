@@ -10,107 +10,51 @@
         :root {
             --neon-cyan: #00ffff;
             --neon-pink: #ff4da6;
-            --terminal-bg: #000;
+            --terminal-bg: #05080f; /* Slightly deep blue-black */
             --panel-bg: rgba(0, 255, 255, 0.05);
             --font-mono: 'Consolas', 'Courier New', Courier, monospace;
         }
 
         /* GLOBAL STYLES */
-        body, html {
-            margin: 0; padding: 0;
-            background-color: var(--terminal-bg);
-            color: var(--neon-cyan);
-            font-family: var(--font-mono);
-            min-height: 100vh;
-        }
+        body, html { margin: 0; padding: 0; background-color: #000; color: var(--neon-cyan); font-family: var(--font-mono); min-height: 100vh; }
 
-        .scanlines {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: repeating-linear-gradient(0deg, rgba(0,0,0,0.15), rgba(0,0,0,0.15) 1px, transparent 1px, transparent 2px);
-            pointer-events: none; z-index: 999;
-        }
+        /* CRT SCANLINE OVERLAY */
+        .scanlines { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: repeating-linear-gradient(0deg, rgba(0,0,0,0.15), rgba(0,0,0,0.15) 1px, transparent 1px, transparent 2px); pointer-events: none; z-index: 999; }
 
-        .site-wrapper {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-            position: relative;
-            z-index: 1;
-        }
+        /* MAIN WEBSITE CONTAINER */
+        .site-wrapper { max-width: 1000px; margin: 0 auto; padding: 20px; position: relative; z-index: 1; }
 
-        /* HEADER */
-        header {
-            border-bottom: 2px solid var(--neon-cyan);
-            margin-bottom: 30px;
-            padding-bottom: 10px;
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-            align-items: flex-end;
-        }
-
-        .sys-info {
-            font-size: 0.75em;
-            color: rgba(0, 255, 255, 0.5);
-            letter-spacing: 2px;
-            margin-bottom: 10px;
-        }
-
+        /* TOP NAVIGATION */
+        header { border-bottom: 2px solid var(--neon-cyan); margin-bottom: 30px; padding-bottom: 10px; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; box-shadow: 0 5px 15px rgba(0, 255, 255, 0.1); }
+        .sys-info { font-size: 0.75em; color: rgba(0, 255, 255, 0.5); letter-spacing: 2px; margin-bottom: 10px; }
+        
         nav ul { list-style: none; padding: 0; margin: 0; display: flex; gap: 15px; flex-wrap: wrap; }
+        nav a { color: var(--neon-cyan); text-decoration: none; font-weight: bold; font-size: 1.1em; padding: 5px 10px; transition: all 0.2s ease; text-transform: uppercase; }
+        nav a:hover, nav a.active { background-color: var(--neon-cyan); color: #000; box-shadow: 0 0 10px var(--neon-cyan); }
         
-        /* HOVER ANIMATION LOGIC */
-        nav a {
-            color: var(--neon-cyan);
-            text-decoration: none;
-            font-weight: bold;
-            font-size: 1.1em;
-            padding: 5px 10px;
-            transition: all 0.2s ease;
-            text-transform: uppercase;
-            display: inline-block;
-        }
-        
-        nav a::before {
-            content: "";
-            margin-right: 0px;
-            opacity: 0;
-            transition: all 0.2s ease;
-        }
-        
-        nav a:hover::before, nav a.active::before {
-            content: "> ";
-            opacity: 1;
-            margin-right: 5px;
-        }
+        /* THE HOVER EFFECT */
+        nav a::before { content: "> "; opacity: 0; }
+        nav a:hover::before, nav a.active::before { opacity: 1; }
 
-        nav a:hover, nav a.active {
-            background-color: var(--neon-cyan);
-            color: #000;
-            box-shadow: 0 0 10px var(--neon-cyan);
-        }
-
-        /* GRID LAYOUT - 2:1 RATIO */
-        .content-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 30px; }
+        /* LAYOUT GRIDS (The "Magazine" look) */
+        .content-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 25px; }
         @media (max-width: 768px) { .content-grid { grid-template-columns: 1fr; } }
 
-        /* MODULES */
-        .module { background: var(--panel-bg); border: 1px solid rgba(0,255,255,0.3); padding: 20px; margin-bottom: 20px; border-radius: 3px; }
-        .module-title { font-size: 1em; border-bottom: 1px dashed var(--neon-cyan); padding-bottom: 5px; margin-bottom: 15px; text-transform: uppercase; letter-spacing: 2px; color: var(--neon-cyan); }
-        
-        /* FEED */
-        .blog-post { margin-bottom: 40px; }
-        .post-date { font-size: 0.75em; color: #666; margin-bottom: 5px; }
-        .post-title { color: #fff; margin: 0 0 10px 0; font-size: 1.5em; text-shadow: 0 0 5px var(--neon-cyan); }
-        .post-meta { font-size: 0.8em; color: var(--neon-pink); margin-bottom: 10px; }
-        .post-excerpt { color: #ccc; line-height: 1.6; }
-        .read-more { display: inline-block; margin-top: 10px; color: var(--neon-cyan); text-decoration: none; border: 1px solid var(--neon-cyan); padding: 5px 10px; font-size: 0.8em; }
-        .read-more:hover { background: var(--neon-cyan); color: #000; }
+        /* UI MODULES/PANELS */
+        .module { background: var(--panel-bg); border: 1px solid rgba(0,255,255,0.3); border-radius: 3px; padding: 20px; position: relative; overflow: hidden; box-shadow: inset 0 0 10px rgba(0,255,255,0.05); }
+        .module-title { font-size: 1.2em; border-bottom: 1px dashed var(--neon-cyan); padding-bottom: 5px; margin-bottom: 15px; text-transform: uppercase; letter-spacing: 2px; text-shadow: 0 0 5px var(--neon-cyan); }
 
-        /* SIDEBAR FUNCTIONALITIES */
-        .sidebar-link { display: block; color: #fff; text-decoration: none; padding: 5px 0; border-bottom: 1px solid #111; font-size: 0.9em; }
-        .sidebar-link:hover { color: var(--neon-cyan); padding-left: 5px; }
-        .search-box { width: 100%; background: #000; border: 1px solid var(--neon-cyan); color: var(--neon-cyan); padding: 8px; box-sizing: border-box; }
+        /* ARCHIVE SPECIFICS */
+        .archive-list { list-style: none; padding: 0; margin: 0; }
+        .archive-list li { border-bottom: 1px solid rgba(0,255,255,0.1); padding: 10px 0; display: flex; justify-content: space-between; }
+        .archive-list li:last-child { border-bottom: none; }
+        .archive-link { color: #fff; text-decoration: none; transition: color 0.2s; }
+        .archive-link:hover { color: var(--neon-pink); }
+        .archive-date { color: #888; font-size: 0.9em; }
+
+        /* ANOMALY / GLITCH STYLES */
+        .glitch-text { color: var(--neon-pink); text-shadow: 0 0 8px var(--neon-pink); }
+        .glitch-border { border-color: var(--neon-pink) !important; box-shadow: inset 0 0 10px rgba(255, 77, 166, 0.1); }
     </style>
 </head>
 <body>
@@ -118,7 +62,7 @@
 <div class="scanlines"></div>
 
 <div class="site-wrapper">
-    
+
     <header>
         <div>
             <div class="sys-info">ROOT_ACCESS_GRANTED // LOC: JAKARTA/DEPOK</div>
@@ -135,11 +79,11 @@
     </header>
 
     <main class="content-grid">
-        
+
         <div class="main-column">
             <div class="module">
                 <div class="module-title">SYSTEM_ARCHIVES_2026.db</div>
-                
+
                 <ul class="archive-list">
                     <li>
                         <a href="#" class="archive-link">Why Roshidere's Structure Works So Well</a>
@@ -163,7 +107,7 @@
                     </li>
                 </ul>
             </div>
-            
+
             <div class="module glitch-border" style="margin-top: 25px;">
                 <div class="module-title glitch-text">MEMORY_FRAGMENT_FOUND</div>
                 <div style="color: #ccc; font-style: italic;">
@@ -175,5 +119,5 @@
         </div>
     </main>
 
-</div> </main> </div> </body>
-</html>
+</div>
+</body>
