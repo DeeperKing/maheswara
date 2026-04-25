@@ -177,3 +177,25 @@
     margin-top: 10px;
     text-align: center;
 }
+
+/* Container for the actual article text */
+.post-container {
+    max-width: 800px; /* This prevents the text from stretching too wide */
+    margin: 0 auto;   /* Centers the container */
+    padding: 20px;
+}
+
+/* Style for the text paragraphs */
+.post-content p {
+    margin-bottom: 20px; /* Creates the "paragraph-y" feel */
+    line-height: 1.6;    /* Makes it easier to read */
+    color: #ccc;         /* Slightly softer than pure white */
+}
+
+/* Ensure images fit within the container */
+.post-content img {
+    max-width: 100%;
+    height: auto;
+    margin: 20px 0;
+    border: 1px solid var(--neon-cyan);
+}
