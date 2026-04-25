@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Post Title // Maheswara</title>
+<style>
+    /* CORE VARIABLES */
+    :root {
+        --neon-cyan: #00ffff;
+        --terminal-bg: #000;
+        --panel-bg: rgba(0, 255, 255, 0.05);
+        --font-mono: 'Consolas', 'Courier New', Courier, monospace;
+    }
+
+    /* GLOBAL STYLES */
+    body, html {
+        margin: 0; padding: 0;
+        background-color: var(--terminal-bg);
+        color: var(--neon-cyan);
+        font-family: var(--font-mono);
+        min-height: 100vh;
+    }
+
+    .site-wrapper {
+        max-width: 1000px; /* Limits overall width */
+        margin: 0 auto;
+        padding: 20px;
+    }
+
+            /* HEADER */
+        header {
+            border-bottom: 2px solid var(--neon-cyan);
+            margin-bottom: 30px;
+            padding-bottom: 10px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: flex-end;
+        }
+
+        .sys-info {
+            font-size: 0.75em;
+            color: rgba(0, 255, 255, 0.5);
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+        }
+
+        nav ul { list-style: none; padding: 0; margin: 0; display: flex; gap: 15px; flex-wrap: wrap; }
+        
+        /* HOVER ANIMATION LOGIC */
+        nav a {
+            color: var(--neon-cyan);
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1em;
+            padding: 5px 10px;
+            transition: all 0.2s ease;
+            text-transform: uppercase;
+            display: inline-block;
+        }
+        
+        nav a::before {
+            content: "";
+            margin-right: 0px;
+            opacity: 0;
+            transition: all 0.2s ease;
+        }
+        
+        nav a:hover::before, nav a.active::before {
+            content: "> ";
+            opacity: 1;
+            margin-right: 5px;
+        }
+
+        nav a:hover, nav a.active {
+            background-color: var(--neon-cyan);
+            color: #000;
+            box-shadow: 0 0 10px var(--neon-cyan);
+        }
+
+    /* THE GRID LAYOUT */
+    .content-grid {
+        display: grid;
+        grid-template-columns: 1fr 300px; /* Main post 1fr, Sidebar 300px */
+        gap: 20px;
+    }
+
+    /* THE MODULE BOXES */
+    .module {
+        border: 1px solid var(--neon-cyan);
+        background: var(--panel-bg);
+        padding: 20px;
+        margin-bottom: 20px;
+    }
+
+    .module-title {
+        border-bottom: 1px dashed var(--neon-cyan);
+        margin-bottom: 15px;
+        padding-bottom: 5px;
+        text-transform: uppercase;
+        font-weight: bold;
+    }
+
+    /* POST STYLES */
+    .post-body {
+        line-height: 1.6;
+    }
+
+    .post-body p {
+        margin-bottom: 20px;
+    }
+
+    .post-visual img {
+        max-width: 100%;
+        border: 1px solid var(--neon-cyan);
+        display: block;
+        margin: 0 auto;
+    }
+
+    /* FIX FOR SCANLINES */
+    .scanlines {
+        position: fixed;
+        top: 0; left: 0; width: 100%; height: 100%;
+        background: repeating-linear-gradient(0deg, rgba(0,0,0,0.15), rgba(0,0,0,0.15) 1px, transparent 1px, transparent 2px);
+        pointer-events: none; z-index: 999;
+    }
+</style>
+</head>
+<body>
+
+<div class="scanlines"></div>
+
+<div class="site-wrapper">
+    <header>
+        <div>
+            <div class="sys-info">ROOT_ACCESS_GRANTED // LOC: BLOG_ARCHIVE</div>
+            <h1 style="margin: 0; color: #fff; text-shadow: 0 0 10px var(--neon-cyan); text-transform: uppercase; font-size: 2.5em; letter-spacing: 2px;">Maheswara</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="/index.html">cd /home</a></li>
+                <li><a href="/blog.html" class="active">cd /blog</a></li>
+                <li><a href="/archive.html">cd /archive</a></li>
+                <li><a href="/social.html">cd /social_media</a></li>
+            </ul>
+        </nav>
+    </header>
+
+<main class="content-grid">
+    <section class="main-column">
+        <div class="module">
+            <div class="module-title">LOG_ENTRY_ID: 001</div>
+            
+            <div class="post-body">
+                <h1">Why The Angel Next Door Spoils Me Rotten Season 1 Works (Even If I Don’t Fully Get the Hype)</h1>
+                <div class="post-date" style="color: var(--neon-cyan); margin-bottom: 30px;">2026-03-09</div>
+
+                <article class="post-content">
+                    <p>Diving into romance anime like this always feels a bit weird because I never really know if I’m supposed to analyze it or just sit there and feel things. The Angel Next Door Spoils Me Rotten Season 1 is kind of exactly that type of show.<br><br>It’s a pretty wholesome story overall. Calm, slow, soft. The kind of anime where nothing is aggressively happening, but somehow everything still feels important. The OST is honestly really good too, like it does a lot of emotional lifting without trying too hard.</p>
+                    
+                    <figure style="text-align: center;">
+                        <img src="/images/theangelnextdoorcover.jpg" alt="Cover Art">
+                        <figcaption style="font-size: 0.7em; color: var(--neon-cyan); margin-top: 5px;">The Official Art for Season 1</figcaption>
+                    </figure>
+
+                    <p>That said, I didn’t fully “get” the plot in the way some people explain it online. Not in a bad way, just… it feels realistic and unrealistic at the same time. Like, I understand what’s happening, but the setup itself already lives in that fantasy comfort zone where everything conveniently aligns for the main characters.<br><br>It reminds me a bit of Gimai Seikatsu in that sense. More serious tone, slower pacing, more focus on emotional interaction than actual events. And I do like that style, I’m not complaining. It just doesn’t feel like a traditional romcom where the plot is constantly moving forward. It’s more like watching a relationship slowly form in real time.<br><br>Where the show really works though is character building. Season 1 does that part really well. The main duo is obviously the focus, and the development between them is handled in a pretty clean, consistent way. Small interactions matter. Silence matters. Even basic daily stuff feels like it’s building something over time.<br><br>But I’ve also seen the criticism online, and honestly, I kind of get both sides.</p>
+                  
+                    <figure style="text-align: center;">
+                        <img src="/images/theangelnextdoor-criticsm.png" alt="Criticsm">
+                        <figcaption style="font-size: 0.7em; color: var(--neon-cyan); margin-top: 5px;">One Example of Crictism to this anime</figcaption>
+                    </figure>
+
+                  <p>On one hand, people are like “this is the best romance anime ever,” and I don’t really see it at that level. It’s good, but I’ve seen better romance stories depending on what you’re looking for. On the other hand, I also understand why people like it that much. It’s a very “safe” romance. No drama overload, no toxic nonsense, no weird harem or NTR stuff. Just a clean relationship developing in a calm way.<br><br>I just think the fandom sometimes overhypes it a bit too hard. It’s good, but not untouchable.<br><br>Another thing is that the focus is very tight on the main characters. Side characters exist, but they don’t really get that much spotlight. I heard Season 2 might expand on that and introduce more focus on others too, so I’m actually interested to see where it goes from here.<br><br>Also, I saw it labeled as a RomCom, but I didn’t really feel the “com” part that strongly. There are jokes, sure, but it’s more like light humor or awkward moments rather than actual comedy. Sometimes it made me laugh a bit, sometimes it was more like “ok that was cute or slightly cringe in a good way,” but it’s not really a comedy-driven show.</p>
+
+                                      <figure style="text-align: center;">
+                        <img src="/images/theangelnextdoor-episode10scene.png" alt="That one scene">
+                        <figcaption style="font-size: 0.7em; color: var(--neon-cyan); margin-top: 5px;">That one episode 10 scene</figcaption>
+                    </figure>
+
+                  <p>And yeah… episode 10. That one caught me off guard a bit. Not in a bad way, just one of those moments where the MC is doing things and you’re sitting there like “bro what are you doing.” I’m not even criticizing it heavily, it just felt funny in context. For the love of the game, I guess.<br><br>Overall though, I did enjoy Season 1. It’s not trying to be loud or complicated. It just exists as a slow, wholesome romance with good atmosphere and strong character focus. And honestly, sometimes that’s enough.</p>
+                </div>
+        </div>
+    </section>
+
+    <aside class="sidebar-column">
+    </aside>
+</main>
+    <footer>
+        </footer>
+</div>
+</body>
+</html>
