@@ -199,3 +199,24 @@
     margin: 20px 0;
     border: 1px solid var(--neon-cyan);
 }
+
+.post-body {
+    max-width: 750px; /* Limits the width so it doesn't sprawl */
+    margin: 0 auto;   /* Centers the text block */
+    padding: 20px;    /* Adds the breathing room inside the module */
+}
+
+.post-body p {
+    margin-bottom: 20px; /* This creates the paragraph spacing */
+    line-height: 1.8;    /* Increases readability */
+}
+
+.post-visual {
+    margin: 30px 0;
+    text-align: center;
+}
+
+.post-visual img {
+    max-width: 100%; /* Prevents image from being too big */
+    border: 1px solid var(--neon-cyan);
+}
