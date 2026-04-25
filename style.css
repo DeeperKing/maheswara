@@ -153,3 +153,27 @@
             border-top: 1px solid #333;
             text-align: center;
         }
+
+/* Style for images inside posts */
+.post-visual {
+    border: 1px solid var(--neon-cyan);
+    padding: 8px;
+    background: rgba(0, 255, 255, 0.05); /* Very faint glow */
+    margin: 25px 0;
+    text-align: center;
+}
+
+.post-visual img {
+    max-width: 100%;
+    display: block;
+    border: 1px solid #111;
+}
+
+.post-caption {
+    font-size: 0.7em;
+    color: var(--neon-cyan);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-top: 10px;
+    text-align: center;
+}
