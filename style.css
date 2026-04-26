@@ -236,3 +236,17 @@
 .footer-container p {
     margin: 5px 0;
 }
+
+/* Base link style */
+a {
+    color: var(--neon-cyan);
+    text-decoration: none; /* Removes the underline */
+    border-bottom: 1px solid transparent;
+    transition: all 0.2s ease;
+}
+
+/* Hover effect */
+a:hover {
+    color: var(--neon-pink);
+    border-bottom: 1px solid var(--neon-pink); /* Subtle underline on hover */
+}
