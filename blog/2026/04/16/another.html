@@ -1,1 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rewatching Another (and Why It Still Hits Way Harder Than I Remembered) // Maheswara</title>
+<style>
+    /* CORE VARIABLES */
+    :root {
+        --neon-cyan: #00ffff;
+        --terminal-bg: #000;
+        --panel-bg: rgba(0, 255, 255, 0.05);
+        --font-mono: 'Consolas', 'Courier New', Courier, monospace;
+    }
 
+    /* GLOBAL STYLES */
+    body, html {
+        margin: 0; padding: 0;
+        background-color: var(--terminal-bg);
+        color: var(--neon-cyan);
+        font-family: var(--font-mono);
+        min-height: 100vh;
+    }
+
+    .site-wrapper {
+        max-width: 1000px; /* Limits overall width */
+        margin: 0 auto;
+        padding: 20px;
+    }
+
+            /* HEADER */
+        header {
+            border-bottom: 2px solid var(--neon-cyan);
+            margin-bottom: 30px;
+            padding-bottom: 10px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: flex-end;
+        }
+
+        .sys-info {
+            font-size: 0.75em;
+            color: rgba(0, 255, 255, 0.5);
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+        }
+
+        nav ul { list-style: none; padding: 0; margin: 0; display: flex; gap: 15px; flex-wrap: wrap; }
+        
+        /* HOVER ANIMATION LOGIC */
+        nav a {
+            color: var(--neon-cyan);
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1em;
+            padding: 5px 10px;
+            transition: all 0.2s ease;
+            text-transform: uppercase;
+            display: inline-block;
+        }
+        
+        nav a::before {
+            content: "";
+            margin-right: 0px;
+            opacity: 0;
+            transition: all 0.2s ease;
+        }
+        
+        nav a:hover::before, nav a.active::before {
+            content: "> ";
+            opacity: 1;
+            margin-right: 5px;
+        }
+
+        nav a:hover, nav a.active {
+            background-color: var(--neon-cyan);
+            color: #000;
+            box-shadow: 0 0 10px var(--neon-cyan);
+        }
+
+    /* THE GRID LAYOUT */
+    .content-grid {
+        display: grid;
+        grid-template-columns: 1fr 300px; /* Main post 1fr, Sidebar 300px */
+        gap: 20px;
+    }
+
+    /* THE MODULE BOXES */
+    .module {
+        border: 1px solid var(--neon-cyan);
+        background: var(--panel-bg);
+        padding: 20px;
+        margin-bottom: 20px;
+    }
+
+    .module-title {
+        border-bottom: 1px dashed var(--neon-cyan);
+        margin-bottom: 15px;
+        padding-bottom: 5px;
+        text-transform: uppercase;
+        font-weight: bold;
+    }
+
+    /* POST STYLES */
+    .post-body {
+        line-height: 1.6;
+    }
+
+    .post-body p {
+        margin-bottom: 20px;
+    }
+
+    .post-visual img {
+        max-width: 100%;
+        border: 1px solid var(--neon-cyan);
+        display: block;
+        margin: 0 auto;
+    }
+
+    /* FIX FOR SCANLINES */
+    .scanlines {
+        position: fixed;
+        top: 0; left: 0; width: 100%; height: 100%;
+        background: repeating-linear-gradient(0deg, rgba(0,0,0,0.15), rgba(0,0,0,0.15) 1px, transparent 1px, transparent 2px);
+        pointer-events: none; z-index: 999;
+    }
+</style>
+</head>
+<body>
+
+<div class="scanlines"></div>
+
+<div class="site-wrapper">
+    <header>
+        <div>
+            <div class="sys-info">ROOT_ACCESS_GRANTED // LOC: BLOG_ARCHIVE</div>
+            <h1 style="margin: 0; color: #fff; text-shadow: 0 0 10px var(--neon-cyan); text-transform: uppercase; font-size: 2.5em; letter-spacing: 2px;">Maheswara</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="/index.html">cd /home</a></li>
+                <li><a href="/blog.html" class="active">cd /blog</a></li>
+                <li><a href="/archive.html">cd /archive</a></li>
+                <li><a href="/social.html">cd /social_media</a></li>
+            </ul>
+        </nav>
+    </header>
+
+<main class="content-grid">
+    <section class="main-column">
+        <div class="module">
+            <div class="module-title">LOG_ENTRY_ID: 001</div>
+            
+            <div class="post-body">
+                <h1">Rewatching Another (and Why It Still Hits Way Harder Than I Remembered)</h1>
+                <div class="post-date" style="color: var(--neon-cyan); margin-bottom: 30px;">2026-04-16</div>
+
+                <article class="post-content">
+                    <p>I originally watched Another back in like 2016, with my elder sister, and I just rewatched it recently because I genuinely forgot most of the plot. Not even in a “I remember it vaguely” way. More like “I know I watched something emotionally violent at some point in my life.”<br><br>And yeah. It’s still peak. I don’t really get why people downplay it so much. I get it, the novel is probably a better structured experience, but the anime adaptation still delivers something really strong in terms of atmosphere and emotional intensity. It’s not subtle at all. It wants you uncomfortable, and it commits fully to that.</p>
+                    
+                    <figure style="text-align: center;">
+                        <img src="/images/another-art.jpg" alt="Art">
+                        <figcaption style="font-size: 0.7em; color: var(--neon-cyan); margin-top: 5px;">The Official Art for Another</figcaption>
+                    </figure>
+
+                    <p>The deaths especially are… yeah. There’s no polite way to say it. Some of those scenes are straight-up burned into memory territory. The infamous umbrella scene and the elevator moment are still insane. First time I watched it, I genuinely thought Mei Misaki was an actual ghost. I even called out the MC for talking to her like it was the most obvious death flag in history, which, in hindsight, is kind of ironic given how the curse actually works.<br><br>And speaking of the curse, I also remember thinking the class handled the situation horribly. Like, nobody thought to properly explain the rules like "so here are the rules" to the new student. Just “don’t talk to the suspicious eyepatch girl with the dead-eyed stare and sit quietly and hope nothing bad happens.” Solid strategy, really. And then everyone is surprised when things go wrong. What a complete geniuses. Like yeah, technically, talking to “that person” triggers the curse. But also… communicate? Maybe? Just a thought.<br><br>To be fair, the story is confusing on a first watch. I don’t think that’s even a controversial take. A lot of people probably finish it and still aren’t 100% sure how everything connects. That confusion is actually part of why I rewatched it, because I wanted to properly understand what was going on instead of just reacting to the horror elements.<br><br>And fun fact, I started watching the anime Love, Chunibyo & Other Delusions because that Rikka Takanashi is very similiar to Mei Misaki. Not in personality, obviously, but more in design and visual vibe. I actually watched Chunibyo partly because Rikka reminded me of Mei, not the other way around. They have that same “visually iconic girl” energy. Which I will explained it in another (no pun intended) blog.</p>
+                  
+                    <figure style="text-align: center;">
+                        <img src="/images/mei-and-rikka.jfif" alt="Mei Misaki and Rikka Takanashi visual comparasion">
+                        <figcaption style="font-size: 0.7em; color: var(--neon-cyan); margin-top: 5px;">Mei Misaki and Rikka Takanashi visual comparasion</figcaption>
+                    </figure>
+
+                  <p>Personally though, I’ve always liked Mei Misaki as a character. Her design is simple but memorable, her personality is reserved without being empty, and there’s something about how she’s written that feels oddly grounded compared to the chaos around her. She doesn’t over-explain anything. She just exists in this unsettling world and moves through it calmly. I love her backstory that the reason why she's so emotionless is because her twin sister (Misaki Fujioka) died because of leukemia, and then Mei is gloom ever since.<br><br>I know, I know I always addresing this, but the OST also deserves more credit than it usually gets. It’s not a massive soundtrack, but it knows exactly when to show up. It’s minimal, eerie, and unsettling in a way that fits the tone perfectly. And the opening? Nothing flashy in terms of animation tricks, but the song and especially the kanji in the lyrics hit way harder than they should.<br><br>Props to ALi PROJECT, they did what they always do: write something that sounds beautiful but also feels like it’s whispering bad omens directly into your brain and trying to emotionally slap you in slow motion And oh boy I mean it.</p>
+
+                                      <figure style="text-align: center;">
+                        <img src="/images/凶夢伝染.jpg" alt="ALI PROJECT album art for another">
+                        <figcaption style="font-size: 0.7em; color: var(--neon-cyan); margin-top: 5px;">ALI PROJECT album art for another</figcaption>
+                    </figure>
+
+                  <p>Now episode 6 deserves its own mention because that’s where the show really tests your trust.<br><br>It starts like a classic beach episode setup. You think you’re getting filler. You think you’re safe. Then the watermelon scene happens and for a split second it looks like straight-up blood. Turns out it’s watermelon juice, which in hindsight is very on-brand for Japanese misdirection horror tension. But at the time? Yeah, I was fully locked into panic mode.<br><br>And then the episode just keeps going. A random character gets introduced (which I don't even know what they're purpose are), then wind picks up, and suddenly the situation escalates into one of the most uncomfortable deaths in the series, an immediately death in one of the most absurdly violent ways involving a motorboat blade. So much for relaxation. It’s one of those “oh so this is what kind of anime this is” moments.</p>
+
+                                     <figure style="text-align: center;">
+                        <img src="/images/episode11-another.png" alt="Episode 11 Another">
+                        <figcaption style="font-size: 0.7em; color: var(--neon-cyan); margin-top: 5px;">Episode 11 Another chaos</figcaption>
+                    </figure>
+                  <p>Episodes 11 and 12 don’t even bother pretending anymore. At that point it becomes full chaos: students turning on each other, paranoia spreading, fire, panic, everything collapsing at once inside the mansion setting. It’s not even subtle horror anymore, it’s just controlled disaster.<br><br>Despite all that, I still think it’s a really strong series. The design is great, the atmosphere is consistent, Mei Misaki carries half the emotional weight of the show, and the OST does a lot of heavy lifting in the background. I’ll even give it the classic rating system:<br><br>
+                  *Plot: confusing but intentional<br>
+                  *Horror: effective in a deeply unpleasant way<br>
+                  *Characters: strong main focus, especially Mei<br>
+                  *MC: let’s just say “reactive decision-making”<br>
+                  *Class: collectively L behavior<br><br>And then there’s the tagline that still hits every time:<br><br>”死者”は、誰――？<br><br>Which means Who is “the dead” one?</p>
+       
+                                                 <figure style="text-align: center;">
+                        <img src="/images/Screenshot (80).png" alt="”死者”は、誰――？">
+                        <figcaption style="font-size: 0.7em; color: var(--neon-cyan); margin-top: 5px;">”死者”は、誰――？</figcaption>
+                    </figure>
+                  <p>Even now, it still has that weird pressure to it. Like the sentence itself is watching you back a little.<br><br>And yeah. That’s probably why the rewatch worked. It’s not just a horror story you consume once. It’s one of those things that makes more sense the second time, when you’re not just surviving the visuals, but actually paying attention to how everything fits together. Overall, good anime to be honest, worth to watch and rewatch. I really hoped this anime would have a Season 2, adaptation of the Another 2001 novel, I heard the writer is interested to make one, I don't know if it's true though.</p>
+            </div>
+        </div>
+    </section>
+
+    <aside class="sidebar-column">
+    </aside>
+</main>
+    <footer>
+        </footer>
+</div>
+</body>
+</html>
