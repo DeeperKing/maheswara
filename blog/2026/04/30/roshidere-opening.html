@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" type="image/png" href="/images/favicon.png">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Roshidere's Opening Is Actually Insane (and I’m Not Even Glazing… okay maybe a little) // Maheswara</title>
+<style>
+    /* CORE VARIABLES */
+    :root {
+        --neon-cyan: #00ffff;
+        --terminal-bg: #000;
+        --panel-bg: rgba(0, 255, 255, 0.05);
+        --font-mono: 'Consolas', 'Courier New', Courier, monospace;
+    }
+
+    /* GLOBAL STYLES */
+    body, html {
+        margin: 0; padding: 0;
+        background-color: var(--terminal-bg);
+        color: var(--neon-cyan);
+        font-family: var(--font-mono);
+        min-height: 100vh;
+    }
+
+    .site-wrapper {
+        max-width: 1000px; /* Limits overall width */
+        margin: 0 auto;
+        padding: 20px;
+    }
+
+            /* HEADER */
+        header {
+            border-bottom: 2px solid var(--neon-cyan);
+            margin-bottom: 30px;
+            padding-bottom: 10px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: flex-end;
+        }
+
+        .sys-info {
+            font-size: 0.75em;
+            color: rgba(0, 255, 255, 0.5);
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+        }
+
+        nav ul { list-style: none; padding: 0; margin: 0; display: flex; gap: 15px; flex-wrap: wrap; }
+        
+        /* HOVER ANIMATION LOGIC */
+        nav a {
+            color: var(--neon-cyan);
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1em;
+            padding: 5px 10px;
+            transition: all 0.2s ease;
+            text-transform: uppercase;
+            display: inline-block;
+        }
+        
+        nav a::before {
+            content: "";
+            margin-right: 0px;
+            opacity: 0;
+            transition: all 0.2s ease;
+        }
+        
+        nav a:hover::before, nav a.active::before {
+            content: "> ";
+            opacity: 1;
+            margin-right: 5px;
+        }
+
+        nav a:hover, nav a.active {
+            background-color: var(--neon-cyan);
+            color: #000;
+            box-shadow: 0 0 10px var(--neon-cyan);
+        }
+
+    /* THE GRID LAYOUT */
+    .content-grid {
+        display: grid;
+        grid-template-columns: 1fr 300px; /* Main post 1fr, Sidebar 300px */
+        gap: 20px;
+    }
+
+    /* THE MODULE BOXES */
+    .module {
+        border: 1px solid var(--neon-cyan);
+        background: var(--panel-bg);
+        padding: 20px;
+        margin-bottom: 20px;
+    }
+
+    .module-title {
+        border-bottom: 1px dashed var(--neon-cyan);
+        margin-bottom: 15px;
+        padding-bottom: 5px;
+        text-transform: uppercase;
+        font-weight: bold;
+    }
+
+    /* POST STYLES */
+    .post-body {
+        line-height: 1.6;
+    }
+
+    .post-body p {
+        margin-bottom: 20px;
+    }
+
+    .post-visual img {
+        max-width: 100%;
+        border: 1px solid var(--neon-cyan);
+        display: block;
+        margin: 0 auto;
+    }
+
+    /* FIX FOR SCANLINES */
+    .scanlines {
+        position: fixed;
+        top: 0; left: 0; width: 100%; height: 100%;
+        background: repeating-linear-gradient(0deg, rgba(0,0,0,0.15), rgba(0,0,0,0.15) 1px, transparent 1px, transparent 2px);
+        pointer-events: none; z-index: 999;
+    }
+</style>
+</head>
+<body>
+
+<div class="scanlines"></div>
+
+<div class="site-wrapper">
+    <header>
+        <div>
+            <div class="sys-info">ROOT_ACCESS_GRANTED // LOC: BLOG_ARCHIVE</div>
+            <h1 style="margin: 0; color: #fff; text-shadow: 0 0 10px var(--neon-cyan); text-transform: uppercase; font-size: 2.5em; letter-spacing: 2px;">Maheswara</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="/index.html">cd /home</a></li>
+                <li><a href="/blog.html" class="active">cd /blog</a></li>
+                <li><a href="/archive.html">cd /archive</a></li>
+                <li><a href="/social.html">cd /social_media</a></li>
+            </ul>
+        </nav>
+    </header>
+
+<main class="content-grid">
+    <section class="main-column">
+        <div class="module">
+            <div class="module-title">Roshidere's Opening Is Actually Insane (and I’m Not Even Glazing… okay maybe a little)</div>
+            
+            <div class="post-body">
+                <div class="post-date" style="color: var(--neon-cyan); margin-bottom: 30px;"><small>2026-04-30</small></div>
+
+                <article class="post-content">
+                    <p>I need to talk about the opening for Alya Sometimes Hides Her Feelings in Russian, because this isn’t just “good animation.” This is the kind of opening where you realize the animators were not playing around. Like the opening was so good I literally needs to seperate the pages. Now for reference, I never skip openings or endings in anime anyway, mostly out of respect for the people who worked on it. But this one? I couldn’t skip it even if I wanted to. The first half is pretty normal, just clips from the anime, setting things up. But once the chorus hits… everything changes.</p>
+                    
+                    <figure style="text-align: center;">
+                        <img src="/images/roshidere-op.mp4" alt="Art">
+                        <figcaption style="font-size: 0.7em; color: var(--neon-cyan); margin-top: 5px;">The Opening</figcaption>
+                    </figure>
+
+                    <p>It starts with Alya about to give a speech, similar to that student council moment, and then suddenly the entire art style shifts. Like completely. It feels like she jumps into a different world, drawn in this brushstroke, almost painterly style. Background goes dark, black with white lines, very abstract.<br><br>Then you get Alya and Kuze dancing.<br><br>And yeah, if you read the manga, you already know. That scene is basically referencing that dance moment from earlier in their story, which the anime didn’t fully include. So the opening is literally adding emotional context the anime itself skipped. That alone is already crazy.<br><br>The background shifts again into this gradient mix of blue, black, and warm orange tones. It feels like warmth breaking through something cold, which fits their whole dynamic perfectly.<br><br>Then things get more symbolic.<br><br>Alya kind of… drifts away. I don’t even know how to describe it properly. Not running, not disappearing, just slipping away from Kuze. And then she turns into light. Or a star. Something intangible. Then Kuze chases it.<br><br>Now the background goes dark again, then suddenly shifts into a snowstorm. Full blizzard energy. He’s running, struggling, even falls and rolls down a snowy slope. The whole thing feels cold, harsh, and isolating.<br><br>That part hits especially hard when you remember Alya’s whole “lone queen” image. She’s distant, hard to reach, emotionally guarded. And Kuze chasing that light in a literal blizzard? That’s not subtle symbolism. That’s the show screaming “this is not easy.”<br><br>Then Alya becomes a snowdrop flower.</p>
+                  
+                    <figure style="text-align: center;">
+                        <img src="/images/theangelnextdoor-criticsm.png" alt="Criticsm">
+                        <figcaption style="font-size: 0.7em; color: var(--neon-cyan); margin-top: 5px;">One Example of Crictism to this anime</figcaption>
+                    </figure>
+
+                  <p>And yeah, that’s not random either. Snowdrops symbolize hope, rebirth, and pushing through harsh conditions. They bloom through snow. So now you’ve got:<br><br>
+                  *cold isolation (the blizzard)<br>
+*struggle (Kuze chasing)<br>
+*and hope (Alya as a snowdrop)<br>It’s actually kind of insane how much meaning they packed into like a few seconds.<br><br>Then we shift again.<br><br>Alya reappears, standing there, kind of distant, drops her umbrella, and everything still feels cold and pale. Kuze picks it up for her, and the entire color palette warms up. Suddenly there’s more life in the scene.</p>
+
+                                      <figure style="text-align: center;">
+                        <img src="/images/alya-and-umbrella.png" alt="Criticsm">
+                        <figcaption style="font-size: 0.7em; color: var(--neon-cyan); margin-top: 5px;">One Example of Crictism to this anime</figcaption>
+                    </figure>
+                                      <figure style="text-align: center;">
+                        <img src="/images/alya-umbrella-and-kuze.png" alt="Criticsm">
+                        <figcaption style="font-size: 0.7em; color: var(--neon-cyan); margin-top: 5px;">One Example of Crictism to this anime</figcaption>
+                    </figure>
+
+                  <p>I'm sure that’s not subtle either. That’s literally Kuze reaching out then emotional warmth entering Alya’s world<br><br>Then as you see in those photos there’s that moment where Alya looks up at him. She’s also drawn slightly shorter than she already is for some reason (I don't know why), almost like she’s vulnerable or overwhelmed. She looks stunned, like she didn’t expect that kind of kindness.<br><br>After that, her outfit transforms smoothly from casual to her school uniform in this fluid, brushstroke-like animation. It’s not a normal transition, it looks like she’s being <i>painted</i> into place. Same with Kuze, who rotates into frame and reaches out his hand. That’s straight-up referencing that “just take my hand” moment. No explanation needed.<br><br>And then the final stretch, bright background, soft colors, flowers, classroom setting, everything feels lighter. The title appears piece by piece while the music hits that emotional peak.<br><br>Speaking of music…<br><br>Yeah. The song itself is insane.<br><br>Just search the lyrics up in Google, and you'll see. Even just the opening lyrics already scream tsundere energy:<br><br>
+*lying with words<br>
+hiding real feelings<br>
+not saying what you actually mean<br><br>It perfectly matches Alya’s whole “speaking honestly in Russian but pretending it doesn’t count” thing. And lines about unseen feelings, not being able to “see from here,” that’s basically their entire dynamic. Feelings are there, just slightly out of reach. By the time the last lines hit, it’s clearly about chasing something you don’t fully understand yet. Feelings that were always there, just not recognized.<br><br>And honestly?<br><br>I don’t even fully understand every lyric either, but the feeling still lands.<br><br>That’s when you know it works.<br><br>At this point, I’ve seen people argue about a lot of anime openings, but this is one of the few where fans and even some haters agree:<br><br>It’s just really, really good.<br><br>I’ll go further. This might actually be one of the best openings I’ve seen. No exaggeration. The animation, the symbolism, the music, everything just clicks together.<br><br>Also yeah, after all that emotional and artistic depth, it’s kind of funny remembering Kuze is still… Kuze. The opening makes him look like he’s about to embark on a life-changing emotional journey. Then the episode starts and you’re like “right… this guy.”<br><br>Balance, I guess.</p>
+          </div>
+    <aside class="sidebar-column">
+    </aside>
+</main>
+    <footer>
+        </footer>
+</div>
+</body>
+</html>
