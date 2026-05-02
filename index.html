@@ -112,73 +112,81 @@
 </div>
 
 </body>
-    <!-- 1. PUT THIS RIGHT AFTER <body> OPENS -->
-<div id="boot-screen" style="position:fixed; top:0; left:0; width:100%; height:100%; background:#000; z-index:10000; display:flex; flex-direction:column; justify-content:center; align-items:center; color:var(--neon-cyan);">
-    <div id="boot-text" style="font-family:var(--font-mono); text-transform:uppercase; text-align:center; max-width: 80%;">
-        [SYSTEM_HALTED]: ACCESS_RESTRICTED
-    </div>
-    <div id="prompt" style="margin-top:20px; animation: blink 1s infinite; font-family:var(--font-mono);">
-        PRESS ANY KEY TO INITIALIZE...
-    </div>
+<!-- THE BOOT SCREEN -->
+<div id="boot-screen" style="position:fixed; top:0; left:0; width:100%; height:100%; background:#000; z-index:10000; display:flex; flex-direction:column; justify-content:center; align-items:center; color:var(--neon-cyan); font-family:var(--font-mono); overflow:hidden;">
+    
+    <!-- SPINNING LOADER -->
+    <div id="spinner" style="margin-bottom: 20px; font-size: 2em;">/</div>
+
+    <!-- ASCII LOGO (Empty by default so it can "type" in) -->
+    <pre id="ascii-logo" style="font-size: 8px; line-height: 1; color: var(--neon-pink); margin-bottom: 20px;"></pre>
+
+    <!-- STATUS TEXT -->
+    <div id="boot-text" style="text-transform:uppercase; text-align:center;">[SYSTEM_OFFLINE]</div>
+    
+    <div id="prompt" style="margin-top:20px; animation: blink 1s infinite;">PRESS ANY KEY TO BOOT...</div>
 </div>
 
-<!-- YOUR NORMAL SITE CONTENT GOES HERE -->
-<div class="site-wrapper">
-   ...
-</div>
-
-<!-- 2. PUT THIS SCRIPT RIGHT BEFORE </body> CLOSES -->
 <script>
-    // The Binary Scramble Typing Function
-    async function typeWithBinaryScramble(element, text) {
-        element.innerHTML = "";
-        for (let i = 0; i < text.length; i++) {
-            let char = text[i];
-            
-            // Skip spaces immediately
-            if (char === " ") {
-                element.innerHTML += char;
-                continue;
-            }
-
-            // Create a temporary container for the current letter
-            let tempSpan = document.createElement('span');
-            element.appendChild(tempSpan);
-
-            // Flicker '0' or '1' three times rapidly before showing the real letter
-            for (let j = 0; j < 3; j++) {
-                tempSpan.innerText = Math.random() > 0.5 ? '1' : '0';
-                await new Promise(r => setTimeout(r, 25)); // 25ms per flicker
-            }
-            
-            // Reveal the actual letter
-            tempSpan.innerText = char;
-        }
+// 1. SPINNING ANIMATION
+const loaderChars = ["/", "-", "\\", "|"];
+let loaderIdx = 0;
+setInterval(() => {
+    const spinner = document.getElementById('spinner');
+    if(spinner) {
+        spinner.innerText = loaderChars[loaderIdx];
+        loaderIdx = (loaderIdx + 1) % loaderChars.length;
     }
+}, 150);
 
-    // The Boot Sequence Logic
-    window.addEventListener('keydown', function() {
-        const bootScreen = document.getElementById('boot-screen');
-        const bootText = document.getElementById('boot-text');
-        const prompt = document.getElementById('prompt');
-        
-        prompt.style.display = 'none'; // Hide "Press any key"
-        
-        // Start the binary scramble text
-        typeWithBinaryScramble(bootText, "DECRYPTING... USER IDENTIFIED: MAHESWARA. ACCESS GRANTED.").then(() => {
-            // Once typing is done, wait 1 second, then fade out the black screen
-            setTimeout(() => {
-                bootScreen.style.transition = "opacity 0.8s ease-out";
-                bootScreen.style.opacity = "0";
-                setTimeout(() => {
-                    bootScreen.style.display = "none";
-                }, 800);
-            }, 1000);
-        });
-    }, { once: true }); // Ensure it only fires on the first keypress
+// 2. THE ASCII LOGO (Paste your ASCII art inside the backticks)
+const myAsciiArt = `
+  __  __       _                                 
+ |  \/  | __ _| |__   ___  _____      ____ _ _ __ __ _ 
+ | |\/| |/ _` | '_ \ / _ \/ __\ \ /\ / / _` | '__/ _` |
+ | |  | | (_| | | | |  __/\__ \\ V  V / (_| | | | (_| |
+ |_|  |_|\__,_|_| |_|\___||___/ \_/\_/ \__,_|_|  \__,_|
+`;
+
+async function bootSequence() {
+    const bootText = document.getElementById('boot-text');
+    const asciiLoc = document.getElementById('ascii-logo');
+    const prompt = document.getElementById('prompt');
+    
+    prompt.style.display = 'none';
+
+    // A: "Fetch" the ASCII Logo
+    await typeWithBinaryScramble(bootText, "FETCHING_SYSTEM_ART...");
+    asciiLoc.innerText = myAsciiArt; // Show logo
+    
+    // B: Identity Check
+    await new Promise(r => setTimeout(r, 500));
+    await typeWithBinaryScramble(bootText, "AUTH_REQUIRED: MAHESWARA IDENTIFIED.");
+    
+    // C: Final Load
+    await new Promise(r => setTimeout(r, 800));
+    document.getElementById('boot-screen').style.transition = "opacity 0.8s";
+    document.getElementById('boot-screen').style.opacity = "0";
+    setTimeout(() => document.getElementById('boot-screen').style.display = "none", 800);
+}
+
+// Scramble Function (Cleaned up to prevent "Double Text")
+async function typeWithBinaryScramble(element, text) {
+    element.innerText = ""; // Ensure it is empty first
+    for (let i = 0; i < text.length; i++) {
+        let char = text[i];
+        let span = document.createElement('span');
+        element.appendChild(span);
+        if (char !== " ") {
+            for (let j = 0; j < 2; j++) {
+                span.innerText = Math.random() > 0.5 ? '1' : '0';
+                await new Promise(r => setTimeout(r, 30));
+            }
+        }
+        span.innerText = char;
+    }
+}
+
+window.addEventListener('keydown', bootSequence, { once: true });
 </script>
-
-<style>
-    @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
-</style>
 </html>
