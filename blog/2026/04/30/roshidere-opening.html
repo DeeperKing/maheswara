@@ -133,6 +133,35 @@
         background: repeating-linear-gradient(0deg, rgba(0,0,0,0.15), rgba(0,0,0,0.15) 1px, transparent 1px, transparent 2px);
         pointer-events: none; z-index: 999;
     }
+            /* Footer Container */
+.footer-container {
+    text-align: center;
+    padding: 40px 20px;
+    margin-top: 50px;
+    border-top: 1px solid rgba(0, 255, 255, 0.2); /* Faint border */
+    font-size: 0.7em; /* Small text */
+    color: rgba(0, 255, 255, 0.4); /* Dimmed cyan */
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.footer-container p {
+    margin: 5px 0;
+}
+
+/* Base link style */
+a {
+    color: var(--neon-cyan);
+    text-decoration: none; /* Removes the underline */
+    border-bottom: 1px solid transparent;
+    transition: all 0.2s ease;
+}
+
+/* Hover effect */
+a:hover {
+    color: var(--neon-pink);
+    border-bottom: 1px solid var(--neon-pink); /* Subtle underline on hover */
+}
     /* STICKY SIDEBAR LOGIC */
 .sidebar-column {
     position: relative;
