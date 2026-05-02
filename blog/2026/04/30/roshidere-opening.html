@@ -126,6 +126,61 @@
         background: repeating-linear-gradient(0deg, rgba(0,0,0,0.15), rgba(0,0,0,0.15) 1px, transparent 1px, transparent 2px);
         pointer-events: none; z-index: 999;
     }
+    /* STICKY SIDEBAR LOGIC */
+.sidebar-column {
+    position: relative;
+}
+
+.sticky-wrapper {
+    position: -webkit-sticky; /* For Safari */
+    position: sticky;
+    top: 20px; /* Distance from the top of the screen when scrolling */
+}
+
+/* SIDEBAR MODULES */
+.side-module {
+    border: 1px solid var(--neon-cyan);
+    background: rgba(0, 255, 255, 0.1);
+    padding: 15px;
+    margin-bottom: 20px;
+    box-shadow: inset 0 0 10px rgba(0, 255, 255, 0.1);
+}
+
+/* ENHANCED LOCALE BUTTONS */
+.lang-button {
+    display: block;
+    width: 100%;
+    background: transparent;
+    border: 1px solid var(--neon-cyan);
+    color: var(--neon-cyan);
+    padding: 12px;
+    margin: 10px 0;
+    font-family: var(--font-mono);
+    font-weight: bold;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+    text-align: left;
+}
+
+.lang-button:hover {
+    background: var(--neon-cyan);
+    color: #000;
+    box-shadow: 0 0 15px var(--neon-cyan);
+}
+
+.lang-button::before {
+    content: "[ ] ";
+}
+
+.lang-button:active::before {
+    content: "[X] ";
+}
+    iframe {
+    border: 1px solid var(--neon-cyan);
+    box-shadow: 0 0 10px rgba(0, 255, 255, 0.2);
+    margin-bottom: 20px;
+}
 </style>
 </head>
 <body>
