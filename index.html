@@ -177,8 +177,9 @@ a:hover {
                 <div class="module-title pink-title">RECENT_ACTIVITY</div>
                 <div class="content-text">
                     <p>Currently obsessed with the narrative structure of <i>Roshidere</i> and finding the balance between Wikipedia maintenance and gaming.</p>
-                </div>
-            </div>
+                <span id="profile-text-target"></span>
+    </div>
+</div>
         </section>
 
         <aside class="right-column">
@@ -241,7 +242,7 @@ a:hover {
         document.head.appendChild(link);
     }
 
-    // Live UTC Clock & Header Spinner
+    // Live UTC Clock & Header Spinner (Keeping your perfect logic)
     setInterval(() => {
         const now = new Date();
         const el = document.getElementById('utc-time');
@@ -258,13 +259,13 @@ a:hover {
         if(bSpin) bSpin.innerText = char;
     }, 150);
 
-    // Advanced Typing Engine (Keeps cursor at the end)
+    // Advanced Typing Engine (Keeping your perfect engine)
     async function typeText(elId, text, speed) {
         const el = document.getElementById(elId);
         if (!el) return;
-        el.innerText = "";
+        el.innerHTML = ""; // Use innerHTML to support <br>
         for (let char of text) {
-            el.innerText += char;
+            el.innerHTML += char;
             await wait(speed);
         }
     }
@@ -294,17 +295,13 @@ a:hover {
     }
 
     async function animateSkillBars() {
-        const bars = document.querySelectorAll('.skill-bar');
-        for (let bar of bars) {
-            const fillCount = parseInt(bar.getAttribute('data-fill'));
-            for (let i = 1; i <= fillCount; i++) {
-                bar.innerText = "[" + "■".repeat(i) + "□".repeat(10 - i) + "]";
-                await wait(40);
-            }
-        }
+        const bars = document.querySelectorAll('.skill-bar-inner'); // Assuming you use a class now
+        // This is updated to trigger sequentially inside the main init
     }
 
     async function init() {
+        // SET INITIAL TITLE
+        document.title = "MAHESWARA OS // STARTING";
         setFavicon('data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7'); 
         
         await wait(500);
@@ -314,11 +311,10 @@ a:hover {
             window.removeEventListener('keydown', bootSequence);
             window.removeEventListener('click', bootSequence);
             
-            // 1. Hide Prompt, 1.5s Blank Pause
             document.getElementById('init-prompt').style.display = 'none';
-            await wait(1500); // The "BOOM" pause
+            document.title = "WELCOME! // LOADING"; // Update Title
+            await wait(1500); 
             
-            // 2. Line-by-Line Block ASCII Reveal
             document.getElementById('boot-sequence-container').style.display = 'block';
             const asciiBlock = `
  ███▄ ▄███ ▄████▄ ██  ██ █████ █████ ███  █  ███ ▄████▄ ██████  ▄████▄ 
@@ -326,82 +322,85 @@ a:hover {
  ███▀█▀███ ██▀▀██ ██▀▀██ ██▀▀  ▀▀▀██ ███ █ █ ███ ██▀▀██ ██████  ██▀▀██ 
  ███   ███ ██  ██ ██  ██ █████ █████ ▀█████████▀ ██  ██ ██   ██ ██  ██`;
             
-            const lines = asciiBlock.split('\n');
             const logoEl = document.getElementById('ascii-logo');
-            for(let line of lines) {
+            for(let line of asciiBlock.split('\n')) {
                 if(line.trim() !== '') {
                     logoEl.innerHTML += line + '\n';
-                    await wait(150); // Speed of the chunk loading
+                    await wait(150);
                 }
             }
 
-            // 3. Fast Loading Bar
-            const loadContainer = document.getElementById('loading-bar-container');
             const loadFill = document.getElementById('loading-bar-fill');
             const bootText = document.getElementById('boot-text');
-            loadContainer.style.display = "block";
             
-            for(let p=0; p<=100; p += Math.floor(Math.random() * 15) + 5) {
-                let displayP = p > 100 ? 100 : p;
-                loadFill.style.width = displayP + "%";
-                bootText.innerText = `LOADING_CORE_MODULES... ${displayP}%`;
-                await wait(60);
+            // Slightly longer loading bar
+            for(let p=0; p<=100; p += 2) { 
+                loadFill.style.width = p + "%";
+                bootText.innerText = `AUTHENTICATING... ${p}%`;
+                await wait(40);
             }
-            bootText.innerText = "HANDSHAKE_COMPLETE.";
-            await wait(400);
+            
+            document.title = "AUTHENTICATED"; // Final Boot Title
+            await wait(600);
 
-            // 4. Fade Out Boot
             const screen = document.getElementById('boot-screen');
             screen.style.opacity = "0";
             setFavicon('images/favicon.png'); 
 
             setTimeout(async () => {
                 screen.style.display = "none";
+                document.title = "Maheswara // Home"; // Final Site Title
                 const site = document.getElementById('main-site');
                 site.style.display = "block";
-                
-                // --- SEQUENTIAL PAGE ASSEMBLY ---
                 setTimeout(() => site.style.opacity = "1", 50);
                 
                 await wait(500);
                 
-                // Reveal ID box and type it slowly
+                // 1. IDENTIFICATION
                 document.getElementById('mod-id').classList.add('revealed');
-                await wait(300);
                 await binaryType('id-type-target', "NAME: Maheswara<br>ROLE: Daijizaiten<br>LOC: Depok, IDN", 40);
-                document.getElementById('id-type-target').classList.remove('cursor'); // remove blinker when done
 
-                // Reveal Skills and animate bars
+                // 2. KNOWLEDGE_SKILLS
                 document.getElementById('mod-skills').classList.add('revealed');
-                await animateSkillBars();
+                const bars = [
+                    {id: 'bar1', val: 8}, {id: 'bar2', val: 7}, 
+                    {id: 'bar3', val: 5}, {id: 'bar4', val: 9}
+                ];
+                // Manually animating each bar in order
+                for(let bar of bars) {
+                    let el = document.getElementById(bar.id);
+                    for(let i=1; i<=bar.val; i++) {
+                        el.innerText = "[" + "■".repeat(i) + "□".repeat(10-i) + "] " + (i*10) + "%";
+                        await wait(50);
+                    }
+                }
 
-                // Reveal Hello World and type it faster
-                document.getElementById('mod-hello').classList.add('revealed');
-                await wait(200);
-                
-                const h2Text = "Greetings, Traveler";
-                const p1Text = "Welcome to this little corner of the internet. I'm a Jakarta-born enthusiast currently living in Depok. In the internet, I also go by the name Daijizaiten (which literally that is referring to Maheswara in Japanese/Chinese).";
-                const p2Text = "By day, I spend a lot of my time diving into the world of knowledge. I'm an entity passionate about digital archiving and structure. I believe that organizing information is like building a perfect city in a simulator; it’s all about how the pieces fit together.";
-
-                await typeText('hello-h2-target', h2Text, 25);
-                document.getElementById('hello-h2-target').classList.remove('cursor');
-                
-                document.getElementById('hello-p1-target').classList.add('cursor');
-                await typeText('hello-p1-target', p1Text, 15);
-                document.getElementById('hello-p1-target').classList.remove('cursor');
-
-                document.getElementById('hello-p2-target').classList.add('cursor');
-                await typeText('hello-p2-target', p2Text, 15);
-                document.getElementById('hello-p2-target').classList.remove('cursor');
-
-                // Reveal the rest of the page all at once
-                document.getElementById('mod-recent').classList.add('revealed');
-                await wait(200);
+                // 3. USER_PROFILE (NEW: Typing reveal)
                 document.getElementById('mod-profile').classList.add('revealed');
-                await wait(200);
-                document.getElementById('mod-comms').classList.add('revealed');
+                await typeText('profile-text-target', "> A digital entity specialized in creating knowledge structures. Rooted in Indonesian Wikipedia, exploring Fandom realms.", 40);
 
-            }, 800); // Matches the new 0.8s fade out css
+                // 4. HELLO_WORLD
+                document.getElementById('mod-hello').classList.add('revealed');
+                await typeText('hello-h2-target', "Greetings, Traveler", 30);
+                await typeText('hello-p1-target', "Welcome to this little corner of the internet...", 20);
+                await typeText('hello-p2-target', "By day, I spend a lot of my time diving...", 20);
+
+                // 5. RECENT ACTIVITY
+                document.getElementById('mod-recent').classList.add('revealed');
+                await typeText('recent-text-target', "Currently obsessed with the narrative structure of Roshidere...", 20);
+
+                // 6. COMMS & SYSTEM LOGS (Final Sequence)
+                document.getElementById('mod-comms').classList.add('revealed');
+                
+                // Final Rogue Process Logs
+                await wait(400);
+                await typeText('log-rogue', "[SYSTEM]: Detecting rogue process: MAHESWARA.EXE... ", 30);
+                document.getElementById('log-rogue').innerHTML += '<span style="color:#ff5f56">[FAILED]</span>';
+                
+                await wait(300);
+                await typeText('log-goodbye', '"You didn\'t think I\'d let you leave without a proper goodbye, did you?"<br>-- Just Maheswara.', 50);
+
+            }, 800);
         };
 
         window.addEventListener('keydown', bootSequence);
