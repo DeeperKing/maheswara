@@ -1,19 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="icon" type="image/png" href="images/favicon.png">
+    <!-- REMOVED hardcoded favicon so JS can control it -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Maheswara // Home</title>
     <link rel="stylesheet" href="style.css">
     <style>
-        /* HIDE SITE CONTENT INITIALLY FOR THE ASSEMBLY EFFECT */
+        /* HIDE SITE CONTENT INITIALLY */
         .site-wrapper { 
             display: none; 
             opacity: 0;
+            transition: opacity 1s ease;
         }
 
-        /* "Hard" CMD Blink: Instant on/off */
+        /* "Hard" CMD Blink */
         #cursor {
             font-weight: bold;
             animation: cmd-blink 1s steps(2, start) infinite;
@@ -38,21 +39,33 @@
 </head>
 <body>
 
-<!-- THE BOOT SCREEN (Placed outside site-wrapper) -->
-<div id="boot-screen" style="position:fixed; top:0; left:0; width:100%; height:100%; background:#000; z-index:10000; display:flex; flex-direction:column; justify-content:center; align-items:center; color:var(--neon-cyan); font-family:var(--font-mono); cursor: default; overflow: hidden;">
+<!-- ONE AND ONLY BOOT SCREEN -->
+<div id="boot-screen" style="position:fixed; top:0; left:0; width:100%; height:100%; background:#000; z-index:10000; font-family:var(--font-mono), monospace; overflow:hidden; color: #00f2ff;">
     
-    <!-- 1. The Spinner -->
-    <div id="spinner" style="margin-bottom: 20px; font-size: 2em; min-height: 1.2em;"></div>
+    <!-- TOP CMD BAR -->
+    <div style="background: #1a1a1a; padding: 5px 15px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #333;">
+        <div style="display: flex; gap: 8px;">
+            <div style="width: 12px; height: 12px; background: #ff5f56; border-radius: 50%;"></div>
+            <div style="width: 12px; height: 12px; background: #ffbd2e; border-radius: 50%;"></div>
+            <div style="width: 12px; height: 12px; background: #27c93f; border-radius: 50%;"></div>
+        </div>
+        <div style="color: #666; font-size: 11px; letter-spacing: 1px;">MAHESWARA_TERMINAL_V4.0</div>
+    </div>
 
-    <!-- 2. ASCII LOGO Placeholder -->
-    <pre id="ascii-logo" style="font-size: 8px; line-height: 1; color: var(--neon-pink); margin-bottom: 20px;"></pre>
+    <!-- TERMINAL CONTENT -->
+    <div id="terminal-body" style="padding: 30px;">
+        <div style="color: #444; font-size: 12px; margin-bottom: 20px; line-height: 1.5;">
+            (c) 2026 Maheswara Corp. All rights reserved.<br>
+            Unauthorized access is strictly prohibited.
+        </div>
 
-    <!-- 3. Status Text -->
-    <div id="boot-text" style="text-transform:uppercase; min-height: 1.2em;"></div>
-    
-    <!-- 4. The Interactive Prompt -->
-    <div id="prompt-container" style="margin-top:20px; min-height: 1.2em; display: none;">
-        <span id="prompt-text"></span><span id="cursor">_</span>
+        <div id="spinner" style="font-size: 2em; height: 1.2em; margin-bottom: 10px;"></div>
+        <pre id="ascii-logo" style="font-size: 10px; line-height: 1; color: #ff00ff; margin: 25px 0; min-height: 120px; white-space: pre;"></pre>
+        <div id="boot-text" style="text-transform:uppercase; min-height: 1.2em; font-size: 16px; letter-spacing: 1px;"></div>
+        
+        <div id="prompt-container" style="margin-top:25px; min-height: 1.2em; display: none;">
+            <span id="prompt-text"></span><span id="cursor">_</span>
+        </div>
     </div>
 </div>
 
@@ -86,13 +99,15 @@
                     LOC: Depok, IDN
                 </div>
             </div>
+            
+            <!-- SKILLS MODULE UPDATED FOR ANIMATION -->
             <div class="module">
                 <div class="module-title">KNOWLEDGE_SKILLS</div>
-                <div style="font-size: 0.8em; line-height: 2;">
-                    WIKIPEDIA_EDITING [■■■■■■■■□□] 80%<br>
-                    DIGITAL_ARCHIVING [■■■■■■■□□□] 70%<br>
-                    VIOLIN_PRACTICE   [■■■■■□□□□□] 50%<br>
-                    SIM_CITY_LOGIC    [■■■■■■■■■□] 90%
+                <div style="font-size: 0.8em; line-height: 2; font-family: var(--font-mono), monospace;">
+                    WIKIPEDIA_EDITING <span class="skill-bar" data-fill="8">[□□□□□□□□□□]</span> 80%<br>
+                    DIGITAL_ARCHIVING <span class="skill-bar" data-fill="7">[□□□□□□□□□□]</span> 70%<br>
+                    VIOLIN_PRACTICE   <span class="skill-bar" data-fill="5">[□□□□□□□□□□]</span> 50%<br>
+                    SIM_CITY_LOGIC    <span class="skill-bar" data-fill="9">[□□□□□□□□□□]</span> 90%
                 </div>
             </div>
         </aside>
@@ -133,37 +148,6 @@
             <p>© 2026 Maheswara. All rights reserved.</p>
         </div>
     </footer>
-</div>
-
-<!-- THE BOOT SCREEN -->
-<!-- THE BOOT SCREEN -->
-<div id="boot-screen" style="position:fixed; top:0; left:0; width:100%; height:100%; background:#000; z-index:10000; font-family:var(--font-mono), monospace; overflow:hidden; color: #00f2ff;">
-    
-    <!-- TOP CMD BAR -->
-    <div style="background: #1a1a1a; padding: 5px 15px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #333;">
-        <div style="display: flex; gap: 8px;">
-            <div style="width: 12px; height: 12px; background: #ff5f56; border-radius: 50%;"></div>
-            <div style="width: 12px; height: 12px; background: #ffbd2e; border-radius: 50%;"></div>
-            <div style="width: 12px; height: 12px; background: #27c93f; border-radius: 50%;"></div>
-        </div>
-        <div style="color: #666; font-size: 11px; letter-spacing: 1px;">MAHESWARA_TERMINAL_V4.0</div>
-    </div>
-
-    <!-- TERMINAL CONTENT -->
-    <div id="terminal-body" style="padding: 30px;">
-        <div style="color: #444; font-size: 12px; margin-bottom: 20px; line-height: 1.5;">
-            (c) 2026 Maheswara Corp. All rights reserved.<br>
-            Unauthorized access is strictly prohibited.
-        </div>
-
-        <div id="spinner" style="font-size: 2em; height: 1.2em; margin-bottom: 10px;"></div>
-        <pre id="ascii-logo" style="font-size: 10px; line-height: 1; color: #ff00ff; margin: 25px 0; min-height: 120px; white-space: pre;"></pre>
-        <div id="boot-text" style="text-transform:uppercase; min-height: 1.2em; font-size: 16px; letter-spacing: 1px;"></div>
-        
-        <div id="prompt-container" style="margin-top:25px; min-height: 1.2em; display: none;">
-            <span id="prompt-text"></span><span id="cursor">_</span>
-        </div>
-    </div>
 </div>
 
 <script>
@@ -207,7 +191,28 @@
         }
     }
 
+    // NEW FUNCTION: ANIMATE THE SKILL BARS
+    async function animateSkillBars() {
+        const bars = document.querySelectorAll('.skill-bar');
+        for (let bar of bars) {
+            const fillCount = parseInt(bar.getAttribute('data-fill'));
+            let currentStr = "[□□□□□□□□□□]";
+            bar.innerText = currentStr;
+            
+            await wait(150); // slight pause between loading each skill
+            
+            for (let i = 1; i <= fillCount; i++) {
+                currentStr = "[" + "■".repeat(i) + "□".repeat(10 - i) + "]";
+                bar.innerText = currentStr;
+                await wait(60); // Speed of the chunk loading
+            }
+        }
+    }
+
     async function init() {
+        // Set blank favicon initially
+        setFavicon('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=');
+
         // Step 1: Start Spinner
         await wait(500);
         const spinner = document.getElementById('spinner');
@@ -232,6 +237,8 @@
             clearInterval(interval);
             
             document.getElementById('prompt-container').style.display = 'none';
+            
+            // Swap favicon on boot!
             setFavicon('images/favicon.png'); 
 
             await scrambleType('boot-text', "INITIALIZING_CORE_PROTOCOL...");
@@ -254,14 +261,18 @@
             
             setTimeout(() => {
                 screen.style.display = "none";
-                const site = document.querySelector('.site-wrapper') || document.getElementById('main-site');
+                const site = document.querySelector('.site-wrapper');
                 if(site) {
                     site.style.display = "block";
-                    setTimeout(() => site.style.opacity = "1", 50);
-                    // Reveal modules
-                    document.querySelectorAll('.module').forEach((m, idx) => {
-                        setTimeout(() => m.classList.add('revealed'), idx * 200);
-                    });
+                    setTimeout(() => {
+                        site.style.opacity = "1";
+                        // Reveal modules
+                        document.querySelectorAll('.module').forEach((m, idx) => {
+                            setTimeout(() => m.classList.add('revealed'), idx * 200);
+                        });
+                        // Trigger skill bar animation after UI loads
+                        setTimeout(animateSkillBars, 1200); 
+                    }, 50);
                 }
             }, 800);
         };
@@ -278,13 +289,5 @@
     }
 })();
 </script>
-
-<style>
-    #cursor { animation: cmd-blink 1s steps(2, start) infinite; font-weight: bold; }
-    @keyframes cmd-blink { to { visibility: hidden; } }
-    
-    .site-wrapper, #main-site { display: none; opacity: 0; transition: opacity 1s ease; }
-    .module { opacity: 0; transform: translateY(15px); transition: all 0.6s ease-out; }
-    .module.revealed { opacity: 1; transform: translateY(0); }
-</style>
+</body>
 </html>
