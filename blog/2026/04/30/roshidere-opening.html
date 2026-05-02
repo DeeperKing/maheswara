@@ -6,10 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Roshidere's Opening Is Actually Insane // Maheswara</title>
 <style>
-    /* CORE VARIABLES */
+    /* CORE VARIABLES - Combined */
     :root {
         --neon-cyan: #00ffff;
-        --neon-pink: #ff4da6; /* Added pink back in */
+        --neon-pink: #ff4da6; 
         --terminal-bg: #000;
         --panel-bg: rgba(0, 255, 255, 0.05);
         --font-mono: 'Consolas', 'Courier New', Courier, monospace;
@@ -38,7 +38,7 @@
         pointer-events: none; z-index: 999;
     }
 
-    /* HEADER */
+    /* HEADER - Using the "> " Hover Logic you liked */
     header {
         border-bottom: 2px solid var(--neon-cyan);
         margin-bottom: 30px;
@@ -53,7 +53,7 @@
         font-size: 0.75em;
         color: rgba(0, 255, 255, 0.5);
         letter-spacing: 2px;
-        margin-bottom: 5px;
+        margin-bottom: 10px;
     }
 
     nav ul { list-style: none; padding: 0; margin: 0; display: flex; gap: 15px; }
@@ -65,7 +65,11 @@
         padding: 5px 10px;
         transition: all 0.2s ease;
         text-transform: uppercase;
+        display: inline-block;
     }
+
+    nav a::before { content: ""; opacity: 0; transition: all 0.2s ease; }
+    nav a:hover::before, nav a.active::before { content: "> "; opacity: 1; margin-right: 5px; }
 
     nav a:hover, nav a.active {
         background-color: var(--neon-cyan);
@@ -73,37 +77,20 @@
         box-shadow: 0 0 10px var(--neon-cyan);
     }
 
-    /* HYPERLINK HOVER FIX */
-    a {
-        color: var(--neon-cyan);
-        text-decoration: none;
-        border-bottom: 1px solid transparent;
-        transition: all 0.2s ease;
-    }
-
-    a:hover {
-        color: var(--neon-pink) !important;
-        border-bottom: 1px solid var(--neon-pink);
-    }
-
-    /* THE GRID LAYOUT */
+    /* CONTENT GRID */
     .content-grid {
         display: grid;
-        grid-template-columns: 1fr 300px;
+        grid-template-columns: 1fr 320px;
         gap: 30px;
-        align-items: start; /* Essential for sticky */
+        align-items: start;
     }
 
-    @media (max-width: 850px) {
-        .content-grid { grid-template-columns: 1fr; }
-    }
-
-/* STICKY SIDEBAR */
+    /* THE STICKY SIDEBAR MAGIC */
     .sidebar-column {
         position: -webkit-sticky;
         position: sticky;
         top: 20px;
-        height: fit-content; /* This is the magic bullet */
+        height: fit-content;
     }
 
     /* MODULES */
@@ -112,6 +99,7 @@
         background: var(--panel-bg);
         padding: 20px;
         margin-bottom: 20px;
+        box-shadow: inset 0 0 15px rgba(0, 255, 255, 0.05);
     }
 
     .module-title {
@@ -120,50 +108,53 @@
         padding-bottom: 5px;
         text-transform: uppercase;
         font-weight: bold;
+        letter-spacing: 1px;
     }
 
-    /* PINK EMBED FRAME */
+    /* LARGE TOGGLE BUTTON STYLE */
+    .lang-switcher-container {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .lang-btn {
+        background: rgba(255, 77, 166, 0.05);
+        border: 1px solid var(--neon-pink);
+        color: var(--neon-pink);
+        padding: 15px;
+        font-family: var(--font-mono);
+        font-weight: bold;
+        cursor: pointer;
+        transition: 0.3s;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        text-transform: uppercase;
+    }
+
+    .lang-btn:hover {
+        background: var(--neon-pink);
+        color: #000;
+        box-shadow: 0 0 20px var(--neon-pink);
+    }
+
+    .status-symbol { font-size: 1.2em; }
+
+    /* PINK HYPERLINKS */
+    a { color: var(--neon-cyan); text-decoration: none; transition: 0.2s; }
+    a:hover { color: var(--neon-pink) !important; text-shadow: 0 0 8px var(--neon-pink); }
+
+    /* IFRAME PINK FRAME */
     iframe {
         border: 2px solid var(--neon-pink) !important;
         box-shadow: 0 0 15px rgba(255, 77, 166, 0.3);
-        margin-bottom: 20px;
     }
 
-    .post-body { line-height: 1.6; }
-    .post-visual img { 
-        max-width: 100%; 
-        border: 1px solid var(--neon-cyan); 
-        margin: 20px auto; 
-        display: block;
-    }
-
-    /* BUTTONS */
-    .lang-button {
-        display: block; width: 100%;
-        background: transparent;
-        border: 1px solid var(--neon-cyan);
-        color: var(--neon-cyan);
-        padding: 10px; margin: 10px 0;
-        font-family: var(--font-mono);
-        cursor: pointer;
-        text-align: left;
-    }
-
-    .lang-button:hover {
-        background: var(--neon-pink);
-        color: #000;
-        border-color: var(--neon-pink);
-        box-shadow: 0 0 10px var(--neon-pink);
-    }
-
-    /* FOOTER */
-    .footer-container {
-        text-align: center;
-        padding: 40px;
-        border-top: 1px solid rgba(0, 255, 255, 0.2);
-        font-size: 0.75em;
-        color: rgba(0, 255, 255, 0.5);
-    }
+    /* SCROLLBAR STYLE */
+    ::-webkit-scrollbar { width: 5px; }
+    ::-webkit-scrollbar-track { background: #000; }
+    ::-webkit-scrollbar-thumb { background: var(--neon-cyan); }
 </style>
 </head>
 <body>
@@ -264,27 +255,48 @@
     </section>
 
     <!-- SIDEBAR -->
-    <aside class="sidebar-column">
-        <div class="sticky-wrapper">
-            <div class="side-module">
-                <div class="module-title">LOCALE_SETTINGS</div>
-                <button class="lang-button" onclick="setLocale('en')">[ ] Initialize: EN_US</button>
-                <button class="lang-button" onclick="setLocale('id')">[ ] Inisialisasi: ID_RS</button>
-            </div>
-
-            <div class="side-module">
-                <div class="module-title">SYSTEM_STATUS</div>
-                <div style="font-size: 0.8em; line-height: 1.8;">
-                    STATUS: <span style="color: #0f0;">ONLINE</span><br>
-                    ACCESS_LEVEL: Wikipedia_Contributor<br>
-                    UPLINK: Giscus_Active<br>
-                    <div style="margin-top: 10px; border-top: 1px dashed var(--neon-cyan); padding-top: 10px;">
-                        Welcome back, Maheswara.
-                    </div>
-                </div>
-            </div>
+<aside class="sidebar-column">
+    
+    <!-- LARGE LANGUAGE TOGGLE -->
+    <div class="side-module">
+        <div class="module-title">INTERFACE_LANGUAGE</div>
+        <div class="lang-switcher-container">
+            <button class="lang-btn" onclick="setLocale('en')">
+                <span>EN_US [PRIMARY]</span>
+                <span class="status-symbol">▰</span>
+            </button>
+            <button class="lang-btn" onclick="setLocale('id')">
+                <span>ID_RS [SECONDARY]</span>
+                <span class="status-symbol">▱</span>
+            </button>
         </div>
-    </aside>
+    </div>
+
+    <!-- SYSTEM STATUS (Maheswara Specific) -->
+    <div class="side-module">
+        <div class="module-title">SYSTEM_USER_DATA</div>
+        <div style="font-size: 0.85em; line-height: 2;">
+            IDENT: <span style="color:#fff">Maheswara</span><br>
+            ROLE: <span style="color:#fff">Wikipedia_Contributor</span><br>
+            STATUS: <span style="color:#0f0">● ONLINE</span><br>
+            UPLINK: <span style="color:var(--neon-pink)">Giscus_V2</span>
+        </div>
+    </div>
+
+    <!-- RECENT ACTIVITY LOGS (Fills up the sidebar) -->
+    <div class="side-module">
+        <div class="module-title">TERMINAL_LOGS</div>
+        <div style="font-size: 0.7em; color: rgba(0,255,255,0.6); font-family: monospace;">
+            [18:01] GET /blog/roshidere_review... 200<br>
+            [18:02] STICKY_SIDEBAR_INITIALIZED<br>
+            [18:04] CSS_BASH_SUCCESSFUL<br>
+            [18:05] LOCALE_LISTENER_ACTIVE<br>
+            [18:05] LOADING_WIKI_ARCHIVES...<br>
+            > Done.
+        </div>
+    </div>
+
+</aside>
 </main>
 
 <footer>
