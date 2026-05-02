@@ -226,4 +226,38 @@ a:hover {
     </footer>
 </div>
 </body>
+    <!-- PUT THIS RIGHT BEFORE </body> CLOSES ON YOUR OTHER PAGES -->
+<script>
+    async function scrambleTitles() {
+        // Find everything with the class 'module-title'
+        const titles = document.querySelectorAll('.module-title');
+        
+        for (let title of titles) {
+            // Save the original text and clear it
+            const originalText = title.innerText;
+            title.innerHTML = "";
+            
+            for (let i = 0; i < originalText.length; i++) {
+                let char = originalText[i];
+                if (char === " ") {
+                    title.innerHTML += char;
+                    continue;
+                }
+                
+                let tempSpan = document.createElement('span');
+                title.appendChild(tempSpan);
+
+                // Extremely fast flicker for the headers
+                for (let j = 0; j < 2; j++) {
+                    tempSpan.innerText = Math.random() > 0.5 ? '1' : '0';
+                    await new Promise(r => setTimeout(r, 15)); 
+                }
+                tempSpan.innerText = char;
+            }
+        }
+    }
+
+    // Run the scramble as soon as the page loads
+    window.onload = scrambleTitles;
+</script>
 </html>
