@@ -5,13 +5,61 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Maheswara // Home</title>
-<link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* HIDE SITE CONTENT INITIALLY FOR THE ASSEMBLY EFFECT */
+        .site-wrapper { 
+            display: none; 
+            opacity: 0;
+        }
+
+        /* "Hard" CMD Blink: Instant on/off */
+        #cursor {
+            font-weight: bold;
+            animation: cmd-blink 1s steps(2, start) infinite;
+        }
+
+        @keyframes cmd-blink {
+            to { visibility: hidden; }
+        }
+
+        /* Subtle Fade for Modules */
+        .module {
+            opacity: 0;
+            transform: translateY(10px);
+            transition: all 0.5s ease;
+        }
+
+        .module.revealed {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
 </head>
 <body>
 
+<!-- THE BOOT SCREEN (Placed outside site-wrapper) -->
+<div id="boot-screen" style="position:fixed; top:0; left:0; width:100%; height:100%; background:#000; z-index:10000; display:flex; flex-direction:column; justify-content:center; align-items:center; color:var(--neon-cyan); font-family:var(--font-mono); cursor: default; overflow: hidden;">
+    
+    <!-- 1. The Spinner -->
+    <div id="spinner" style="margin-bottom: 20px; font-size: 2em; min-height: 1.2em;"></div>
+
+    <!-- 2. ASCII LOGO Placeholder -->
+    <pre id="ascii-logo" style="font-size: 8px; line-height: 1; color: var(--neon-pink); margin-bottom: 20px;"></pre>
+
+    <!-- 3. Status Text -->
+    <div id="boot-text" style="text-transform:uppercase; min-height: 1.2em;"></div>
+    
+    <!-- 4. The Interactive Prompt -->
+    <div id="prompt-container" style="margin-top:20px; min-height: 1.2em; display: none;">
+        <span id="prompt-text"></span><span id="cursor">_</span>
+    </div>
+</div>
+
 <div class="scanlines"></div>
 
-<div class="site-wrapper">
+<!-- MAIN SITE CONTENT -->
+<div class="site-wrapper" id="main-site">
     <header>
         <div>
             <div class="sys-info">ROOT_ACCESS_GRANTED // LOC: JAKARTA/DEPOK</div>
@@ -28,7 +76,6 @@
     </header>
 
     <main class="content-grid">
-        
         <aside class="left-column">
             <div class="module">
                 <div class="module-title">IDENTIFICATION</div>
@@ -39,7 +86,6 @@
                     LOC: Depok, IDN
                 </div>
             </div>
-
             <div class="module">
                 <div class="module-title">KNOWLEDGE_SKILLS</div>
                 <div style="font-size: 0.8em; line-height: 2;">
@@ -56,11 +102,9 @@
                 <div class="module-title">HELLO_WORLD.txt</div>
                 <div class="content-text">
                     <h2>Greetings, Traveler</h2>
-                    <p>Welcome to this little corner of the internet. I'm a Jakarta-born enthusiast currently living in Depok. In the internet, I also go by the name Daijizaiten (which literally that is referring to Maheswara in Japanese/Chinese).</p>
-                    <p>By day, I spend a lot of my time diving into the world of knowledge. I'm an entity passionate about digital archiving and structure. I believe that organizing information is like building a perfect city in a simulator; it’s all about how the pieces fit together.</p>
+                    <p>Welcome to this little corner of the internet. I'm a Jakarta-born enthusiast currently living in Depok.</p>
                 </div>
-                                </div>
-
+            </div>
             <div class="module pink-border">
                 <div class="module-title pink-title">RECENT_ACTIVITY</div>
                 <div class="content-text">
@@ -73,84 +117,27 @@
             <div class="module">
                 <div class="module-title">USER_PROFILE</div>
                 <div class="content-text" style="font-size: 0.9em;">
-                    <span style="color: var(--neon-cyan);">></span> A digital entity specialized in creating knowledge structures. Rooted in Indonesian Wikipedia, exploring Fandom realms.
-                    
-                    <div style="margin-top: 15px; color: #aaa;">
-                        <strong>// CORE_INTERESTS:</strong>
-                        <ul style="padding-left: 15px; margin-top: 5px;">
-                            <li>Animanga (RomCom/SoL)</li>
-                            <li>Umamusume & Racing</li>
-                            <li>Misaki Mei & Alya</li>
-                            <li>Digital Archiving</li>
-                            <li>Violin & Piano</li>
-                        </ul>
-                    </div>
+                    <span style="color: var(--neon-cyan);">></span> A digital entity specialized in creating knowledge structures.
                 </div>
             </div>
-
             <div class="module">
                 <div class="module-title">COMMS_UPLINK</div>
                 <a href="#" class="uplink-btn">WIKIPEDIA_USERPAGE</a>
                 <a href="#" class="uplink-btn">DISCORD: @mhswra</a>
-                <a href="#" class="uplink-btn pink-title">[LEAVE_A_MESSAGE]</a>
             </div>
         </aside>
     </main>
     
-<small><div style="color: #888; font-size: 0.8em;">[SYSTEM]: Detecting rogue process: MAHESWARA.EXE... [FAILED]</div>
-        <div style="color: #00ff00; font-size: 0.8em;">[SYSTEM]: ADMINISTRATOR ACCESS GRANTED</div>
-        <div class="glitch-text" style="margin-top: 15px; font-size: 1.1em;">
-            "You didn't think I'd let you leave without a proper goodbye, did you?"<br>
-            <span style="color: #fff; font-style: italic; font-size: 0.8em;">-- Just Maheswara. --</span></small></div>
-    
-<footer>
-    <div class="footer-container">
-        <p>© 2026 Maheswara. All rights reserved.</p>
-        <p>Content distributed under <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.en"target="_blank" rel="noopener">CC BY-SA 4.0</a>. Unless otherwise noted.</p>
-    </div>
-</footer>
-</div>
-
-</body>
-<!-- THE BOOT SCREEN -->
-<div id="boot-screen" style="position:fixed; top:0; left:0; width:100%; height:100%; background:#000; z-index:10000; display:flex; flex-direction:column; justify-content:center; align-items:center; color:var(--neon-cyan); font-family:var(--font-mono); overflow:hidden;">
-    
-    <!-- SPINNING LOADER -->
-    <div id="spinner" style="margin-bottom: 20px; font-size: 2em;">/</div>
-
-    <!-- ASCII LOGO (Empty by default so it can "type" in) -->
-    <pre id="ascii-logo" style="font-size: 8px; line-height: 1; color: var(--neon-pink); margin-bottom: 20px;"></pre>
-
-    <!-- STATUS TEXT -->
-    <div id="boot-text" style="text-transform:uppercase; text-align:center;">[SYSTEM_OFFLINE]</div>
-    
-    <div id="prompt" style="margin-top:20px; animation: blink 1s infinite;">PRESS ANY KEY TO BOOT...</div>
+    <footer>
+        <div class="footer-container">
+            <p>© 2026 Maheswara. All rights reserved.</p>
+        </div>
+    </footer>
 </div>
 
 <script>
-<!-- THE BOOT SCREEN -->
-<div id="boot-screen" style="position:fixed; top:0; left:0; width:100%; height:100%; background:#000; z-index:10000; display:flex; flex-direction:column; justify-content:center; align-items:center; color:var(--neon-cyan); font-family:var(--font-mono); cursor: default;">
-    
-    <!-- 1. The Spinner (Initially Empty) -->
-    <div id="spinner" style="margin-bottom: 20px; font-size: 2em; min-height: 1.2em;"></div>
-
-    <!-- 2. ASCII LOGO Placeholder -->
-    <pre id="ascii-logo" style="font-size: 8px; line-height: 1; color: var(--neon-pink); margin-bottom: 20px;"></pre>
-
-    <!-- 3. Status Text (Initially Empty) -->
-    <div id="boot-text" style="text-transform:uppercase; min-height: 1.2em;"></div>
-    
-    <!-- 4. The Interactive Prompt (Initially Empty) -->
-    <div id="prompt-container" style="margin-top:20px; min-height: 1.2em;">
-        <span id="prompt-text"></span><span id="cursor">_</span>
-    </div>
-</div>
-
-<script>
-// --- UTILS ---
 const wait = (ms) => new Promise(r => setTimeout(r, ms));
 
-// Simple typing (No binary scramble)
 async function plainType(element, text, speed = 40) {
     element.innerText = "";
     for (let i = 0; i < text.length; i++) {
@@ -159,64 +146,63 @@ async function plainType(element, text, speed = 40) {
     }
 }
 
-// --- INITIAL LOAD SEQUENCE ---
 async function startInitialLoad() {
-    // A. Show Spinner after 500ms
-    await wait(500);
+    await wait(800);
     const spinner = document.getElementById('spinner');
     const loaderChars = ["/", "-", "\\", "|"];
     let loaderIdx = 0;
-    setInterval(() => {
+    const spinInterval = setInterval(() => {
         spinner.innerText = loaderChars[loaderIdx];
         loaderIdx = (loaderIdx + 1) % loaderChars.length;
     }, 150);
 
-    // B. Type [SYSTEM_OFFLINE] after 1 second
-    await wait(1000);
+    await wait(1200);
     await plainType(document.getElementById('boot-text'), "[SYSTEM_OFFLINE]");
 
-    // C. Type "PRESS ANY KEY..." after another second
     await wait(1000);
+    const promptContainer = document.getElementById('prompt-container');
+    promptContainer.style.display = "block";
     await plainType(document.getElementById('prompt-text'), "PRESS ANY KEY TO BOOT...");
     
-    // Enable the key listener only AFTER the text is done typing
-    window.addEventListener('keydown', runFinalBoot, { once: true });
-    window.addEventListener('click', runFinalBoot, { once: true }); // Also allow click for mobile/focus
+    const triggerBoot = () => {
+        clearInterval(spinInterval);
+        runFinalBoot();
+    };
+
+    window.addEventListener('keydown', triggerBoot, { once: true });
+    window.addEventListener('click', triggerBoot, { once: true });
 }
 
-// --- FINAL BOOT (After user presses key) ---
 async function runFinalBoot() {
     const bootText = document.getElementById('boot-text');
     const asciiLoc = document.getElementById('ascii-logo');
-    const promptCont = document.getElementById('prompt-container');
-    
-    promptCont.style.display = 'none';
+    document.getElementById('prompt-container').style.display = 'none';
 
-    // 1. Show ASCII Art (Decryption Style)
     await typeWithBinaryScramble(bootText, "FETCHING_SYSTEM_ART...");
     
-    const myAsciiArt = `
+    // Escaped ASCII Art
+    asciiLoc.innerText = `
   __  __       _                                 
  |  \\/  | __ _| |__   ___  _____      ____ _ _ __ __ _ 
  | |\\/| |/ _\` | '_ \\ / _ \\/ __\\ \\ /\\ / / _\` | '__/ _\` |
  | |  | | (_| | | | |  __ /\\__ \\\\ V  V / (_| | | | (_| |
  |_|  |_|\\__,_|_| |_|\\___||___/ \\_/\\_/ \\__,_|_|  \\__,_|
     `;
-    asciiLoc.innerText = myAsciiArt;
 
-    // 2. Final Identity check
-    await wait(500);
-    await typeWithBinaryScramble(bootText, "AUTH_REQUIRED: MAHESWARA IDENTIFIED. ACCESS_GRANTED.");
+    await wait(600);
+    await typeWithBinaryScramble(bootText, "AUTH_REQUIRED: MAHESWARA IDENTIFIED. ASSEMBLING_SITE...");
     
-    // 3. Fade out
     await wait(1000);
     const screen = document.getElementById('boot-screen');
     screen.style.transition = "opacity 0.8s ease";
     screen.style.opacity = "0";
-    setTimeout(() => screen.style.display = "none", 800);
+    
+    setTimeout(() => {
+        screen.style.display = "none";
+        assembleWebsite(); // Start the assembly
+    }, 800);
 }
 
-// Binary Scramble Helper
 async function typeWithBinaryScramble(element, text) {
     element.innerText = "";
     for (let i = 0; i < text.length; i++) {
@@ -225,32 +211,32 @@ async function typeWithBinaryScramble(element, text) {
         if (text[i] !== " ") {
             for (let j = 0; j < 2; j++) {
                 span.innerText = Math.random() > 0.5 ? '1' : '0';
-                await wait(30);
+                await wait(25);
             }
         }
         span.innerText = text[i];
     }
 }
 
-// Start the sequence
-startInitialLoad();
-</script>
+async function assembleWebsite() {
+    const site = document.getElementById('main-site');
+    site.style.display = "block";
+    site.style.opacity = "1";
 
-<style>
-    /* "Hard" CMD Blink: Instant on/off */
-    #cursor {
-        font-weight: bold;
-        animation: cmd-blink 1s steps(2, start) infinite;
+    const modules = document.querySelectorAll('.module');
+    for (let module of modules) {
+        module.classList.add('revealed');
+        // Scramble the title of each module as it appears
+        const title = module.querySelector('.module-title');
+        if (title) {
+            const originalText = title.innerText;
+            await typeWithBinaryScramble(title, originalText);
+        }
+        await wait(200); // Delay between modules for the "building" feel
     }
+}
 
-    @keyframes cmd-blink {
-        to { visibility: hidden; }
-    }
-</style> <!-- You previously had </script> here -->
-
-<!-- The script block remains the same, just make sure it's closed correctly -->
-<script>
-    // ... all your JavaScript logic goes here ...
-    startInitialLoad();
+window.onload = startInitialLoad;
 </script>
+</body>
 </html>
