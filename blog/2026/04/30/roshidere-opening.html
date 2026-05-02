@@ -4,11 +4,12 @@
     <link rel="icon" type="image/png" href="/images/favicon.png">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Roshidere's Opening Is Actually Insane (and I’m Not Even Glazing… okay maybe a little) // Maheswara</title>
+    <title>Roshidere's Opening Is Actually Insane // Maheswara</title>
 <style>
     /* CORE VARIABLES */
     :root {
         --neon-cyan: #00ffff;
+        --neon-pink: #ff4da6; /* Added pink back in */
         --terminal-bg: #000;
         --panel-bg: rgba(0, 255, 255, 0.05);
         --font-mono: 'Consolas', 'Courier New', Courier, monospace;
@@ -24,78 +25,92 @@
     }
 
     .site-wrapper {
-        max-width: 1000px; /* Limits overall width */
+        max-width: 1100px;
         margin: 0 auto;
         padding: 20px;
     }
 
-            /* HEADER */
-        header {
-            border-bottom: 2px solid var(--neon-cyan);
-            margin-bottom: 30px;
-            padding-bottom: 10px;
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-            align-items: flex-end;
-        }
+    /* SCANLINES */
+    .scanlines {
+        position: fixed;
+        top: 0; left: 0; width: 100%; height: 100%;
+        background: repeating-linear-gradient(0deg, rgba(0,0,0,0.15), rgba(0,0,0,0.15) 1px, transparent 1px, transparent 2px);
+        pointer-events: none; z-index: 999;
+    }
 
-        .sys-info {
-            font-size: 0.75em;
-            color: rgba(0, 255, 255, 0.5);
-            letter-spacing: 2px;
-            margin-bottom: 10px;
-        }
+    /* HEADER */
+    header {
+        border-bottom: 2px solid var(--neon-cyan);
+        margin-bottom: 30px;
+        padding-bottom: 10px;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: flex-end;
+    }
 
-        nav ul { list-style: none; padding: 0; margin: 0; display: flex; gap: 15px; flex-wrap: wrap; }
-        
-        /* HOVER ANIMATION LOGIC */
-        nav a {
-            color: var(--neon-cyan);
-            text-decoration: none;
-            font-weight: bold;
-            font-size: 1.1em;
-            padding: 5px 10px;
-            transition: all 0.2s ease;
-            text-transform: uppercase;
-            display: inline-block;
-        }
-        
-        nav a::before {
-            content: "";
-            margin-right: 0px;
-            opacity: 0;
-            transition: all 0.2s ease;
-        }
-        
-        nav a:hover::before, nav a.active::before {
-            content: "> ";
-            opacity: 1;
-            margin-right: 5px;
-        }
+    .sys-info {
+        font-size: 0.75em;
+        color: rgba(0, 255, 255, 0.5);
+        letter-spacing: 2px;
+        margin-bottom: 5px;
+    }
 
-        nav a:hover, nav a.active {
-            background-color: var(--neon-cyan);
-            color: #000;
-            box-shadow: 0 0 10px var(--neon-cyan);
-        }
+    nav ul { list-style: none; padding: 0; margin: 0; display: flex; gap: 15px; }
+
+    nav a {
+        color: var(--neon-cyan);
+        text-decoration: none;
+        font-weight: bold;
+        padding: 5px 10px;
+        transition: all 0.2s ease;
+        text-transform: uppercase;
+    }
+
+    nav a:hover, nav a.active {
+        background-color: var(--neon-cyan);
+        color: #000;
+        box-shadow: 0 0 10px var(--neon-cyan);
+    }
+
+    /* HYPERLINK HOVER FIX */
+    a {
+        color: var(--neon-cyan);
+        text-decoration: none;
+        border-bottom: 1px solid transparent;
+        transition: all 0.2s ease;
+    }
+
+    a:hover {
+        color: var(--neon-pink) !important;
+        border-bottom: 1px solid var(--neon-pink);
+    }
 
     /* THE GRID LAYOUT */
-.content-grid {
-    display: grid;
-    grid-template-columns: 1fr 300px; /* Main content + 300px sidebar */
-    gap: 20px;
-    align-items: start; /* Crucial for sticky to work! */
-}
+    .content-grid {
+        display: grid;
+        grid-template-columns: 1fr 300px;
+        gap: 30px;
+        align-items: start; /* Essential for sticky */
+    }
 
-.sticky-wrapper {
-    position: -webkit-sticky; 
-    position: sticky;
-    top: 20px; 
-}
+    @media (max-width: 850px) {
+        .content-grid { grid-template-columns: 1fr; }
+    }
 
-    /* THE MODULE BOXES */
-    .module {
+    /* STICKY SIDEBAR */
+    .sidebar-column {
+        position: relative;
+    }
+
+    .sticky-wrapper {
+        position: -webkit-sticky;
+        position: sticky;
+        top: 20px;
+    }
+
+    /* MODULES */
+    .module, .side-module {
         border: 1px solid var(--neon-cyan);
         background: var(--panel-bg);
         padding: 20px;
@@ -110,113 +125,48 @@
         font-weight: bold;
     }
 
-    /* POST STYLES */
-    .post-body {
-        line-height: 1.6;
-    }
-
-    .post-body p {
+    /* PINK EMBED FRAME */
+    iframe {
+        border: 2px solid var(--neon-pink) !important;
+        box-shadow: 0 0 15px rgba(255, 77, 166, 0.3);
         margin-bottom: 20px;
     }
 
-    .post-visual img {
-        max-width: 100%;
-        border: 1px solid var(--neon-cyan);
+    .post-body { line-height: 1.6; }
+    .post-visual img { 
+        max-width: 100%; 
+        border: 1px solid var(--neon-cyan); 
+        margin: 20px auto; 
         display: block;
-        margin: 0 auto;
     }
 
-    /* FIX FOR SCANLINES */
-    .scanlines {
-        position: fixed;
-        top: 0; left: 0; width: 100%; height: 100%;
-        background: repeating-linear-gradient(0deg, rgba(0,0,0,0.15), rgba(0,0,0,0.15) 1px, transparent 1px, transparent 2px);
-        pointer-events: none; z-index: 999;
+    /* BUTTONS */
+    .lang-button {
+        display: block; width: 100%;
+        background: transparent;
+        border: 1px solid var(--neon-cyan);
+        color: var(--neon-cyan);
+        padding: 10px; margin: 10px 0;
+        font-family: var(--font-mono);
+        cursor: pointer;
+        text-align: left;
     }
-            /* Footer Container */
-.footer-container {
-    text-align: center;
-    padding: 40px 20px;
-    margin-top: 50px;
-    border-top: 1px solid rgba(0, 255, 255, 0.2); /* Faint border */
-    font-size: 0.7em; /* Small text */
-    color: rgba(0, 255, 255, 0.4); /* Dimmed cyan */
-    letter-spacing: 2px;
-    text-transform: uppercase;
-}
 
-.footer-container p {
-    margin: 5px 0;
-}
+    .lang-button:hover {
+        background: var(--neon-pink);
+        color: #000;
+        border-color: var(--neon-pink);
+        box-shadow: 0 0 10px var(--neon-pink);
+    }
 
-/* Base link style */
-a {
-    color: var(--neon-cyan);
-    text-decoration: none; /* Removes the underline */
-    border-bottom: 1px solid transparent;
-    transition: all 0.2s ease;
-}
-
-/* Hover effect */
-a:hover {
-    color: var(--neon-pink);
-    border-bottom: 1px solid var(--neon-pink); /* Subtle underline on hover */
-}
-    /* STICKY SIDEBAR LOGIC */
-.sidebar-column {
-    position: relative;
-}
-
-.sticky-wrapper {
-    position: -webkit-sticky; /* For Safari */
-    position: sticky;
-    top: 20px; /* Distance from the top of the screen when scrolling */
-}
-
-/* SIDEBAR MODULES */
-.side-module {
-    border: 1px solid var(--neon-cyan);
-    background: rgba(0, 255, 255, 0.1);
-    padding: 15px;
-    margin-bottom: 20px;
-    box-shadow: inset 0 0 10px rgba(0, 255, 255, 0.1);
-}
-
-/* ENHANCED LOCALE BUTTONS */
-.lang-button {
-    display: block;
-    width: 100%;
-    background: transparent;
-    border: 1px solid var(--neon-cyan);
-    color: var(--neon-cyan);
-    padding: 12px;
-    margin: 10px 0;
-    font-family: var(--font-mono);
-    font-weight: bold;
-    cursor: pointer;
-    text-transform: uppercase;
-    transition: all 0.3s ease;
-    text-align: left;
-}
-
-.lang-button:hover {
-    background: var(--neon-cyan);
-    color: #000;
-    box-shadow: 0 0 15px var(--neon-cyan);
-}
-
-.lang-button::before {
-    content: "[ ] ";
-}
-
-.lang-button:active::before {
-    content: "[X] ";
-}
-    iframe {
-    border: 1px solid var(--neon-pink);
-    box-shadow: 0 0 10px rgba(0, 255, 255, 0.2);
-    margin-bottom: 20px;
-}
+    /* FOOTER */
+    .footer-container {
+        text-align: center;
+        padding: 40px;
+        border-top: 1px solid rgba(0, 255, 255, 0.2);
+        font-size: 0.75em;
+        color: rgba(0, 255, 255, 0.5);
+    }
 </style>
 </head>
 <body>
@@ -226,10 +176,8 @@ a:hover {
 <div class="site-wrapper">
     <header>
         <div>
-            <div class="sys-info">ROOT_ACCESS_GRANTED // LOC: BLOG_ARCHIVE <div class="sys-info">
-</div>
-            </div>
-            <h1 style="margin: 0; color: #fff; text-shadow: 0 0 10px var(--neon-cyan); text-transform: uppercase; font-size: 2.5em; letter-spacing: 2px;">Maheswara</h1>
+            <div class="sys-info">ROOT_ACCESS_GRANTED // LOC: BLOG_ARCHIVE</div>
+            <h1 style="margin: 0; color: #fff; text-shadow: 0 0 10px var(--neon-cyan); text-transform: uppercase; font-size: 2.5em;">Maheswara</h1>
         </div>
         <nav>
             <ul>
@@ -242,21 +190,20 @@ a:hover {
     </header>
 
 <main class="content-grid">
+    <!-- MAIN CONTENT -->
     <section class="main-column">
         <div class="module">
-            <div class="module-title">Roshidere's Opening Is Actually Insane (and I’m Not Even Glazing… okay maybe a little)</div>
-            
+            <div class="module-title">Roshidere's Opening Is Actually Insane</div>
             <div class="post-body">
-                <div class="post-date" style="color: var(--neon-cyan); margin-bottom: 30px;"><small>2026-04-30</small></div>
-<span></span>
-                <article class="post-content">
-                    <p>
-                        <span class="en">I need to talk about the opening for Alya Sometimes Hides Her Feelings in Russian, because this isn’t just “good animation.” This is the kind of opening where you realize the animators were not playing around. Like the opening was so good I literally needs to seperate the pages. Now for reference, I never skip openings or endings in anime anyway, mostly out of respect for the people who worked on it. But this one? I couldn’t skip it even if I wanted to. The first half is pretty normal, just clips from the anime, setting things up. But once the chorus hits… everything changes.</span>
-                        <span class="id" style="display:none;">Aku harus ngomongin soal opening Alya Sometimes Hides Her Feelings in Rusia, karena ini bukan sekadar “animasi yang bagus.” Ini jenis opening yang bikin kamu sadar kalau para animatornya nggak main-main. Opening-nya bagus banget sampai aku benar-benar harus membuat halaman terpisah. Sebagai catatan, aku memang nggak pernah melewatkan opening atau ending anime, terutama sebagai bentuk menghargai dan penghormatan kepada orang-orang yang menggambarnya, apalagi lagi krisis AI kan sekarang. Tapi yang ini? Aku gak bisa melewatkannya walaupun aku mau. Bagian pertama cukup biasa, hanya cuplikan dari anime, untuk membangun suasana. Tapi saat bagian <i>chorus</i> dimulai… bener-bener berubah.</span>
-                    </p>
-                    
-<figure class="post-visual" style="text-align: center;">
+                <div style="color: var(--neon-cyan); margin-bottom: 20px;"><small>2026-04-30</small></div>
+                
+                <p>
+                    <span class="en"> need to talk about the opening for Alya Sometimes Hides Her Feelings in Russian, because this isn’t just “good animation.” This is the kind of opening where you realize the animators were not playing around. Like the opening was so good I literally needs to seperate the pages. Now for reference, I never skip openings or endings in anime anyway, mostly out of respect for the people who worked on it. But this one? I couldn’t skip it even if I wanted to. The first half is pretty normal, just clips from the anime, setting things up. But once the chorus hits… everything changes.</span>
+                    <span class="id" style="display:none;">Aku harus ngomongin soal opening Alya Sometimes Hides Her Feelings in Rusia, karena ini bukan sekadar “animasi yang bagus.” Ini jenis opening yang bikin kamu sadar kalau para animatornya nggak main-main. Opening-nya bagus banget sampai aku benar-benar harus membuat halaman terpisah. Sebagai catatan, aku memang nggak pernah melewatkan opening atau ending anime, terutama sebagai bentuk menghargai dan penghormatan kepada orang-orang yang menggambarnya, apalagi lagi krisis AI kan sekarang. Tapi yang ini? Aku gak bisa melewatkannya walaupun aku mau. Bagian pertama cukup biasa, hanya cuplikan dari anime, untuk membangun suasana. Tapi saat bagian <i>chorus</i> dimulai… bener-bener berubah.</span>
+                </p>
+
     <!-- YouTube Embed -->
+
     <iframe 
         width="100%" 
         height="450" 
@@ -267,6 +214,7 @@ a:hover {
         referrerpolicy="strict-origin-when-cross-origin" 
         allowfullscreen>
     </iframe>
+
     
     <figcaption style="font-size: 0.7em; color: var(--neon-cyan); margin-top: 5px;">
         <span class="en">The Opening</span>
@@ -274,72 +222,59 @@ a:hover {
     </figcaption>
 </figure>
 
-                    <p>It starts with Alya about to give a speech, similar to that student council moment, and then suddenly the entire art style shifts. Like completely. It feels like she jumps into a different world, drawn in this brushstroke, almost painterly style. Background goes dark, black with white lines, very abstract.<br><br>Then you get Alya and Kuze dancing.<br><br>And yeah, if you read the manga, you already know. That scene is basically referencing that dance moment from earlier in their story, which the anime didn’t fully include. So the opening is literally adding emotional context the anime itself skipped. That alone is already crazy.<br><br>The background shifts again into this gradient mix of blue, black, and warm orange tones. It feels like warmth breaking through something cold, which fits their whole dynamic perfectly.<br><br>Then things get more symbolic.<br><br>Alya kind of… drifts away. I don’t even know how to describe it properly. Not running, not disappearing, just slipping away from Kuze. And then she turns into light. Or a star. Something intangible. Then Kuze chases it.<br><br>Now the background goes dark again, then suddenly shifts into a snowstorm. Full blizzard energy. He’s running, struggling, even falls off a cliff and rolls down a snowy slope. The whole thing feels cold, harsh, and isolating.<br><br>That part hits especially hard when you remember Alya’s whole “lone queen” image. She’s distant, hard to reach, emotionally guarded. And Kuze chasing that light in a literal blizzard? That’s not subtle symbolism. That’s the show screaming “this is not easy.”<br><br>Then Alya becomes a snowdrop flower.</p>
-                  
-                    <figure style="text-align: center;">
-                        <img src="/images/theangelnextdoor-criticsm.png" alt="Criticsm">
-                        <figcaption style="font-size: 0.7em; color: var(--neon-cyan); margin-top: 5px;">One Example of Crictism to this anime</figcaption>
-                    </figure>
-
-                  <p>And yeah, that’s not random either. Snowdrops symbolize hope, rebirth, and pushing through harsh conditions. They bloom through snow. And could be a wordplay of "snow drop/a drop of snow". So now you’ve got:<br><br>
-                  *Cold isolation (the blizzard)<br>
+                <p>It starts with Alya about to give a speech, similar to that student council moment, and then suddenly the entire art style shifts. Like completely. It feels like she jumps into a different world, drawn in this brushstroke, almost painterly style. Background goes dark, black with white lines, very abstract.<br><br>Then you get Alya and Kuze dancing.<br><br>And yeah, if you read the manga, you already know. That scene is basically referencing that dance moment from earlier in their story, which the anime didn’t fully include. So the opening is literally adding emotional context the anime itself skipped. That alone is already crazy.<br><br>The background shifts again into this gradient mix of blue, black, and warm orange tones. It feels like warmth breaking through something cold, which fits their whole dynamic perfectly.<br><br>Then things get more symbolic.<br><br>Alya kind of… drifts away. I don’t even know how to describe it properly. Not running, not disappearing, just slipping away from Kuze. And then she turns into light. Or a star. Something intangible. Then Kuze chases it.<br><br>Now the background goes dark again, then suddenly shifts into a snowstorm. Full blizzard energy. He’s running, struggling, even falls off a cliff and rolls down a snowy slope. The whole thing feels cold, harsh, and isolating.<br><br>That part hits especially hard when you remember Alya’s whole “lone queen” image. She’s distant, hard to reach, emotionally guarded. And Kuze chasing that light in a literal blizzard? That’s not subtle symbolism. That’s the show screaming “this is not easy.”<br><br>Then Alya becomes a snowdrop flower</p>
+                
+                <figure class="post-visual">
+                    <img src="/images/theangelnextdoor-criticsm.png" alt="Criticism">
+                    <figcaption style="text-align:center; font-size: 0.8em;">One Example of Criticism</figcaption>
+                </figure>
+                
+                <p>And yeah, that’s not random either. Snowdrops symbolize hope, rebirth, and pushing through harsh conditions. They bloom through snow. And could be a wordplay of "snow drop/a drop of snow". So now you’ve got:<br><br>
+*Cold isolation (the blizzard)<br>
 *Struggle (Kuze chasing), and<br>
 *Hope (Alya as a snowdrop)<br>It’s actually kind of insane how much meaning they packed into like a few seconds.<br><br>Then we shift again.<br><br>Alya reappears, standing there, kind of distant, drops her umbrella, and everything still feels cold and pale. Kuze picks it up for her, and the entire color palette warms up. Suddenly there’s more life in the scene.</p>
+                <figure style="text-align: center;">
+                  <img src="/images/alya-and-umbrella.png" alt="Alya and umbrella">
+                  <figcaption style="font-size: 0.7em; color: var(--neon-cyan); margin-top: 5px;">When Alya dropped her umbrella</figcaption>
+              </figure>
+               <p>I'm sure that’s not subtle either. That’s literally Kuze reaching out then emotional warmth entering Alya’s world<br><br>Then as you see in those photos there’s that moment where Alya looks up at him. She’s also drawn slightly shorter than she already is for some reason (I don't know why), almost like she’s vulnerable or overwhelmed. She looks stunned, like she didn’t expect that kind of kindness.<br><br>After that, her outfit transforms smoothly from casual to her school uniform in this fluid, brushstroke-like animation. It’s not a normal transition, it looks like she’s being <i>painted</i> into place. Same with Kuze, who rotates into frame and reaches out his hand. That’s straight-up referencing that “just take my hand” moment. No explanation needed.<br><br>And then the final stretch, bright background, soft colors, flowers, classroom setting, everything feels lighter. The title appears piece by piece while the music hits that emotional peak.<br><br>Speaking of music…<br><br>Yeah. The song itself is insane.<br><br>Just search the lyrics up in Google, and you'll see. Even just the opening lyrics already scream tsundere energy:<br><br>
+*lying with words<br>
+*hiding real feelings<br>
+*not saying what you actually mean<br><br>It perfectly matches Alya’s whole “speaking honestly in Russian but pretending it doesn’t count” thing. And lines about unseen feelings, not being able to “see from here,” that’s basically their entire dynamic. Feelings are there, just slightly out of reach. By the time the last lines hit, it’s clearly about chasing something you don’t fully understand yet. Feelings that were always there, just not recognized.<br><br>And honestly?<br><br>I don’t even fully understand every lyric either, but the feeling still lands.<br><br>That’s when you know it works.<br><br>At this point, I’ve seen people argue about a lot of anime openings, but this is one of the few where fans and even some haters agree:<br><br>It’s just really, really good.<br><br>I’ll go further. This might actually be one of the best openings I’ve seen. No exaggeration. The animation, the symbolism, the music, everything just clicks together.<br><br>Also yeah, after all that emotional and artistic depth, it’s kind of funny remembering Kuze is still… Kuze. The opening makes him look like he’s about to embark on a life-changing emotional journey. Then the episode starts and you’re like “right… this guy.”<br><br>Balance, I guess.</p>
 
-                                      <figure style="text-align: center;">
-                        <img src="/images/alya-and-umbrella.png" alt="Alya and umbrella">
-                        <figcaption style="font-size: 0.7em; color: var(--neon-cyan); margin-top: 5px;">When Alya dropped her umbrella</figcaption>
-                    </figure>
                                       <figure style="text-align: center;">
                         <img src="/images/alya-umbrella-and-kuze.png" alt="Kuze and umbrella">
                         <figcaption style="font-size: 0.7em; color: var(--neon-cyan); margin-top: 5px;">When Kuze hands her umbrella</figcaption>
                     </figure>
+        </div>
+        </div>
 
-                  <p>I'm sure that’s not subtle either. That’s literally Kuze reaching out then emotional warmth entering Alya’s world<br><br>Then as you see in those photos there’s that moment where Alya looks up at him. She’s also drawn slightly shorter than she already is for some reason (I don't know why), almost like she’s vulnerable or overwhelmed. She looks stunned, like she didn’t expect that kind of kindness.<br><br>After that, her outfit transforms smoothly from casual to her school uniform in this fluid, brushstroke-like animation. It’s not a normal transition, it looks like she’s being <i>painted</i> into place. Same with Kuze, who rotates into frame and reaches out his hand. That’s straight-up referencing that “just take my hand” moment. No explanation needed.<br><br>And then the final stretch, bright background, soft colors, flowers, classroom setting, everything feels lighter. The title appears piece by piece while the music hits that emotional peak.<br><br>Speaking of music…<br><br>Yeah. The song itself is insane.<br><br>Just search the lyrics up in Google, and you'll see. Even just the opening lyrics already scream tsundere energy:<br><br>
-*lying with words<br>
-hiding real feelings<br>
-not saying what you actually mean<br><br>It perfectly matches Alya’s whole “speaking honestly in Russian but pretending it doesn’t count” thing. And lines about unseen feelings, not being able to “see from here,” that’s basically their entire dynamic. Feelings are there, just slightly out of reach. By the time the last lines hit, it’s clearly about chasing something you don’t fully understand yet. Feelings that were always there, just not recognized.<br><br>And honestly?<br><br>I don’t even fully understand every lyric either, but the feeling still lands.<br><br>That’s when you know it works.<br><br>At this point, I’ve seen people argue about a lot of anime openings, but this is one of the few where fans and even some haters agree:<br><br>It’s just really, really good.<br><br>I’ll go further. This might actually be one of the best openings I’ve seen. No exaggeration. The animation, the symbolism, the music, everything just clicks together.<br><br>Also yeah, after all that emotional and artistic depth, it’s kind of funny remembering Kuze is still… Kuze. The opening makes him look like he’s about to embark on a life-changing emotional journey. Then the episode starts and you’re like “right… this guy.”<br><br>Balance, I guess.</p>
-<!-- ... after your last paragraph ... -->
-                </article>
-                
-                <!-- If you use Cusdis, put the code here -->
-                
-            </div> <!-- Closes post-body -->
-        </div> <!-- Closes the module -->
-        <div class="module" style="margin-top: 40px;">
-    <div class="module-title">ENCRYPTED_USER_COMMUNICATION</div>
-    <div style="padding: 20px;">
-<script src="https://giscus.app/client.js"
-        data-repo="DeeperKing/maheswara"
-        data-repo-id="R_kgDOSKgW-g"
-        data-category="General"
-        data-category-id="DIC_kwDOSKgW-s4C8Dwf"
-        data-mapping="pathname"
-        data-strict="0"
-        data-reactions-enabled="1"
-        data-emit-metadata="0"
-        data-input-position="bottom"
-        data-theme="transparent_dark"
-        data-lang="en"
-        crossorigin="anonymous"
-        async>
-</script>
-    </div>
-</div>
-</section> <!-- Closes main-column -->
+        <!-- COMMENTS MODULE -->
+        <div class="module">
+            <div class="module-title">ENCRYPTED_USER_COMMUNICATION</div>
+            <script src="https://giscus.app/client.js"
+                data-repo="DeeperKing/maheswara"
+                data-repo-id="R_kgDOSKgW-g"
+                data-category="General"
+                data-category-id="DIC_kwDOSKgW-s4C8Dwf"
+                data-mapping="pathname"
+                data-theme="transparent_dark"
+                data-lang="en"
+                crossorigin="anonymous"
+                async>
+            </script>
+        </div>
+    </section>
 
-    <!-- ONLY ONE SIDEBAR HERE -->
+    <!-- SIDEBAR -->
     <aside class="sidebar-column">
         <div class="sticky-wrapper">
-            
-            <!-- LOCALE CONTROL PANEL -->
             <div class="side-module">
                 <div class="module-title">LOCALE_SETTINGS</div>
-                <button class="lang-button" onclick="setLocale('en')">Initialize: EN_US</button>
-                <button class="lang-button" onclick="setLocale('id')">Inisialisasi: ID_RS</button>
+                <button class="lang-button" onclick="setLocale('en')">[ ] Initialize: EN_US</button>
+                <button class="lang-button" onclick="setLocale('id')">[ ] Inisialisasi: ID_RS</button>
             </div>
 
-            <!-- SYSTEM STATUS -->
             <div class="side-module">
                 <div class="module-title">SYSTEM_STATUS</div>
                 <div style="font-size: 0.8em; line-height: 1.8;">
@@ -351,20 +286,18 @@ not saying what you actually mean<br><br>It perfectly matches Alya’s whole “
                     </div>
                 </div>
             </div>
-
-        </div> <!-- Closes sticky-wrapper -->
+        </div>
     </aside>
-
-</main> <!-- Closes content-grid -->
+</main>
 
 <footer>
     <div class="footer-container">
-        <p>© 2026 Maheswara. All rights reserved.</p>
-        <p>Content distributed under <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.en" target="_blank" rel="noopener">CC-BY SA 4.0</a>. Unless otherwise noted.</p>
+        <p>[SYSTEM_AUTH]: © 2026 Maheswara. All rights reserved.</p>
+        <p>[LICENSE_DATA]: Content distributed under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC-BY SA 4.0</a>.</p>
     </div>
 </footer>
 
-</div> <!-- Closes site-wrapper -->
+</div>
 
 <script>
 function setLocale(lang) {
@@ -381,7 +314,6 @@ function setLocale(lang) {
     }
 }
 
-// Automatically load saved language
 window.onload = function() {
     const savedLang = localStorage.getItem('preferred_lang') || 'en';
     setLocale(savedLang);
