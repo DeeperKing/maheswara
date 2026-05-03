@@ -38,30 +38,34 @@ font-size: 0.75em;
 color: var(--neon-cyan, #00f2ff);
 margin-bottom: 15px;
 }
-        .footer-container {
+/* Footer Container */
+.footer-container {
     text-align: center;
     padding: 40px 20px;
     margin-top: 50px;
-    border-top: 1px solid rgba(0, 255, 255, 0.2); 
-    font-size: 0.7em; 
-    color: rgba(0, 255, 255, 0.4); 
+    border-top: 1px solid rgba(0, 255, 255, 0.2); /* Faint border */
+    font-size: 0.7em; /* Small text */
+    color: rgba(0, 255, 255, 0.4); /* Dimmed cyan */
     letter-spacing: 2px;
     text-transform: uppercase;
 }
 
-.footer-container p { margin: 5px 0; }
+.footer-container p {
+    margin: 5px 0;
+}
 
-/* Global Link Style */
+/* Base link style */
 a {
     color: var(--neon-cyan);
-    text-decoration: none;
+    text-decoration: none; /* Removes the underline */
     border-bottom: 1px solid transparent;
     transition: all 0.2s ease;
 }
 
+/* Hover effect */
 a:hover {
     color: var(--neon-pink);
-    border-bottom: 1px solid var(--neon-pink);
+    border-bottom: 1px solid var(--neon-pink); /* Subtle underline on hover */
 }
 
 /* Specific red for the rogue process failure */
