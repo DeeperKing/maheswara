@@ -367,5 +367,33 @@ SIM_CITY_LOGIC    [■■■■■■■■■□] 90%
     </footer>
 </footer>
 </div>
+<script>
+  // Live UTC Clock & Header Spinner
+setInterval(() => {
+const now = new Date();
+const el = document.getElementById('utc-time');
+if(el) el.innerText = now.toISOString().replace('T', ' ').substring(0, 19);
+}, 1000);
 
+const spinChars = ["/", "-", "\\", "|"];
+let spinIdx = 0;
+setInterval(() => {
+const hSpin = document.getElementById('header-spinner');
+const bSpin = document.getElementById('boot-spinner');
+const char = spinChars[spinIdx++ % 4];
+if(hSpin) hSpin.innerText = char;
+if(bSpin) bSpin.innerText = char;
+}, 150);
+
+// Advanced Typing Engine (Keeps cursor at the end)
+async function typeText(elId, text, speed) {
+const el = document.getElementById(elId);
+if (!el) return;
+el.innerText = "";
+for (let char of text) {
+el.innerText += char;
+await wait(speed);
+}
+}
+</script>
 </body>
