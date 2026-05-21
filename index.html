@@ -54,22 +54,9 @@ margin-bottom: 15px;
 
 <!-- BOOT SCREEN -->
 <div id="boot-screen" style="position:fixed; top:0; left:0; width:100%; height:100%; background:#000; z-index:10000; font-family:var(--font-mono), monospace; overflow:hidden; color: #00f2ff; display: flex; flex-direction: column;">
-<pre><div id="boot-screen">
-    <!-- This is where the logo goes -->
-    <pre id="boot-logo" style="color: #00ff41; text-align: center; font-size: 10px; line-height: 1.2;">
-▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄ 
- █                                             █ 
- █   ███▄ ▄███  ▄████▄  ██   ██  ████████      █ 
- █   █████████  ██▄▄██  ██▄▄██  ██             █ 
- █   ███▀█▀███  ██▀▀██  ██▀▀██  ██████         █ 
- █   ███   ███  ██  ██  ██  ██  ██▄▄▄▄▄▄       █ 
- █                                             █ 
- █           MAHESWARA CORPORATION             █ 
- █           SYSTEMS DIVISION v1.0             █ 
- █                                             █ 
- ▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀
-    </pre>
-</div></pre>
+    
+    <div id="boot-text">INITIALIZING...</div>
+    <div id="loading-bar">...</div>
 <!-- macOS STYLE TOP BAR -->
 <div style="background: #1a1a1a; padding: 8px 15px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #333;">
 <div style="display: flex; gap: 8px;">
@@ -303,28 +290,7 @@ await typeText('prompt-text', "STRIKE ANY KEY TO INITIATE UPLINK...", 30);
 const bootSequence = async () => {
 window.removeEventListener('keydown', bootSequence);
 window.removeEventListener('click', bootSequence);
-    
-const logoText = `▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄ 
- █                                             █ 
- █   ███▄ ▄███  ▄████▄  ██   ██  ████████      █ 
- █   █████████  ██▄▄██  ██▄▄██  ██             █ 
- █   ███▀█▀███  ██▀▀██  ██▀▀██  ██████         █ 
- █   ███   ███  ██  ██  ██  ██  ██▄▄▄▄▄▄       █ 
- █                                             █ 
- █           MAHESWARA CORPORATION             █ 
- █           SYSTEMS DIVISION v1.0             █ 
- █                                             █ 
- ▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀`;
-const logoEl = document.getElementById('boot-logo');
 
-// This prints the logo line by line
-async function printLogo() {
-    const lines = logoText.split('\n');
-    for (let line of lines) {
-        logoEl.innerHTML += line + '\n';
-        await new Promise(r => setTimeout(r, 50)); // Fast line-by-line reveal
-    }
-}
 // 1. Hide Prompt, 1.5s Blank Pause
 document.getElementById('init-prompt').style.display = 'none';
 await wait(1500); // The "BOOM" pause
