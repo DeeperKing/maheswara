@@ -153,6 +153,14 @@
                     LATENCY: <span style="color: #00ff00;">12ms</span><br>
                     CIPHER: AES-256-GCM<br>
                     PORT_STATE: <span style="color: var(--neon-pink);">STEALTH</span>
+                 <div class="module">
+    <div class="module-title scramble-title">NODE_TRAFFIC_METRICS</div>
+    <div style="font-size: 0.8em; color: #888; font-family: var(--font-mono); line-height: 1.8;">
+        [DISCORD_UPLINK]   ■■■■■■■■□□ 80% STABLE<br>
+        [WIKI_CONTRIB]    ■■■■■■■■■□ 92% SYNCED<br>
+        [X_FEED_ENCRYPT]  ■■■□□□□□□□ 30% PASSIVE<br>
+    </div>
+</div>
                 </div>
             </div>
         </div>
@@ -182,11 +190,15 @@
     // Interactive Node Logger Logic
     function logNode(nodeName) {
         const box = document.getElementById('console-log-box');
-        box.innerHTML += `<span style="color:var(--neon-pink)">[REQUEST]:</span> Initiating Handshake on channel ${nodeName}...<br>`;
-        box.innerHTML += `[SECURITY]: Routing tunnel sequence via localized servers...<br>`;
-        box.innerHTML += `<span style="color:#00ff00;">[SUCCESS]:</span> Gateway open. Transporting traveler data...<br>`;
+    box.innerHTML += `<span style="color:var(--neon-pink)">[REQUEST]:</span> Initiating Handshake on channel ${nodeName}...<br>`;
+    box.innerHTML += `[SECURITY]: Routing tunnel sequence via localized servers...<br>`;
+    box.innerHTML += `<span style="color:#00ff00;">[SUCCESS]:</span> Gateway open. Transporting traveler data...<br>`;
         box.scrollTop = box.scrollHeight;
         
+<div class="node-card" onclick="logNode(this, 'DISCORD_UPLINK')" data-link="https://discord.com">
+<div class="node-card" onclick="logNode(this, 'WIKIPEDIA_NODE')" data-link="https://id.wikipedia.org">
+<div class="node-card" onclick="logNode(this, 'X_FEED')" data-link="https://x.com">
+    
         // Short delay before transferring traveler link out
         setTimeout(() => {
             // target node targets can go here!
