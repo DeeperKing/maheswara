@@ -210,13 +210,24 @@
                 <input type="text" class="search-box" placeholder="SEARCH_DATABASE...">
             </div>
 
-            <div class="module">
-                <div class="module-title scramble-title">CATEGORIES</div>
-                <a href="#" class="sidebar-link">> ANIME_REVIEW</a>
-                <a href="#" class="sidebar-link">> TECH_&_HOBBIES</a>
-                <a href="#" class="sidebar-link">> DIGITAL_ARCHIVE</a>
-                <a href="#" class="sidebar-link">> WIKI_LOGS</a>
-            </div>
+<div class="content-container">
+
+    <details class="category-box" open>
+        <summary class="category-header"># Navigation & Blogs</summary>
+        
+        <p class="category-description">Click to expand/collapse. The list below automatically sorts itself alphabetically.</p>
+        
+        <ul id="auto-sort-list" class="blog-list">
+            <li><a href="#link">Zeta's Terminal Thoughts</a></li>
+            <li><a href="#link">Alpha Log Entries</a></li>
+            <li><a href="#link">Manga Translation Archives</a></li>
+            <li><a href="#link">Roshidere Fan-Club Directory</a></li>
+            <li><a href="#link">Beta Testing Notes</a></li>
+            <li><a href="#link">Indonesian Horse Racing History</a></li>
+        </ul>
+    </details>
+
+</div>
         </aside>
     </main>
 
@@ -269,6 +280,55 @@
         }
     }
     window.onload = scrambleTitles;
+
+    document.addEventListener("DOMContentLoaded", function() {
+    // Target the blog list
+    const list = document.getElementById("auto-sort-list");
+    if (!list) return;
+
+    // Convert list items to an array, sort them alphabetically by text content
+    const items = Array.from(list.getElementsByTagName("li"));
+    items.sort((a, b) => {
+        return a.textContent.trim().localeCompare(b.textContent.trim());
+    });
+
+    // Re-append them to the list in the new sorted order
+    items.forEach(item => list.appendChild(item));
+});
+
+    /* Minimal styling to prevent emptiness without overriding your main theme */
+.category-box {
+    border: 1px solid currentColor; /* Matches your current text color automatically */
+    padding: 15px;
+    margin: 20px 0;
+    background: transparent;
+}
+
+.category-header {
+    font-weight: bold;
+    cursor: pointer;
+    user-select: none;
+    padding: 5px 0;
+}
+
+.category-header:hover {
+    text-decoration: underline;
+}
+
+.category-description {
+    font-size: 0.9em;
+    opacity: 0.8;
+    margin-bottom: 15px;
+}
+
+.blog-list {
+    list-style-type: "■ "; /* Uses a clean block character for the list style */
+    padding-left: 20px;
+}
+
+.blog-list li {
+    margin-bottom: 8px;
+}
 </script>
 </body>
 </html>
