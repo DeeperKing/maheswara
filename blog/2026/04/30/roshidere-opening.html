@@ -38,7 +38,7 @@
         pointer-events: none; z-index: 999;
     }
 
-    /* HEADER - Using the "> " Hover Logic you liked */
+    /* HEADER */
     header {
         border-bottom: 2px solid var(--neon-cyan);
         margin-bottom: 30px;
@@ -65,11 +65,24 @@
         padding: 5px 10px;
         transition: all 0.2s ease;
         text-transform: uppercase;
-        display: inline-block;
+        display: inline-flex;
+        align-items: center;
     }
 
-    nav a::before { content: ""; opacity: 0; transition: all 0.2s ease; }
-    nav a:hover::before, nav a.active::before { content: "> "; opacity: 1; margin-right: 5px; }
+    /* FIXED HOVER ANIMATION */
+    nav a::before { 
+        content: "> "; 
+        opacity: 0; 
+        max-width: 0;
+        white-space: pre;
+        overflow: hidden;
+        transition: max-width 0.2s ease, opacity 0.2s ease;
+    }
+    
+    nav a:hover::before, nav a.active::before { 
+        opacity: 1; 
+        max-width: 20px; 
+    }
 
     nav a:hover, nav a.active {
         background-color: var(--neon-cyan);
@@ -111,6 +124,17 @@
         letter-spacing: 1px;
     }
 
+    /* GISCUS SPECIFIC PINK MODULE */
+    .module.giscus-wrapper {
+        border-color: var(--neon-pink);
+        box-shadow: inset 0 0 15px rgba(255, 77, 166, 0.05);
+    }
+    
+    .module.giscus-wrapper .module-title {
+        border-bottom: 1px dashed var(--neon-pink);
+        color: var(--neon-pink);
+    }
+
     /* LARGE TOGGLE BUTTON STYLE */
     .lang-switcher-container {
         display: flex;
@@ -145,8 +169,8 @@
     a { color: var(--neon-cyan); text-decoration: none; transition: 0.2s; }
     a:hover { color: var(--neon-pink) !important; text-shadow: 0 0 8px var(--neon-pink); }
 
-    /* IFRAME PINK FRAME */
-    iframe {
+    /* IFRAME PINK FRAME (Targeted to post-body so it doesn't double-border Giscus) */
+    .post-body iframe {
         border: 2px solid var(--neon-pink) !important;
         box-shadow: 0 0 15px rgba(255, 77, 166, 0.3);
     }
@@ -155,6 +179,16 @@
     ::-webkit-scrollbar { width: 5px; }
     ::-webkit-scrollbar-track { background: #000; }
     ::-webkit-scrollbar-thumb { background: var(--neon-cyan); }
+
+    /* FOOTER STYLES (Added to fix hover blocking) */
+    footer {
+        margin-top: 40px;
+        padding-top: 20px;
+        border-top: 1px dashed var(--neon-cyan);
+        text-align: center;
+        position: relative;
+        z-index: 10;
+    }
 </style>
 </head>
 <body>
@@ -170,7 +204,7 @@
         <nav>
             <ul>
                 <li><a href="/index.html">cd /home</a></li>
-                <li><a href="/blog.html" class="active">cd /blog</a></li>
+                <li><a href="javascript:void(0);" class="active">cd /blog</a></li>
                 <li><a href="/archive.html">cd /archive</a></li>
                 <li><a href="/social.html">cd /social_media</a></li>
             </ul>
@@ -178,7 +212,6 @@
     </header>
 
 <main class="content-grid">
-    <!-- MAIN CONTENT -->
     <section class="main-column">
         <div class="module">
             <div class="module-title">Roshidere's Opening Is Actually Insane</div>
@@ -189,8 +222,6 @@
                     <span class="en"> need to talk about the opening for Alya Sometimes Hides Her Feelings in Russian, because this isn’t just “good animation.” This is the kind of opening where you realize the animators were not playing around. Like the opening was so good I literally needs to seperate the pages. Now for reference, I never skip openings or endings in anime anyway, mostly out of respect for the people who worked on it. But this one? I couldn’t skip it even if I wanted to. The first half is pretty normal, just clips from the anime, setting things up. But once the chorus hits… everything changes.</span>
                     <span class="id" style="display:none;">Aku harus ngomongin soal opening Alya Sometimes Hides Her Feelings in Rusia, karena ini bukan sekadar “animasi yang bagus.” Ini jenis opening yang bikin kamu sadar kalau para animatornya nggak main-main. Opening-nya bagus banget sampai aku benar-benar harus membuat halaman terpisah. Sebagai catatan, aku memang nggak pernah melewatkan opening atau ending anime, terutama sebagai bentuk menghargai dan penghormatan kepada orang-orang yang menggambarnya, apalagi lagi krisis AI kan sekarang. Tapi yang ini? Aku gak bisa melewatkannya walaupun aku mau. Bagian pertama cukup biasa, hanya cuplikan dari anime, untuk membangun suasana. Tapi saat bagian <i>chorus</i> dimulai… bener-bener berubah.</span>
                 </p>
-
-    <!-- YouTube Embed -->
 
     <iframe 
         width="100%" 
@@ -203,12 +234,10 @@
         allowfullscreen>
     </iframe>
 
-    
     <figcaption style="font-size: 0.7em; color: var(--neon-cyan); margin-top: 5px;">
         <span class="en">The Opening</span>
         <span class="id" style="display:none;">Video Opening-nya</span>
     </figcaption>
-</figure>
 
                 <p>It starts with Alya about to give a speech, similar to that student council moment, and then suddenly the entire art style shifts. Like completely. It feels like she jumps into a different world, drawn in this brushstroke, almost painterly style. Background goes dark, black with white lines, very abstract.<br><br>Then you get Alya and Kuze dancing.<br><br>And yeah, if you read the manga, you already know. That scene is basically referencing that dance moment from earlier in their story, which the anime didn’t fully include. So the opening is literally adding emotional context the anime itself skipped. That alone is already crazy.<br><br>The background shifts again into this gradient mix of blue, black, and warm orange tones. It feels like warmth breaking through something cold, which fits their whole dynamic perfectly.<br><br>Then things get more symbolic.<br><br>Alya kind of… drifts away. I don’t even know how to describe it properly. Not running, not disappearing, just slipping away from Kuze. And then she turns into light. Or a star. Something intangible. Then Kuze chases it.<br><br>Now the background goes dark again, then suddenly shifts into a snowstorm. Full blizzard energy. He’s running, struggling, even falls off a cliff and rolls down a snowy slope. The whole thing feels cold, harsh, and isolating.<br><br>That part hits especially hard when you remember Alya’s whole “lone queen” image. She’s distant, hard to reach, emotionally guarded. And Kuze chasing that light in a literal blizzard? That’s not subtle symbolism. That’s the show screaming “this is not easy.”<br><br>Then Alya becomes a snowdrop flower</p>
                 
@@ -237,8 +266,7 @@
         </div>
         </div>
 
-        <!-- COMMENTS MODULE -->
-        <div class="module">
+        <div class="module giscus-wrapper">
             <div class="module-title">ENCRYPTED_USER_COMMUNICATION</div>
             <script src="https://giscus.app/client.js"
                 data-repo="DeeperKing/maheswara"
@@ -254,10 +282,8 @@
         </div>
     </section>
 
-    <!-- SIDEBAR -->
-<aside class="sidebar-column">
+    <aside class="sidebar-column">
     
-    <!-- LARGE LANGUAGE TOGGLE -->
     <div class="side-module">
         <div class="module-title">INTERFACE_LANGUAGE</div>
         <div class="lang-switcher-container">
@@ -272,7 +298,6 @@
         </div>
     </div>
 
-    <!-- SYSTEM STATUS (Maheswara Specific) -->
     <div class="side-module">
         <div class="module-title">SYSTEM_USER_DATA</div>
         <div style="font-size: 0.85em; line-height: 2;">
@@ -283,7 +308,6 @@
         </div>
     </div>
 
-    <!-- RECENT ACTIVITY LOGS (Fills up the sidebar) -->
     <div class="side-module">
         <div class="module-title">TERMINAL_LOGS</div>
         <div style="font-size: 0.7em; color: rgba(0,255,255,0.6); font-family: monospace;">
