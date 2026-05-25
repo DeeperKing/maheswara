@@ -4,9 +4,8 @@
     <link rel="icon" type="image/png" href="images/favicon.png">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Maheswara // Social_Media</title>
+    <title>Maheswara // Social</title>
     <style>
-        /* CORE VARIABLES */
         :root {
             --neon-cyan: #00ffff;
             --neon-pink: #ff4da6;
@@ -15,7 +14,6 @@
             --font-mono: 'Consolas', 'Courier New', Courier, monospace;
         }
 
-        /* GLOBAL STYLES */
         body, html {
             margin: 0; padding: 0;
             background-color: var(--terminal-bg);
@@ -31,82 +29,64 @@
             pointer-events: none; z-index: 999;
         }
 
-        .site-wrapper {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-            position: relative;
-            z-index: 1;
-        }
-
-        /* HEADER */
-        header {
-            border-bottom: 2px solid var(--neon-cyan);
-            margin-bottom: 30px;
-            padding-bottom: 10px;
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-            align-items: flex-end;
-        }
-
-        .sys-info {
-            font-size: 0.75em;
-            color: rgba(0, 255, 255, 0.5);
-            letter-spacing: 2px;
-            margin-bottom: 10px;
-        }
-
-        nav ul { list-style: none; padding: 0; margin: 0; display: flex; gap: 15px; flex-wrap: wrap; }
+        .site-wrapper { max-width: 1200px; margin: 0 auto; padding: 20px; position: relative; z-index: 1; }
         
-        /* HOVER ANIMATION LOGIC */
-        nav a {
-            color: var(--neon-cyan);
-            text-decoration: none;
-            font-weight: bold;
-            font-size: 1.1em;
-            padding: 5px 10px;
-            transition: all 0.2s ease;
-            text-transform: uppercase;
-            display: inline-block;
-        }
+        header { border-bottom: 2px solid var(--neon-cyan); margin-bottom: 30px; padding-bottom: 10px; }
         
-        nav a::before {
-            content: "";
-            margin-right: 0px;
-            opacity: 0;
-            transition: all 0.2s ease;
-        }
-        
-        nav a:hover::before, nav a.active::before {
-            content: "> ";
-            opacity: 1;
-            margin-right: 5px;
+        .live-stats {
+            display: flex; justify-content: space-between; background: rgba(0, 242, 255, 0.1);
+            border: 1px solid var(--neon-cyan); padding: 5px 10px; font-size: 0.75em; margin-bottom: 15px;
         }
 
-        nav a:hover, nav a.active {
-            background-color: var(--neon-cyan);
-            color: #000;
-            box-shadow: 0 0 10px var(--neon-cyan);
-        }
+        .sys-header { display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; }
+        .sys-info { font-size: 0.75em; color: rgba(0, 255, 255, 0.5); letter-spacing: 2px; margin-bottom: 10px; }
 
-        /* GRID */
+        nav ul { list-style: none; padding: 0; margin: 0; display: flex; gap: 15px; }
+        nav a { color: var(--neon-cyan); text-decoration: none; font-weight: bold; font-size: 1.1em; padding: 5px 10px; text-transform: uppercase; }
+        nav a:hover, nav a.active { background-color: var(--neon-cyan); color: #000; box-shadow: 0 0 10px var(--neon-cyan); }
+
         .content-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 25px; }
         @media (max-width: 768px) { .content-grid { grid-template-columns: 1fr; } }
 
-        /* UI MODULES */
-        .module { background: var(--panel-bg); border: 1px solid rgba(0,255,255,0.3); border-radius: 3px; padding: 20px; position: relative; overflow: hidden; }
-        .module-title { font-size: 1.2em; border-bottom: 1px dashed var(--neon-cyan); padding-bottom: 5px; margin-bottom: 15px; text-transform: uppercase; letter-spacing: 2px; text-shadow: 0 0 5px var(--neon-cyan); }
+        .scramble-title { color: transparent; }
+        .module { background: var(--panel-bg); border: 1px solid rgba(0,255,255,0.3); border-radius: 3px; padding: 20px; margin-bottom: 20px; }
+        .module-title { font-size: 1.1em; border-bottom: 1px dashed var(--neon-cyan); padding-bottom: 5px; margin-bottom: 15px; letter-spacing: 2px; }
 
-        /* SOCIAL NODES */
-        .node-card { border: 1px solid var(--neon-cyan); padding: 15px; margin-bottom: 15px; transition: 0.3s; background: rgba(0,0,0,0.3); }
-        .node-card:hover { border-color: var(--neon-pink); background: rgba(255, 77, 166, 0.05); }
-        .node-title { color: #fff; font-weight: bold; display: block; margin-bottom: 5px; }
-        .node-status { font-size: 0.7em; color: var(--neon-cyan); }
+        /* SOCIAL CARDS UPGRADED */
+        .node-card { 
+            border: 1px solid var(--neon-cyan); 
+            padding: 15px; 
+            margin-bottom: 15px; 
+            background: rgba(0,0,0,0.5); 
+            cursor: pointer;
+            transition: all 0.3s;
+            position: relative;
+        }
+        .node-card:hover { 
+            border-color: var(--neon-pink); 
+            box-shadow: 0 0 15px rgba(255, 77, 166, 0.3);
+            transform: translateX(5px);
+        }
+        .node-title { color: #fff; font-weight: bold; display: block; margin-bottom: 5px; font-size: 1.2em; }
+        .node-status { font-size: 0.75em; color: var(--neon-cyan); display: flex; justify-content: space-between; }
 
-        /* FOOTER */
-        footer { margin-top: 40px; padding-top: 20px; border-top: 1px solid #333; font-size: 0.85em; color: #666; line-height: 1.8; }
-        .glitch-text { color: var(--neon-pink); text-shadow: 0 0 8px var(--neon-pink); }
+        /* LIVE CONSOLE DOWN AT BOTTOM */
+        #console-log-box {
+            background: #000;
+            border: 1px solid rgba(0, 255, 255, 0.2);
+            height: 100px;
+            overflow-y: auto;
+            font-size: 0.8em;
+            padding: 10px;
+            color: #888;
+        }
+
+        .footer-container {
+            text-align: center; padding: 40px 20px; margin-top: 50px; border-top: 1px solid rgba(0, 255, 255, 0.2);
+            font-size: 0.85em; color: rgba(0, 255, 255, 0.6); letter-spacing: 2px; text-transform: uppercase;
+        }
+        .footer-container p { margin: 5px 0; }
+        .footer-container a { color: var(--neon-cyan); text-decoration: none; }
     </style>
 </head>
 <body>
@@ -115,66 +95,124 @@
 
 <div class="site-wrapper">
     <header>
-        <div>
-            <div class="sys-info">ROOT_ACCESS_GRANTED // LOC: JAKARTA/DEPOK</div>
-            <h1 style="margin: 0; color: #fff; text-shadow: 0 0 10px var(--neon-cyan); text-transform: uppercase; font-size: 2.5em; letter-spacing: 2px;">Maheswara</h1>
+        <div class="live-stats">
+            <div><span id="header-spinner">/</span> MaheSwara Website-Interface // Build v3.0.1</div>
+            <div>SYS_STATUS: OPERATIONAL // LOG_TIME: <span id="utc-time">----</span> UTC</div>
         </div>
-        <nav>
-            <ul>
-                <li><a href="index.html">cd /home</a></li>
-                <li><a href="blog.html">cd /blog</a></li>
-                <li><a href="archive.html">cd /archive</a></li>
-                <li><a href="social.html" class="active">cd /social_media</a></li>
-            </ul>
-        </nav>
+        <div class="sys-header">
+            <div>
+                <div class="sys-info">ROOT_ACCESS_GRANTED // LOC: JAKARTA/DEPOK</div>
+                <h1 style="margin: 0; color: #fff; text-shadow: 0 0 10px var(--neon-cyan); text-transform: uppercase; font-size: 2.5em; letter-spacing: 2px;">Maheswara</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">cd /home</a></li>
+                    <li><a href="blog.html">cd /blog</a></li>
+                    <li><a href="archive.html">cd /archive</a></li>
+                    <li><a href="social.html" class="active">cd /social_media</a></li>
+                </ul>
+            </nav>
+        </div>
     </header>
 
     <main class="content-grid">
         <div class="main-column">
             <div class="module">
-                <div class="module-title">ESTABLISH_HANDSHAKE_PROTOCOL</div>
-                <p style="font-size: 0.9em; color: #aaa;">Select a network node to initiate communication channel. Encryption keys are currently active.</p>
+                <div class="module-title scramble-title">ESTABLISH_HANDSHAKE_PROTOCOL</div>
+                <p style="font-size: 0.9em; color: #aaa; margin-bottom: 20px;">Select an external link packet node to initiate secure communication vectors.</p>
 
-                <div class="node-card">
-                    <a href="#" style="text-decoration: none;">
-                        <span class="node-title">DISCORD_UPLINK</span>
-                        <span class="node-status">[STATUS: HANDSHAKE_READY]</span>
-                    </a>
+                <div class="node-card" onclick="logNode('DISCORD_UPLINK')" data-link="https://discord.com">
+                    <span class="node-title">> DISCORD_UPLINK</span>
+                    <div class="node-status"><span>@mhswra</span><span>[STATUS: HANDSHAKE_READY]</span></div>
                 </div>
-                <div class="node-card">
-                    <a href="#" style="text-decoration: none;">
-                        <span class="node-title">WIKIPEDIA_CONTRIB_NODE</span>
-                        <span class="node-status">[STATUS: SYNCING_DATA]</span>
-                    </a>
+                
+                <div class="node-card" onclick="logNode('WIKIPEDIA_NODE')" data-link="https://id.wikipedia.org">
+                    <span class="node-title">> WIKIPEDIA_CONTRIB_NODE</span>
+                    <div class="node-status"><span>User: Maheswara</span><span>[STATUS: SYNCING_DATA]</span></div>
                 </div>
-                <div class="node-card">
-                    <a href="#" style="text-decoration: none;">
-                        <span class="node-title">X_FEED_ENCRYPTED</span>
-                        <span class="node-status">[STATUS: PASSIVE_LISTENING]</span>
-                    </a>
+                
+                <div class="node-card" onclick="logNode('X_FEED')" data-link="https://x.com">
+                    <span class="node-title">> X_FEED_ENCRYPTED</span>
+                    <div class="node-status"><span>Passive Listener</span><span>[STATUS: ONLINE]</span></div>
+                </div>
+            </div>
+
+            <div class="module">
+                <div class="module-title scramble-title">CONNECTION_TELEMETRY</div>
+                <div id="console-log-box">
+                    [SYSTEM]: Select terminal node above to route proxy packages...<br>
                 </div>
             </div>
         </div>
 
         <div class="sidebar">
             <div class="module">
-                <div class="module-title">SYSTEM_DIAGNOSTICS</div>
-                <div style="font-size: 0.8em; color: #666;">
-                    UPLINK_LATENCY: 12ms<br>
-                    SIGNAL_STRENGTH: 98%<br>
-                    ENCRYPTION: AES-256
+                <div class="module-title scramble-title">DIAGNOSTICS</div>
+                <div style="font-size: 0.85em; color: #aaa; line-height: 2;">
+                    SIGNAL: <span style="color: #00ff00;">EXCELLENT (98%)</span><br>
+                    LATENCY: <span style="color: #00ff00;">12ms</span><br>
+                    CIPHER: AES-256-GCM<br>
+                    PORT_STATE: <span style="color: var(--neon-pink);">STEALTH</span>
                 </div>
             </div>
         </div>
     </main>
 
     <footer>
-        <div style="color: #888;">[SYSTEM]: OPERATING IN SAFE MODE</div>
-        <div style="color: #00ff00;">[SYSTEM]: ADMINISTRATOR ACCESS GRANTED</div>
-        <div class="glitch-text" style="margin-top: 15px; font-size: 1.1em; text-align: center;">
-            "If you want to reach me, use the proper handshake."
+        <div class="footer-container">
+            <p>© 2026 Maheswara.</p>
+            <p>Content distributed under <a href="https://creativecommons.org/licenses/by/4.0/deed.en" target="_blank" rel="noopener">CC-BY SA 4.0</a>. Unless otherwise noted.</p>
         </div>
     </footer>
 </div>
+
+<script>
+    // Live Matrix Clock & Spinner Sync
+    setInterval(() => {
+        const now = new Date();
+        document.getElementById('utc-time').innerText = now.toISOString().replace('T', ' ').substring(0, 19);
+    }, 1000);
+
+    const spinChars = ["/", "-", "\\", "|"];
+    let spinIdx = 0;
+    setInterval(() => {
+        document.getElementById('header-spinner').innerText = spinChars[spinIdx++ % 4];
+    }, 150);
+
+    // Interactive Node Logger Logic
+    function logNode(nodeName) {
+        const box = document.getElementById('console-log-box');
+        box.innerHTML += `<span style="color:var(--neon-pink)">[REQUEST]:</span> Initiating Handshake on channel ${nodeName}...<br>`;
+        box.innerHTML += `[SECURITY]: Routing tunnel sequence via localized servers...<br>`;
+        box.innerHTML += `<span style="color:#00ff00;">[SUCCESS]:</span> Gateway open. Transporting traveler data...<br>`;
+        box.scrollTop = box.scrollHeight;
+        
+        // Short delay before transferring traveler link out
+        setTimeout(() => {
+            // target node targets can go here!
+        }, 800);
+    }
+
+    async function scrambleTitles() {
+        const titles = document.querySelectorAll('.scramble-title');
+        for (let title of titles) {
+            const originalText = title.innerText || title.textContent;
+            title.innerHTML = "";
+            title.style.color = "var(--neon-cyan)";
+            for (let i = 0; i < originalText.length; i++) {
+                let char = originalText[i];
+                if (char === " ") { title.innerHTML += " "; continue; }
+                let tempSpan = document.createElement('span');
+                title.appendChild(tempSpan);
+                for (let j = 0; j < 2; j++) {
+                    tempSpan.innerText = Math.random() > 0.5 ? '1' : '0';
+                    await new Promise(r => setTimeout(r, 10)); 
+                }
+                tempSpan.innerText = char;
+            }
+        }
+    }
+    window.onload = scrambleTitles;
+</script>
 </body>
 </html>
