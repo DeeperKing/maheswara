@@ -9,222 +9,165 @@
         :root {
             --neon-cyan: #00ffff;
             --neon-pink: #ff4da6;
-            --terminal-bg: #000;
-            --panel-bg: rgba(0, 255, 255, 0.05);
+            --terminal-bg: #050505;
+            --panel-bg: rgba(0, 255, 255, 0.03);
             --font-mono: 'Consolas', 'Courier New', Courier, monospace;
         }
 
-        body, html {
-            margin: 0; padding: 0;
-            background-color: var(--terminal-bg);
-            color: var(--neon-cyan);
-            font-family: var(--font-mono);
-            min-height: 100vh;
-        }
-
-        .scanlines {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: repeating-linear-gradient(0deg, rgba(0,0,0,0.15), rgba(0,0,0,0.15) 1px, transparent 1px, transparent 2px);
-            pointer-events: none; z-index: 999;
-        }
-
-        .site-wrapper { max-width: 1200px; margin: 0 auto; padding: 20px; position: relative; z-index: 1; }
-        header { border-bottom: 2px solid var(--neon-cyan); margin-bottom: 30px; padding-bottom: 10px; }
+        body, html { margin: 0; padding: 0; background-color: var(--terminal-bg); color: var(--neon-cyan); font-family: var(--font-mono); min-height: 100vh; }
+        .scanlines { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: repeating-linear-gradient(0deg, rgba(0,0,0,0.15), rgba(0,0,0,0.15) 1px, transparent 1px, transparent 2px); pointer-events: none; z-index: 999; }
+        .site-wrapper { max-width: 1400px; margin: 0 auto; padding: 20px; position: relative; z-index: 1; }
         
-        .live-stats {
-            display: flex; justify-content: space-between; background: rgba(0, 242, 255, 0.1);
-            border: 1px solid var(--neon-cyan); padding: 5px 10px; font-size: 0.75em; margin-bottom: 15px;
-        }
+        /* HEAVY MAGAZINE HEADER */
+        header { border-bottom: 4px solid var(--neon-cyan); margin-bottom: 30px; padding-bottom: 10px; }
+        .live-stats { display: flex; justify-content: space-between; background: var(--neon-cyan); color: #000; font-weight: bold; padding: 5px 10px; font-size: 0.85em; margin-bottom: 15px; text-transform: uppercase; }
         .sys-header { display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; }
-        .sys-info { font-size: 0.75em; color: rgba(0, 255, 255, 0.5); letter-spacing: 2px; margin-bottom: 10px; }
+        .sys-info { font-size: 0.75em; color: var(--neon-pink); letter-spacing: 2px; margin-bottom: 5px; text-transform: uppercase; }
+        h1 { margin: 0; color: #fff; text-transform: uppercase; font-size: 4em; letter-spacing: -2px; line-height: 0.8; padding-bottom: 10px; }
+        
+        /* FIXED HOVER STATES */
+        nav ul { list-style: none; padding: 0; margin: 0; display: flex; gap: 5px; }
+        nav a { color: var(--neon-cyan); text-decoration: none; font-weight: bold; font-size: 1.1em; padding: 8px 12px; text-transform: uppercase; border: 1px solid transparent; transition: 0s; }
+        nav a:hover, nav a.active { background-color: var(--neon-cyan); color: #000; border: 1px solid var(--neon-cyan); }
 
-        nav ul { list-style: none; padding: 0; margin: 0; display: flex; gap: 15px; }
-        nav a { color: var(--neon-cyan); text-decoration: none; font-weight: bold; font-size: 1.1em; padding: 5px 10px; text-transform: uppercase; }
-        nav a:hover, nav a.active { background-color: var(--neon-cyan); color: #000; box-shadow: 0 0 10px var(--neon-cyan); }
-
-        .content-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 25px; }
-        @media (max-width: 768px) { .content-grid { grid-template-columns: 1fr; } }
-
-        .scramble-title { color: transparent; }
-        .module { background: var(--panel-bg); border: 1px solid rgba(0,255,255,0.3); border-radius: 3px; padding: 20px; margin-bottom: 20px; }
-        .module-title { font-size: 1.2em; border-bottom: 1px dashed var(--neon-cyan); padding-bottom: 5px; margin-bottom: 15px; letter-spacing: 2px; }
+        /* MULTI-COLUMN DENSITY */
+        .content-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 20px; }
+        .module { background: var(--panel-bg); border: 2px solid var(--neon-cyan); padding: 20px; }
+        .module-title { font-size: 1.5em; font-weight: bold; background: var(--neon-cyan); color: #000; display: inline-block; padding: 2px 10px; margin-bottom: 20px; text-transform: uppercase; }
 
         /* INTERACTIVE ARCHIVE ROW SYSTEM */
-        .archive-item {
-            border-bottom: 1px solid rgba(0,255,255,0.1);
-            padding: 12px 0;
-        }
-        .archive-header {
-            display: flex;
-            justify-content: space-between;
-            cursor: pointer;
-            transition: color 0.2s;
-        }
-        .archive-header:hover { color: var(--neon-pink); }
-        .archive-date { color: #666; font-size: 0.9em; }
+        .archive-table { width: 100%; border-collapse: collapse; }
+        .archive-item { border-bottom: 2px solid rgba(0,255,255,0.2); }
+        .archive-item:hover { background: rgba(0,255,255,0.05); }
+        .archive-header { display: grid; grid-template-columns: 1fr auto; padding: 15px 10px; cursor: pointer; transition: 0.1s; font-size: 1.1em; }
+        .archive-header:hover .archive-link { color: var(--neon-pink); }
+        .archive-header:hover .archive-date { background: var(--neon-pink); color: #000; }
+        .archive-date { color: var(--neon-cyan); font-size: 0.9em; border: 1px solid var(--neon-cyan); padding: 2px 8px; transition: 0.1s; }
 
-        /* DYNAMIC EXTENSION PREVIEW LOGIC */
-        .archive-preview {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.35s ease-out, padding 0.35s ease-out;
-            color: #aaa;
-            font-size: 0.9em;
-            line-height: 1.6;
-            background: rgba(0, 0, 0, 0.4);
-        }
-        .archive-preview.open {
-            max-height: 150px; /* Expands smoothly */
-            padding: 10px 10px;
-            margin-top: 5px;
-            border-left: 2px dashed var(--neon-pink);
-        }
-        .archive-jump-btn {
-            display: inline-block;
-            margin-top: 8px;
-            color: var(--neon-cyan);
-            text-decoration: none;
-            border-bottom: 1px dotted var(--neon-cyan);
-        }
-        .archive-jump-btn:hover { color: var(--neon-pink); border-bottom-style: solid; }
+        .archive-preview { max-height: 0; overflow: hidden; transition: max-height 0.3s ease-out, padding 0.3s; color: #ccc; font-size: 0.95em; line-height: 1.6; background: rgba(0, 0, 0, 0.8); }
+        .archive-preview.open { max-height: 200px; padding: 15px; border-left: 4px solid var(--neon-pink); margin-bottom: 10px; }
+        
+        .btn-link { display: inline-block; margin-top: 10px; background: var(--neon-cyan); color: #000; text-decoration: none; padding: 4px 10px; font-weight: bold; text-transform: uppercase; }
+        .btn-link:hover { background: var(--neon-pink); }
 
-        .glitch-border { border-color: var(--neon-pink) !important; }
-        .glitch-text { color: var(--neon-pink); text-shadow: 0 0 8px var(--neon-pink); }
-
-        .footer-container {
-            text-align: center; padding: 40px 20px; margin-top: 50px; border-top: 1px solid rgba(0, 255, 255, 0.2);
-            font-size: 0.85em; color: rgba(0, 255, 255, 0.6); letter-spacing: 2px; text-transform: uppercase;
-        }
-        .footer-container p { margin: 5px 0; }
-        .footer-container a { color: var(--neon-cyan); text-decoration: none; }
+        /* ASCII DATA BLOCK */
+        .ascii-art { font-size: 0.6em; line-height: 1; white-space: pre; color: var(--neon-cyan); margin-bottom: 15px; overflow-x: hidden; }
+        .data-list { list-style: none; padding: 0; margin: 0; font-size: 0.85em; }
+        .data-list li { border-bottom: 1px dashed rgba(0,255,255,0.3); padding: 8px 0; display: flex; justify-content: space-between; }
+        
+        /* FIXED FOOTER HOVERS */
+        footer { border-top: 4px solid var(--neon-cyan); margin-top: 40px; padding: 20px 0; text-align: center; font-size: 0.9em; text-transform: uppercase; }
+        footer a { color: var(--neon-cyan); text-decoration: none; padding: 2px 5px; }
+        footer a:hover { background: var(--neon-cyan); color: #000; font-weight: bold; }
     </style>
 </head>
 <body>
-
 <div class="scanlines"></div>
-
 <div class="site-wrapper">
     <header>
         <div class="live-stats">
-            <div><span id="header-spinner">/</span> MaheSwara Website-Interface // Build v3.0.1</div>
-            <div>SYS_STATUS: ACTIVE // LOG_TIME: <span id="utc-time">----</span> UTC</div>
+            <div><span id="header-spinner">/</span> MHSWRA_SYS // V3.0.1</div>
+            <div>STATUS: ARCHIVE_MODE // <span id="utc-time">----</span> UTC</div>
         </div>
         <div class="sys-header">
             <div>
-                <div class="sys-info">ROOT_ACCESS_GRANTED // LOC: JAKARTA/DEPOK</div>
-                <h1 style="margin: 0; color: #fff; text-shadow: 0 0 10px var(--neon-cyan); text-transform: uppercase; font-size: 2.5em; letter-spacing: 2px;">Maheswara</h1>
+                <div class="sys-info">ROOT_ACCESS: GRANTED // LOC: JAKARTA/DEPOK</div>
+                <h1>Maheswara</h1>
             </div>
             <nav>
                 <ul>
-                    <li><a href="index.html">cd /home</a></li>
-                    <li><a href="blog.html">cd /blog</a></li>
-                    <li><a href="archive.html" class="active">cd /archive</a></li>
-                    <li><a href="social.html">cd /social_media</a></li>
+                    <li><a href="index.html">/home</a></li>
+                    <li><a href="blog.html">/blog</a></li>
+                    <li><a href="archive.html" class="active">/archive</a></li>
+                    <li><a href="social.html">/social</a></li>
                 </ul>
             </nav>
         </div>
     </header>
 
     <main class="content-grid">
-        <div class="main-column">
-            <div class="module">
-                <div class="module-title scramble-title">SYSTEM_ARCHIVES_2026.db</div>
-
+        <div class="module">
+            <div class="module-title scramble-title">DATABASE_LEDGER_2026</div>
+            <div class="archive-table">
                 <div class="archive-item">
                     <div class="archive-header" onclick="toggleArchive(this)">
-                        <span class="archive-link">[+] Why Roshidere's Structure Works So Well</span>
-                        <span class="archive-date">2026-04-21</span>
+                        <span class="archive-link">[+] Roshidere Structure Mechanics</span>
+                        <span class="archive-date">26.04.21</span>
                     </div>
                     <div class="archive-preview">
-                        SUMMARY: Deconstructing slice-of-life pacing mechanics and alignment mapping patterns of active dialog sequences.<br>
-                        <a href="template.html" class="archive-jump-btn">[ LOAD FULL LOG PACKETS ]</a>
+                        <strong>LOG_SUMMARY:</strong> Deconstructing slice-of-life pacing mechanics and alignment mapping patterns of active dialog sequences.<br>
+                        <a href="template.html" class="btn-link">EXECUTE_READ</a>
                     </div>
                 </div>
-
                 <div class="archive-item">
                     <div class="archive-header" onclick="toggleArchive(this)">
-                        <span class="archive-link">[+] SimCity, System Builds, and Violin Practice</span>
-                        <span class="archive-date">2026-04-14</span>
+                        <span class="archive-link">[+] System Builds & Acoustic Scales</span>
+                        <span class="archive-date">26.04.14</span>
                     </div>
                     <div class="archive-preview">
-                        SUMMARY: Reviewing systemic similarities inside town simulator algorithms alongside linear scale training mechanics for four-string acoustic configurations.<br>
-                        <a href="template.html" class="archive-jump-btn">[ LOAD FULL LOG PACKETS ]</a>
+                        <strong>LOG_SUMMARY:</strong> Systemic similarities inside town simulator algorithms alongside linear scale training mechanics.<br>
+                        <a href="template.html" class="btn-link">EXECUTE_READ</a>
                     </div>
                 </div>
-
                 <div class="archive-item">
                     <div class="archive-header" onclick="toggleArchive(this)">
-                        <span class="archive-link">[+] The Great Wiki Migration Project</span>
-                        <span class="archive-date">2025-11-04</span>
+                        <span class="archive-link">[+] Wiki Frameworks Migration</span>
+                        <span class="archive-date">25.11.04</span>
                     </div>
                     <div class="archive-preview">
-                        SUMMARY: Data schema modifications regarding specialized Indonesian sports history documentation protocols across open-source wiki frameworks.<br>
-                        <a href="template.html" class="archive-jump-btn">[ LOAD FULL LOG PACKETS ]</a>
+                        <strong>LOG_SUMMARY:</strong> Data schema modifications regarding specialized Indonesian history documentation protocols.<br>
+                        <a href="template.html" class="btn-link">EXECUTE_READ</a>
                     </div>
                 </div>
             </div>
+        </div>
 
-            <div class="module glitch-border">
-                <div class="module-title glitch-text scramble-title">MEMORY_FRAGMENT_FOUND</div>
-                <div style="color: #ccc; font-style: italic; font-size: 0.9em;">
-                    &gt; "Some files are better left untouched, but we keep them anyway. A digital footprint of who we were before the last system reboot..."
-                </div>
+        <div class="module" style="border-color: var(--neon-pink);">
+            <div class="module-title scramble-title" style="background: var(--neon-pink); color: #000;">SYS_METRICS</div>
+            <div class="ascii-art">
+███╗   ███╗██╗  ██╗███████╗
+████╗ ████║██║  ██║██╔════╝
+██╔████╔██║███████║███████╗
+██║╚██╔╝██║██╔══██║╚════██║
+██║ ╚═╝ ██║██║  ██║███████║
+╚═╝     ╚═╝╚═╝  ╚═╝╚══════╝
             </div>
+            <ul class="data-list">
+                <li><span>TOTAL_ENTRIES:</span> <span style="color: #fff;">142</span></li>
+                <li><span>DATA_INTEGRITY:</span> <span style="color: #0f0;">100%</span></li>
+                <li><span>LAST_INDEX:</span> <span style="color: #fff;">T-MINUS 12H</span></li>
+                <li><span>STORAGE_CAP:</span> <span style="color: #fff;">[||||||||░░] 82%</span></li>
+            </ul>
         </div>
     </main>
 
     <footer>
-        <div class="footer-container">
-            <p>© 2026 Maheswara.</p>
-            <p>Content distributed under <a href="https://creativecommons.org/licenses/by/4.0/deed.en" target="_blank" rel="noopener">CC-BY SA 4.0</a>. Unless otherwise noted.</p>
-        </div>
+        <p>© 2026 MAHESWARA. DISTRIBUTED UNDER <a href="https://creativecommons.org/licenses/by/4.0/deed.en" target="_blank">CC-BY SA 4.0</a>.</p>
     </footer>
 </div>
 
 <script>
-    // System UTC Time Tracker
-    setInterval(() => {
-        const now = new Date();
-        document.getElementById('utc-time').innerText = now.toISOString().replace('T', ' ').substring(0, 19);
-    }, 1000);
+    setInterval(() => { document.getElementById('utc-time').innerText = new Date().toISOString().replace('T', ' ').substring(0, 19); }, 1000);
+    const spinChars = ["/", "-", "\\", "|"]; let spinIdx = 0;
+    setInterval(() => { document.getElementById('header-spinner').innerText = spinChars[spinIdx++ % 4]; }, 150);
 
-    const spinChars = ["/", "-", "\\", "|"];
-    let spinIdx = 0;
-    setInterval(() => {
-        document.getElementById('header-spinner').innerText = spinChars[spinIdx++ % 4];
-    }, 150);
-
-    // Expandable Drawer Toggle
-    function toggleArchive(headerElement) {
-        const previewBlock = headerElement.nextElementSibling;
-        const linkText = headerElement.querySelector('.archive-link');
-        
-        previewBlock.classList.toggle('open');
-        
-        if (previewBlock.classList.contains('open')) {
-            linkText.innerText = linkText.innerText.replace('[+]', '[-]');
-        } else {
-            linkText.innerText = linkText.innerText.replace('[-]', '[+]');
-        }
+    function toggleArchive(el) {
+        const preview = el.nextElementSibling;
+        const link = el.querySelector('.archive-link');
+        preview.classList.toggle('open');
+        link.innerText = preview.classList.contains('open') ? link.innerText.replace('[+]', '[-]') : link.innerText.replace('[-]', '[+]');
     }
 
     async function scrambleTitles() {
         const titles = document.querySelectorAll('.scramble-title');
         for (let title of titles) {
-            const originalText = title.innerText || title.textContent;
-            title.innerHTML = "";
-            title.style.color = "var(--neon-cyan)";
+            const originalText = title.innerText; title.innerHTML = "";
             for (let i = 0; i < originalText.length; i++) {
-                let char = originalText[i];
-                if (char === " ") { title.innerHTML += " "; continue; }
+                if (originalText[i] === " ") { title.innerHTML += " "; continue; }
                 let tempSpan = document.createElement('span');
                 title.appendChild(tempSpan);
-                for (let j = 0; j < 2; j++) {
-                    tempSpan.innerText = Math.random() > 0.5 ? '1' : '0';
-                    await new Promise(r => setTimeout(r, 10)); 
-                }
-                tempSpan.innerText = char;
+                for (let j = 0; j < 2; j++) { tempSpan.innerText = Math.random() > 0.5 ? '1' : '0'; await new Promise(r => setTimeout(r, 10)); }
+                tempSpan.innerText = originalText[i];
             }
         }
     }
