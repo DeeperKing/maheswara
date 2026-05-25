@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Maheswara // Blog</title>
     <style>
-        /* CORE VARIABLES */
         :root {
             --neon-cyan: #00ffff;
             --neon-pink: #ff4da6;
@@ -15,7 +14,6 @@
             --font-mono: 'Consolas', 'Courier New', Courier, monospace;
         }
 
-        /* GLOBAL STYLES */
         body, html {
             margin: 0; padding: 0;
             background-color: var(--terminal-bg);
@@ -39,15 +37,29 @@
             z-index: 1;
         }
 
-        /* HEADER */
+        /* HEADER & LIVE BANNERS */
         header {
             border-bottom: 2px solid var(--neon-cyan);
             margin-bottom: 30px;
             padding-bottom: 10px;
+        }
+
+        .live-stats {
             display: flex;
-            flex-wrap: wrap;
+            justify-content: space-between;
+            background: rgba(0, 242, 255, 0.1);
+            border: 1px solid var(--neon-cyan);
+            padding: 5px 10px;
+            font-size: 0.75em;
+            color: var(--neon-cyan);
+            margin-bottom: 15px;
+        }
+
+        .sys-header {
+            display: flex;
             justify-content: space-between;
             align-items: flex-end;
+            flex-wrap: wrap;
         }
 
         .sys-info {
@@ -57,9 +69,8 @@
             margin-bottom: 10px;
         }
 
+        /* NAVIGATION BAR */
         nav ul { list-style: none; padding: 0; margin: 0; display: flex; gap: 15px; flex-wrap: wrap; }
-        
-        /* HOVER ANIMATION LOGIC */
         nav a {
             color: var(--neon-cyan);
             text-decoration: none;
@@ -70,77 +81,74 @@
             text-transform: uppercase;
             display: inline-block;
         }
-        
-        nav a::before {
-            content: "";
-            margin-right: 0px;
-            opacity: 0;
-            transition: all 0.2s ease;
-        }
-        
-        nav a:hover::before, nav a.active::before {
-            content: "> ";
-            opacity: 1;
-            margin-right: 5px;
-        }
-
         nav a:hover, nav a.active {
             background-color: var(--neon-cyan);
             color: #000;
             box-shadow: 0 0 10px var(--neon-cyan);
         }
+        nav a:hover::before, nav a.active::before { content: "> "; }
 
-        /* GRID LAYOUT - 2:1 RATIO */
+        /* GRID LAYOUT */
         .content-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 30px; }
         @media (max-width: 768px) { .content-grid { grid-template-columns: 1fr; } }
 
-        /* MODULES */
-        .module { background: var(--panel-bg); border: 1px solid rgba(0,255,255,0.3); padding: 20px; margin-bottom: 20px; border-radius: 3px; }
-        .module-title { font-size: 1em; border-bottom: 1px dashed var(--neon-cyan); padding-bottom: 5px; margin-bottom: 15px; text-transform: uppercase; letter-spacing: 2px; color: var(--neon-cyan); }
+        /* ANTI-FLICKER DESIGN: Start text hidden so JavaScript handles it smoothly */
+        .scramble-title { 
+            color: transparent; 
+            text-transform: uppercase;
+        }
+
+        .module { 
+            background: var(--panel-bg); 
+            border: 1px solid rgba(0,255,255,0.3); 
+            padding: 20px; 
+            margin-bottom: 20px; 
+            border-radius: 3px; 
+        }
         
-        /* FEED */
-        .blog-post { margin-bottom: 40px; }
+        .module-title { 
+            font-size: 1em; 
+            border-bottom: 1px dashed var(--neon-cyan); 
+            padding-bottom: 5px; 
+            margin-bottom: 15px; 
+            letter-spacing: 2px; 
+            color: var(--neon-cyan);
+        }
+        
+        /* BLOG FEED DESIGNS */
+        .blog-post { 
+            margin-bottom: 40px; 
+            border-left: 2px solid rgba(0, 255, 255, 0.2);
+            padding-left: 15px;
+            transition: border-color 0.3s;
+        }
+        .blog-post:hover { border-color: var(--neon-pink); }
         .post-date { font-size: 0.75em; color: #666; margin-bottom: 5px; }
         .post-title { color: #fff; margin: 0 0 10px 0; font-size: 1.5em; text-shadow: 0 0 5px var(--neon-cyan); }
         .post-meta { font-size: 0.8em; color: var(--neon-pink); margin-bottom: 10px; }
         .post-excerpt { color: #ccc; line-height: 1.6; }
-        .read-more { display: inline-block; margin-top: 10px; color: var(--neon-cyan); text-decoration: none; border: 1px solid var(--neon-cyan); padding: 5px 10px; font-size: 0.8em; }
-        .read-more:hover { background: var(--neon-cyan); color: #000; }
+        .read-more { display: inline-block; margin-top: 10px; color: var(--neon-cyan); text-decoration: none; border: 1px solid var(--neon-cyan); padding: 5px 10px; font-size: 0.8em; transition: 0.2s; }
+        .read-more:hover { background: var(--neon-cyan); color: #000; box-shadow: 0 0 8px var(--neon-cyan); }
 
-        /* SIDEBAR FUNCTIONALITIES */
-        .sidebar-link { display: block; color: #fff; text-decoration: none; padding: 5px 0; border-bottom: 1px solid #111; font-size: 0.9em; }
-        .sidebar-link:hover { color: var(--neon-cyan); padding-left: 5px; }
-        .search-box { width: 100%; background: #000; border: 1px solid var(--neon-cyan); color: var(--neon-cyan); padding: 8px; box-sizing: border-box; }
+        /* SIDEBAR LINKS */
+        .sidebar-link { display: block; color: #fff; text-decoration: none; padding: 6px 0; border-bottom: 1px solid #111; font-size: 0.9em; transition: 0.2s; }
+        .sidebar-link:hover { color: var(--neon-cyan); padding-left: 8px; border-bottom-color: var(--neon-cyan); }
+        .search-box { width: 100%; background: #000; border: 1px solid var(--neon-cyan); color: var(--neon-cyan); padding: 8px; box-sizing: border-box; font-family: var(--font-mono); }
 
-        /* Footer Container */
-.footer-container {
-    text-align: center;
-    padding: 40px 20px;
-    margin-top: 50px;
-    border-top: 1px solid rgba(0, 255, 255, 0.2); /* Faint border */
-    font-size: 0.7em; /* Small text */
-    color: rgba(0, 255, 255, 0.4); /* Dimmed cyan */
-    letter-spacing: 2px;
-    text-transform: uppercase;
-}
-
-.footer-container p {
-    margin: 5px 0;
-}
-
-/* Base link style */
-a {
-    color: var(--neon-cyan);
-    text-decoration: none; /* Removes the underline */
-    border-bottom: 1px solid transparent;
-    transition: all 0.2s ease;
-}
-
-/* Hover effect */
-a:hover {
-    color: var(--neon-pink);
-    border-bottom: 1px solid var(--neon-pink); /* Subtle underline on hover */
-}
+        /* SYSTEM UPGRADED FOOTER */
+        .footer-container {
+            text-align: center;
+            padding: 40px 20px;
+            margin-top: 50px;
+            border-top: 1px solid rgba(0, 255, 255, 0.2);
+            font-size: 0.85em; 
+            color: rgba(0, 255, 255, 0.6); 
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+        .footer-container p { margin: 5px 0; }
+        .footer-container a { color: var(--neon-cyan); text-decoration: none; border-bottom: 1px dashed rgba(0, 255, 255, 0.4); }
+        .footer-container a:hover { color: var(--neon-pink); border-bottom: 1px solid var(--neon-pink); }
     </style>
 </head>
 <body>
@@ -149,34 +157,39 @@ a:hover {
 
 <div class="site-wrapper">
     <header>
-        <div>
-            <div class="sys-info">ROOT_ACCESS_GRANTED // LOC: BLOG_ARCHIVE</div>
-            <h1 style="margin: 0; color: #fff; text-shadow: 0 0 10px var(--neon-cyan); text-transform: uppercase; font-size: 2.5em; letter-spacing: 2px;">Maheswara</h1>
+        <div class="live-stats">
+            <div><span id="header-spinner">/</span> MaheSwara Website-Interface // Build v3.0.1</div>
+            <div>SYS_STATUS: ACTIVE // LOG_TIME: <span id="utc-time">----</span> UTC</div>
         </div>
-        <nav>
-            <ul>
-                <li><a href="index.html">cd /home</a></li>
-                <li><a href="blog.html" class="active">cd /blog</a></li>
-                <li><a href="archive.html">cd /archive</a></li>
-                <li><a href="social.html">cd /social_media</a></li>
-            </ul>
-        </nav>
+        <div class="sys-header">
+            <div>
+                <div class="sys-info">ROOT_ACCESS_GRANTED // LOC: BLOG_ARCHIVE</div>
+                <h1 style="margin: 0; color: #fff; text-shadow: 0 0 10px var(--neon-cyan); text-transform: uppercase; font-size: 2.5em; letter-spacing: 2px;">Maheswara</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">cd /home</a></li>
+                    <li><a href="blog.html" class="active">cd /blog</a></li>
+                    <li><a href="archive.html">cd /archive</a></li>
+                    <li><a href="social.html">cd /social_media</a></li>
+                </ul>
+            </nav>
+        </div>
     </header>
 
     <main class="content-grid">
         <section class="main-column">
             <div class="module">
-                <div class="module-title">LATEST_LOGS.txt</div>
-
+                <div class="module-title scramble-title">LATEST_LOGS.txt</div>
 
                 <article class="blog-post">
                     <div class="post-date">2026-04-11</div>
-                    <h2 class="post-title">Why The Angel Next Door Spoils Me Rotten (Season 1) Feels So Comforting… and a Bit Confusing</h2>
+                    <h2 class="post-title">Why The Angel Next Door Spoils Me Rotten Feels So Comforting</h2>
                     <div class="post-meta">[CATEGORY: ANIME_REVIEW] [READ_TIME: ~8 MIN]</div>
                     <div class="post-excerpt">
-                        Diving into romance anime usually means signing up for chaos. Love triangles, misunderstandings engineered by fate itself, or someone deciding the worst possible moment is the best time for a confession. Then <i>The Angel Next Door Spoils Me Rotten</i> shows up and does the exact opposite. It slows everything down, keeps the cast small, and builds a relationship so gentle it almost feels suspicious.
+                        Diving into romance anime usually means signing up for chaos. Love triangles, misunderstandings engineered by fate itself, or confessions at the worst possible moment. Then <i>The Angel Next Door Spoils Me Rotten</i> shows up and does the exact opposite...
                     </div>
-                    <a href="/blog/2026/04/11/theangelnextdoor.html" class="read-more">[ READ_FULL_LOG ]</a>
+                    <a href="template.html" class="read-more">[ READ_FULL_LOG ]</a>
                 </article>
 
                 <article class="blog-post">
@@ -184,80 +197,78 @@ a:hover {
                     <h2 class="post-title">Why Roshidere's Structure Works So Well</h2>
                     <div class="post-meta">[CATEGORY: ANIME_REVIEW] [READ_TIME: ~5 MIN]</div>
                     <div class="post-excerpt">
-                        Diving deep into the narrative structure today. Whether it's the subtle slice-of-life pacing or the way Alya's character is written, there's a reason RomComs hit differently when the story is grounded.
+                        Diving deep into the narrative structure today. Whether it's the subtle slice-of-life pacing or the way Alya's character is written, there's a reason RomComs hit differently when the story is structurally grounded.
                     </div>
-                    <a href="/blog/2026/03/09/roshidere.html" class="read-more">[ READ_FULL_LOG ]</a>
+                    <a href="template.html" class="read-more">[ READ_FULL_LOG ]</a>
                 </article>
-                
             </div>
         </section>
 
         <aside class="sidebar-column">
             <div class="module">
-                <div class="module-title">QUERY_LOGS</div>
+                <div class="module-title scramble-title">QUERY_LOGS</div>
                 <input type="text" class="search-box" placeholder="SEARCH_DATABASE...">
             </div>
 
             <div class="module">
-                <div class="module-title">CATEGORIES</div>
+                <div class="module-title scramble-title">CATEGORIES</div>
                 <a href="#" class="sidebar-link">> ANIME_REVIEW</a>
                 <a href="#" class="sidebar-link">> TECH_&_HOBBIES</a>
                 <a href="#" class="sidebar-link">> DIGITAL_ARCHIVE</a>
                 <a href="#" class="sidebar-link">> WIKI_LOGS</a>
             </div>
-
-            <div class="module">
-                <div class="module-title">ARCHIVE</div>
-                <a href="#" class="sidebar-link">> APRIL 2026</a>
-                <a href="#" class="sidebar-link">> MARCH 2026</a>
-                <a href="#" class="sidebar-link">> FEBRUARY 2026</a>
-            </div>
         </aside>
     </main>
 
     <footer>
-        <div style="text-align: center; margin-top: 40px; padding: 20px; border-top: 1px solid #333; font-size: 0.8em; color: #444;">
-            MaheSwara Website-Interface // Build v3.0.1 // SYSTEM_STATUS: OPERATIONAL
-        </div>
         <div class="footer-container">
-        <p>[SYSTEM_AUTH]: © 2026 Maheswara. All rights reserved.</p>
-        <p>[LICENSE_DATA]: Content distributed under <a href="https://creativecommons.org/licenses/by/4.0/deed.en" target="_blank" rel="noopener">Creative Commons Attribution 4.0</a>. Unless otherwise noted.</p>
-    </div>
+            <p>© 2026 Maheswara.</p>
+            <p>Content distributed under <a href="https://creativecommons.org/licenses/by/4.0/deed.en" target="_blank" rel="noopener">CC-BY SA 4.0</a>. Unless otherwise noted.</p>
+        </div>
     </footer>
 </div>
-</body>
-    <!-- PUT THIS RIGHT BEFORE </body> CLOSES ON YOUR OTHER PAGES -->
+
 <script>
+    // Live Clock Logic
+    setInterval(() => {
+        const now = new Date();
+        const el = document.getElementById('utc-time');
+        if(el) el.innerText = now.toISOString().replace('T', ' ').substring(0, 19);
+    }, 1000);
+
+    // Spinner Logic
+    const spinChars = ["/", "-", "\\", "|"];
+    let spinIdx = 0;
+    setInterval(() => {
+        const hSpin = document.getElementById('header-spinner');
+        if(hSpin) hSpin.innerText = spinChars[spinIdx++ % 4];
+    }, 150);
+
+    // Upgraded Scramble Script (Fixes Double Typing Text Bug)
     async function scrambleTitles() {
-        // Find everything with the class 'module-title'
-        const titles = document.querySelectorAll('.module-title');
-        
+        const titles = document.querySelectorAll('.scramble-title');
         for (let title of titles) {
-            // Save the original text and clear it
-            const originalText = title.innerText;
+            const originalText = title.innerText || title.textContent;
             title.innerHTML = "";
+            title.style.color = "var(--neon-cyan)"; // Reveal panel titles cleanly
             
             for (let i = 0; i < originalText.length; i++) {
                 let char = originalText[i];
                 if (char === " ") {
-                    title.innerHTML += char;
+                    title.innerHTML += " ";
                     continue;
                 }
-                
                 let tempSpan = document.createElement('span');
                 title.appendChild(tempSpan);
-
-                // Extremely fast flicker for the headers
                 for (let j = 0; j < 2; j++) {
                     tempSpan.innerText = Math.random() > 0.5 ? '1' : '0';
-                    await new Promise(r => setTimeout(r, 15)); 
+                    await new Promise(r => setTimeout(r, 10)); 
                 }
                 tempSpan.innerText = char;
             }
         }
     }
-
-    // Run the scramble as soon as the page loads
     window.onload = scrambleTitles;
 </script>
+</body>
 </html>
