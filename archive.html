@@ -50,6 +50,11 @@
         .module { background: var(--panel-bg); border: 1px solid rgba(0,255,255,0.3); border-radius: 3px; padding: 20px; margin-bottom: 20px; }
         .module-title { font-size: 1.2em; border-bottom: 1px dashed var(--neon-cyan); padding-bottom: 5px; margin-bottom: 15px; letter-spacing: 2px; }
 
+        <div style="margin-bottom: 25px; border-bottom: 1px dashed rgba(0, 255, 255, 0.3); padding-bottom: 12px; display: flex; align-items: center; gap: 10px;">
+    <span style="color: var(--neon-pink); font-weight: bold; font-size: 0.9em;">&gt; FILTER_LOGS:</span>
+    <input type="text" id="archive-search" placeholder="Enter keyword..." style="background: transparent; border: none; color: var(--neon-cyan); font-family: var(--font-mono); font-size: 0.9em; outline: none; width: 60%;">
+</div>
+        
         /* INTERACTIVE ARCHIVE ROW SYSTEM */
         .archive-item {
             border-bottom: 1px solid rgba(0,255,255,0.1);
@@ -172,6 +177,25 @@
                 </div>
             </div>
         </div>
+    <div class="sidebar">
+            <div class="module">
+                <div class="module-title scramble-title">ARCHIVE_MANIFEST</div>
+                <div style="font-size: 0.85em; color: #aaa; line-height: 1.8;">
+                    TOTAL_RECORDS: <span style="color: var(--neon-cyan);">3 Loaded</span><br>
+                    STORAGE_VOLUME: <span style="color: var(--neon-cyan);">41.2 KB</span><br>
+                    DB_INTEGRITY: <span style="color: #00ff00;">VALIDATED</span><br>
+                    INDEX_STATUS: <span style="color: var(--neon-pink);">STABLE</span>
+                </div>
+            </div>
+            
+            <div class="module">
+                <div class="module-title scramble-title">RESTRICTED_SECTORS</div>
+                <div style="font-size: 0.8em; color: #666; font-style: italic;">
+                    [LOCKED] LOG_BATCH_2024.bin<br>
+                    [LOCKED] CODENAME_ROSHIDERE.conf<br>
+                </div>
+            </div>
+        </div>
     </main>
 
     <footer>
@@ -229,6 +253,24 @@
         }
     }
     window.onload = scrambleTitles;
+
+    // Drop this inside your existing script tags
+document.getElementById('archive-search').addEventListener('input', function(e) {
+    const query = e.target.value.toLowerCase();
+    const items = document.querySelectorAll('.archive-item');
+    
+    items.forEach(item => {
+        const titleText = item.querySelector('.archive-link').textContent.toLowerCase();
+        const previewText = item.querySelector('.archive-preview').textContent.toLowerCase();
+        
+        // Checks if the keyword exists in either the header or the hidden summary block
+        if (titleText.includes(query) || previewText.includes(query)) {
+            item.style.display = 'block';
+        } else {
+            item.style.display = 'none';
+        }
+    });
+});
 </script>
 </body>
 </html>
