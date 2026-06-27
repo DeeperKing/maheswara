@@ -301,19 +301,16 @@
 
     <aside class="sidebar-column">
     
-    <div class="side-module">
-        <div class="module-title">INTERFACE_LANGUAGE</div>
-        <div class="lang-switcher-container">
-            <button class="lang-btn" onclick="setLocale('en')">
-                <span>EN_US [PRIMARY]</span>
-                <span class="status-symbol">▰</span>
-            </button>
-            <button class="lang-btn" onclick="setLocale('id')">
-                <span>ID_RS [SECONDARY]</span>
-                <span class="status-symbol">▱</span>
-            </button>
-        </div>
-    </div>
+<div class="lang-switcher-container">
+    <button class="lang-btn" onclick="setLocale('en')">
+        <span>EN_US [PRIMARY]</span>
+        <span class="status-symbol" id="symbol-en">▰</span>
+    </button>
+    <button class="lang-btn" onclick="setLocale('id')">
+        <span>ID_RS [SECONDARY]</span>
+        <span class="status-symbol" id="symbol-id">▱</span>
+    </button>
+</div>
 
     <div class="side-module">
         <div class="module-title">SYSTEM_USER_DATA</div>
@@ -355,13 +352,25 @@ function setLocale(lang) {
     localStorage.setItem('preferred_lang', lang);
     const enElements = document.querySelectorAll('.en');
     const idElements = document.querySelectorAll('.id');
+    
+    // Get the symbol elements
+    const symbolEn = document.getElementById('symbol-en');
+    const symbolId = document.getElementById('symbol-id');
 
     if (lang === 'id') {
         enElements.forEach(el => el.style.display = 'none');
         idElements.forEach(el => el.style.display = 'inline');
+        
+        // Update symbols: EN becomes empty, ID becomes filled
+        if(symbolEn) symbolEn.textContent = '▱';
+        if(symbolId) symbolId.textContent = '▰';
     } else {
         enElements.forEach(el => el.style.display = 'inline');
         idElements.forEach(el => el.style.display = 'none');
+        
+        // Update symbols: EN becomes filled, ID becomes empty
+        if(symbolEn) symbolEn.textContent = '▰';
+        if(symbolId) symbolId.textContent = '▱';
     }
 }
 
