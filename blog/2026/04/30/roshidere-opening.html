@@ -180,14 +180,31 @@
     ::-webkit-scrollbar-track { background: #000; }
     ::-webkit-scrollbar-thumb { background: var(--neon-cyan); }
 
-    /* FOOTER STYLES (Added to fix hover blocking) */
-    footer {
-        margin-top: 40px;
-        padding-top: 20px;
-        border-top: 1px dashed var(--neon-cyan);
-        text-align: center;
-        position: relative;
-        z-index: 10;
+/* Footer Container */
+.footer-container {
+    text-align: center;
+    padding: 40px 20px;
+    margin-top: 50px;
+    border-top: 1px solid rgba(0, 255, 255, 0.2);
+    font-size: 0.85em; /* Increased size here */
+    color: rgba(0, 255, 255, 0.6); /* Made it slightly brighter */
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.footer-container p { margin: 5px 0; }
+
+.footer-container a {
+    color: var(--neon-cyan);
+    text-decoration: none;
+    border-bottom: 1px dashed rgba(0, 255, 255, 0.5);
+    transition: all 0.2s ease;
+}
+
+.footer-container a:hover {
+    color: var(--neon-pink);
+    border-bottom: 1px solid var(--neon-pink); 
+}
     }
 </style>
 </head>
@@ -324,11 +341,12 @@
 </main>
 
 <footer>
-    <div class="footer-container">
-        <p>[SYSTEM_AUTH]: © 2026 Maheswara. All rights reserved.</p>
-        <p>[LICENSE_DATA]: Content distributed under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC-BY SA 4.0</a>.</p>
-    </div>
+  <div class="footer-container">
+    <p>© 2026 Maheswara.</p>
+    <p>Content distributed under <a href="https://creativecommons.org/licenses/by/4.0/deed.en" target="_blank" rel="noopener">CC-BY SA 4.0</a>. Unless otherwise noted.</p>
+  </div>
 </footer>
+</div>
 
 </div>
 
