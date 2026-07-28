@@ -38,6 +38,51 @@
     color: var(--neon-cyan, #00f2ff);
     margin-bottom: 15px;
 }
+/* SMOOTH MAC-WINDOW TRANSITION STYLES */
+#boot-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #000;
+    z-index: 10000;
+    font-family: var(--font-mono), monospace;
+    overflow: hidden;
+    color: #00f2ff;
+    display: flex;
+    flex-direction: column;
+    /* Enable smooth layout transformation */
+    transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Class applied when transitioning from fullscreen boot to sticky header window */
+#boot-screen.morphed-window {
+    position: relative;
+    height: auto;
+    z-index: 100;
+    border: 1px solid #333;
+    border-bottom: 2px solid var(--neon-cyan, #00f2ff);
+    box-shadow: 0 4px 20px rgba(0, 242, 255, 0.15);
+}
+
+/* Inner terminal content container smooth fade out */
+#terminal-body {
+    padding: 40px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transition: opacity 0.4s ease, max-height 0.6s ease, padding 0.6s ease;
+}
+
+#terminal-body.collapsed {
+    opacity: 0;
+    max-height: 0;
+    padding: 0;
+    overflow: hidden;
+}
 </style>
 </head>
 <body>
@@ -350,22 +395,28 @@
             bootText.innerText = "HANDSHAKE_COMPLETE.";
             await wait(400);
 
-            // 4. Transition to Main Site
-            const screen = document.getElementById('boot-screen');
-            screen.style.opacity = "0";
-            setFavicon('images/favicon.png'); 
+// 4. Transition to Main Site (Morphing Mac Window)
+const screen = document.getElementById('boot-screen');
+const termBody = document.getElementById('terminal-body');
 
-            setTimeout(async () => {
-                screen.style.display = "none";
-                document.title = "Maheswara // Home";
-                const site = document.getElementById('main-site');
-                site.style.display = "block";
-                setTimeout(() => site.style.opacity = "1", 50);
-                
-                // LOCK SCROLLING FOR ON-RAILS EXPERIENCE
-                lockScroll();
-                window.scrollTo(0,0);
-                await wait(600);
+// A. Fade out & collapse the inner terminal boot logs/ASCII
+termBody.classList.add('collapsed');
+await wait(400);
+
+// B. Morph the Mac window frame into place on the page
+screen.classList.add('morphed-window');
+setFavicon('images/favicon.png');
+
+// C. Reveal main site content attached under the window
+document.title = "Maheswara // Home";
+const site = document.getElementById('main-site');
+site.style.display = "block";
+setTimeout(() => site.style.opacity = "1", 50);
+
+// D. Lock scrolling & start sequential module reveals
+lockScroll();
+window.scrollTo(0,0);
+await wait(600);
                 
                 // MODULE 1: ID
                 await smoothScrollTo('mod-id');
